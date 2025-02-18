@@ -1,2 +1,35 @@
-<h1>Repairs#index</h1>
-<p>Find me in app/views/repairs/index.html.erb</p>
+<h1>All repair orders</h1>
+
+<table class="index-table">
+  <tr>
+    <th>ID</th>
+    <th>Apple</th>
+    <th>TAT</th>
+    <th>Created</th>
+    <th>Last update</th>
+    <th>Next TAT</th>
+  </tr>
+
+  <% @repairs.each do |repair| %>
+   <tr>
+    <td>
+        <%= repair.id %>
+    </td>
+    <td>
+        <%= repair.brand %>
+    </td>
+    <td>
+        N/A
+    </td>
+    <td>
+        <%= repair.created_at %>
+    </td>
+    <td>
+        <%= repair.updated_at %>
+    </td>
+    <td>
+        N/A
+    </td>
+  </tr>
+  <% end %>
+</table>

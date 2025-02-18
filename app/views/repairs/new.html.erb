@@ -1,0 +1,30 @@
+<h1>New repair order</h1>
+
+<%= form_with model: @repair do |form| %>  
+  <div>
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+
+    <%= form.label :phone %>
+    <%= form.telephone_field :phone, class: "new-input" %>
+
+    <%= form.label :brand %>
+    <%= form.select :brand, ["Apple", "Samsung", "OnePlus", "Sony"]%>
+
+    <%= form.label :error_description %>
+    <%= form.text_area :error_description %>
+
+    <%= form.label :imei %>
+    <%= form.text_field :imei %>
+
+    <%= form.label :serial %>
+    <%= form.text_field :serial %>
+
+    <%= form.label :model %>
+    <%= form.text_field :model %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

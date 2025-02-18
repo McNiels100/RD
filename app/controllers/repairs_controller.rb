@@ -6,4 +6,8 @@ class RepairsController < ApplicationController
   def show
     @repair = Repair.find(params[:id])
   end
+
+  def new
+    @repair = Repair.new
+  end
 end

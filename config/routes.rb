@@ -13,5 +13,5 @@ Rails.application.routes.draw do
 
   root "repairs#index"
 
-  resources :products
+  resources :repairs
 end

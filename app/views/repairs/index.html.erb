@@ -13,7 +13,7 @@
   <% @repairs.each do |repair| %>
    <tr>
     <td>
-        <%= repair.id %>
+        <%= link_to repair.id, repair %>
     </td>
     <td>
         <%= repair.brand %>

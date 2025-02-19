@@ -1,27 +1,43 @@
 <h1>Repair ID: <%= @repair.id %></h1>
 
-<div class="info-module">
+<%= form_with model: @repair do |form| %>
+  <div class="info-module">
   <h2>Device</h2>
-  <ul>
-    <li><b>Brand:</b> <%= @repair.brand %></li>
-    <li><b>Model:</b> <%= @repair.model %></li>
-    <li><b>IMEI:</b> <%= @repair.imei %></li>
-    <li><b>Serial:</b> <%= @repair.serial %></li>
-    <li><b>Error Description:</b> <%= @repair.error_description %></li>
-  </ul>
+  <%= form.label :brand %>
+  <%= form.select :brand, ["Apple", "Samsung", "OnePlus", "Sony"]%>
+
+  <%= form.label :model %>
+  <%= form.text_field :model %>
+
+  <%= form.label :imei %>
+  <%= form.text_field :imei %>
+
+  <%= form.label :serial %>
+  <%= form.text_field :serial %>
+
+  <%= form.label :error_description %>
+  <%= form.text_area :error_description %>
 </div>
 
 <div class="info-module">
   <h2>Customer</h2>
-  <ul>
-    <li><b>Name:</b> <%= @repair.name %></li>
-    <li><b>Email:</b> <%= @repair.email %></li>
-    <li><b>Phone:</b> <%= @repair.phone_number %></li>
-  </ul>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+
+    <%= form.label :phone %>
+    <%= form.telephone_field :phone_number, class: "new-input" %>
 </div>
 
 <div class="action_module">
-  <h2></h2>
+  <h2>Actions</h2>
+  <% flash.each do |key, message| %>
+    <div class="flash <%= key %>"><%= message %></div>
+  <% end %>
+  <%= form.submit :Save %>
   <button>Close</button>
   <button>Delete</button>
 </div>
+<% end %>

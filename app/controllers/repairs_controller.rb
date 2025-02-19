@@ -16,6 +16,7 @@ class RepairsController < ApplicationController
     if @repair.save
       redirect_to @repair
     else
+      flash[:error] = @repair.errors.full_messages.to_sentence + "!"
       render :new, status: :unprocessable_entity
     end
   end
@@ -30,7 +31,8 @@ class RepairsController < ApplicationController
       flash[:success] = "Repair was successfully updated."
       redirect_to @repair
     else
-      render :edit, status: :unprocessable_entity
+      flash[:error] = @repair.errors.full_messages.to_sentence + "!"
+      render :show, status: :unprocessable_entity
     end
   end
 

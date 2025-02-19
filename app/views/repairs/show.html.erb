@@ -1,8 +1,27 @@
 <h1>Repair ID: <%= @repair.id %></h1>
 
-<ul>
-    <li>Brand: <%= @repair.brand %></li>
-    <li>IMEI: <%= @repair.imei %></li>
-    <li>Serial: <%= @repair.serial %></li>
-    <li>Error Description: <%= @repair.error_description %></li>
-</ul>
+<div class="info-module">
+  <h2>Device</h2>
+  <ul>
+    <li><b>Brand:</b> <%= @repair.brand %></li>
+    <li><b>Model:</b> <%= @repair.model %></li>
+    <li><b>IMEI:</b> <%= @repair.imei %></li>
+    <li><b>Serial:</b> <%= @repair.serial %></li>
+    <li><b>Error Description:</b> <%= @repair.error_description %></li>
+  </ul>
+</div>
+
+<div class="info-module">
+  <h2>Customer</h2>
+  <ul>
+    <li><b>Name:</b> <%= @repair.name %></li>
+    <li><b>Email:</b> <%= @repair.email %></li>
+    <li><b>Phone:</b> <%= @repair.phone_number %></li>
+  </ul>
+</div>
+
+<div class="action_module">
+  <h2></h2>
+  <button>Close</button>
+  <button>Delete</button>
+</div>

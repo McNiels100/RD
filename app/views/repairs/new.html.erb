@@ -2,11 +2,14 @@
 
 <%= form_with model: @repair do |form| %>  
   <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+
     <%= form.label :email %>
     <%= form.email_field :email %>
 
     <%= form.label :phone %>
-    <%= form.telephone_field :phone, class: "new-input" %>
+    <%= form.telephone_field :phone_number, class: "new-input" %>
 
     <%= form.label :brand %>
     <%= form.select :brand, ["Apple", "Samsung", "OnePlus", "Sony"]%>

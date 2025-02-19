@@ -197,3 +197,9 @@ repair = Repair.create(name: 'Calvin Finch',
 )
 
 repair.save!
+
+# . . .
+User.destroy_all
+user = User.create! email_address: "test@company.com", password: "test123", password_confirmation: "test123"
+
+user.save!

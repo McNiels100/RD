@@ -26,6 +26,7 @@
     <nav class="topnav">
       <%= link_to "Home", root_path %>
       <%= link_to "New", new_repair_path %>
+      <%= button_to "Log out", session_path, method: :delete if authenticated? %>
     </nav>
     <nav class="botnav">
 

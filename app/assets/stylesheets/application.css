@@ -56,6 +56,18 @@
     color: white;
   }
 
+  .topnav button {
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    padding: 14px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 17px;
+    cursor: pointer;
+  }
+
   /* New repair inputs */
   input[type=text], input[type=email], input[type=tel], textarea, select {
     width: 100%;

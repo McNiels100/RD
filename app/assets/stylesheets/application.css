@@ -68,8 +68,8 @@
     cursor: pointer;
   }
 
-  /* New repair inputs */
-  input[type=text], input[type=email], input[type=tel], textarea, select {
+  /* New repair inputs and login page */
+  input[type=text], input[type=email], input[type=tel], input[type=password], textarea, select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -94,7 +94,8 @@
     background-color: #45a049;
   }
   
-  div {
+  .form-wrapper {
+    width: 40%;
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;

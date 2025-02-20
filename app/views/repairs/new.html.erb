@@ -1,7 +1,7 @@
 <h1>New repair order</h1>
 
 <%= form_with model: @repair do |form| %>  
-  <div>
+  <div class="form-wrapper">
     <%= form.label :name %>
     <%= form.text_field :name %>
 
@@ -25,9 +25,7 @@
 
     <%= form.label :model %>
     <%= form.text_field :model %>
-  </div>
 
-  <div>
     <% flash.each do |key, message| %>
       <div class="flash <%= key %>"><%= message %></div>
     <% end %>    

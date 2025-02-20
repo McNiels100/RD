@@ -1,48 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title><%= content_for(:title) || "Rd" %></title>
+    <title><%= content_for(:title) || "RD" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= yield :head %>
-
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
-
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
     <nav class="topnav">
-      <%= link_to "Home", root_path %>
-      <%= link_to "New", new_repair_path %>
-      
-      <%= form_with url: "/repairs", method: :get do |form| %>
-        <%= form.search_field :query, placeholder: "Search", value: params[:query].presence %>
-        <%= form.select :search_in, [["Order", "id"], ["Phone", "phone_number"], ["Email", "email"], ["IMEI", "imei"], ["Serial", "serial"]], selected: params[:search_in].presence %>
-        <%= form.submit "Search" %>
-      <% end %>
-
-      
-      <%= link_to "User" %>
-      <%= button_to "Log out", session_path, method: :delete if authenticated? %>
+      <div class="top-nav-left">
+        <%= link_to "Home", root_path %>
+        <%= link_to "New", new_repair_path %>
+        <%= form_with url: "/repairs", method: :get do |form| %>
+          <%= form.search_field :query, placeholder: "Search", value: params[:query].presence %>
+          <%= form.select :search_in, [["Order", "id"], ["Phone", "phone_number"], ["Email", "email"], ["IMEI", "imei"], ["Serial", "serial"]], selected: params[:search_in].presence %>
+          <%= form.submit "Search" %>
+        <% end %>
+      </div>
+      <div class="top-nav-right">
+        <%= link_to "User", url: "/user" %>
+        <%= button_to "Log out", session_path, method: :delete if authenticated? %>
+      </div>
     </nav>
     <nav class="botnav">
-
     </nav>
-
     <main>
-    <%= yield %>
+      <%= yield %>
     </main>
   </body>
 </html>

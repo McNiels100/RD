@@ -18,7 +18,7 @@
     <%= form.label :model %>
     <%= form.text_field :model %>
     <% flash.each do |key, message| %>
-      <div class="flash <%= key %>"><%= message %></div>
+      <div style="color:red" class="flash <%= key %>"><%= message %></div>
     <% end %>
     <%= form.submit %>
   </div>

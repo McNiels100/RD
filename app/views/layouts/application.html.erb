@@ -26,6 +26,14 @@
     <nav class="topnav">
       <%= link_to "Home", root_path %>
       <%= link_to "New", new_repair_path %>
+      
+      <%= form_with url: "/repairs", method: :get do |form| %>
+        <%= form.search_field :query, placeholder: "Search" %>
+        <%= form.select :search_in, [["Order", "id"], ["Phone", "phone_number"], ["Email", "email"], ["IMEI", "imei"], ["Serial", "serial"]] %>
+        <%= form.submit "Search" %>
+      <% end %>
+
+      
       <%= link_to "User" %>
       <%= button_to "Log out", session_path, method: :delete if authenticated? %>
     </nav>

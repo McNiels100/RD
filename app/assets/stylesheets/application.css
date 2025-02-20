@@ -68,6 +68,10 @@
     cursor: pointer;
   }
 
+  .topnav form {
+    display: inline;
+  }
+
   /* New repair inputs and login page */
   .form-wrapper {
     width: 40%;

@@ -29,7 +29,7 @@
         <% end %>
       </div>
       <div class="top-nav-right">
-        <%= link_to "User", url: "/user" %>
+        <%= link_to session[:user_email], url: "/user" %>
         <%= button_to "Log out", session_path, method: :delete if authenticated? %>
       </div>
     </nav>

@@ -8,6 +8,8 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+# Repair orders
+
 Repair.delete_all
 repair = Repair.create(name: 'Nicklas Jensen',
   email: 'nicklas@example.com',
@@ -212,7 +214,7 @@ repair = Repair.create(name: 'Calvin Finch',
 
 repair.save!
 
-# . . .
+# Login users
 User.destroy_all
 user = User.create! email_address: "test@company.com", password: "test123", password_confirmation: "test123"
 
@@ -222,3 +224,119 @@ user.save!
 user = User.create! email_address: "user@company.com", password: "user123", password_confirmation: "user123"
 
 user.save!
+
+# Devices and TAT
+Device.delete_all
+device = Device.create(brand: 'apple',
+  device_type: 'phone',
+  TAT_neutral: 2,
+  TAT_unsatisfied: 5,
+  TAT_very_unsatisfied: 14
+)
+
+device.save!
+# . . .
+
+device = Device.create(brand: 'apple',
+  device_type: 'tablet',
+  TAT_neutral: 5,
+  TAT_unsatisfied: 10,
+  TAT_very_unsatisfied: 18
+)
+
+device.save!
+# . . .
+
+device = Device.create(brand: 'apple',
+  device_type: 'computer',
+  TAT_neutral: 2,
+  TAT_unsatisfied: 5,
+  TAT_very_unsatisfied: 14
+)
+
+device.save!
+# . . .
+
+device = Device.create(brand: 'apple',
+  device_type: 'wearable',
+  TAT_neutral: 5,
+  TAT_unsatisfied: 10,
+  TAT_very_unsatisfied: 18
+)
+
+device.save!
+# . . .
+
+device = Device.create(brand: 'apple',
+  device_type: 'acessory',
+  TAT_neutral: 2,
+  TAT_unsatisfied: 5,
+  TAT_very_unsatisfied: 14
+)
+
+device.save!
+# . . .
+
+device = Device.create(brand: 'samsung',
+  device_type: 'phone',
+  TAT_neutral: 7,
+  TAT_unsatisfied: 14,
+  TAT_very_unsatisfied: 30
+)
+
+device.save!
+# . . .
+
+device = Device.create(brand: 'samsung',
+  device_type: 'tablet',
+  TAT_neutral: 7,
+  TAT_unsatisfied: 14,
+  TAT_very_unsatisfied: 30
+)
+device.save!
+# . . .
+
+device = Device.create(brand: 'samsung',
+  device_type: 'computer',
+  TAT_neutral: 15,
+  TAT_unsatisfied: 20,
+  TAT_very_unsatisfied: 30
+)
+device.save!
+# . . .
+
+device = Device.create(brand: 'samsung',
+  device_type: 'wearable',
+  TAT_neutral: 10,
+  TAT_unsatisfied: 15,
+  TAT_very_unsatisfied: 20
+)
+device.save!
+# . . .
+
+device = Device.create(brand: 'samsung',
+  device_type: 'accessory',
+  TAT_neutral: 7,
+  TAT_unsatisfied: 14,
+  TAT_very_unsatisfied: 30
+)
+device.save!
+# . . .
+
+device = Device.create(brand: 'sony',
+  device_type: 'console',
+  TAT_neutral: 14,
+  TAT_unsatisfied: 25,
+  TAT_very_unsatisfied: 30
+)
+device.save!
+# . . .
+
+device = Device.create(brand: 'ASRock',
+  device_type: 'hardware',
+  TAT_neutral: 14,
+  TAT_unsatisfied: 25,
+  TAT_very_unsatisfied: 30
+)
+device.save!
+# . . .

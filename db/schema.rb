@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_24_141505) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_24_150517) do
+  create_table "devices", force: :cascade do |t|
+    t.string "brand"
+    t.string "device_type"
+    t.integer "TAT_neutral"
+    t.integer "TAT_unsatisfied"
+    t.integer "TAT_very_unsatisfied"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "repairs", force: :cascade do |t|
     t.string "name"
     t.string "email"

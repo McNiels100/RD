@@ -3,7 +3,7 @@ class RepairsController < ApplicationController
     @repairs = Repair.all
 
     # Filter search by id
-    @repairs = @repairs.where(order_number: "ORD-" + params[:query]) if params[:search_in]=="order_number"
+    @repairs = @repairs.where(order_number: "RD-" + params[:query]) if params[:search_in]=="order_number"
 
     # Filter search by phone
     @repairs = @repairs.where(phone_number: params[:query]) if params[:search_in]=="phone_number"

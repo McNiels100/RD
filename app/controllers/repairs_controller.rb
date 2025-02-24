@@ -24,6 +24,7 @@ class RepairsController < ApplicationController
 
   def new
     @repair = Repair.new
+    @devices = Device.all
   end
 
   def create

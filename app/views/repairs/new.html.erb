@@ -25,3 +25,42 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+<% cache @devices do %>
+  <table class="index-table">
+    <tr>
+      <th>Brand</th>
+      <th>Device type</th>
+      <th>TAT neutral</th>
+      <th>TAT unsatisfied</th>
+      <th>TAT very unsatisfied</th>
+      <th>Created</th>
+      <th>Last update</th>
+    </tr>
+    <% @devices.each do |device| %>
+      <tr>
+        <td>
+          <%= device.brand  %>
+        </td>
+        <td>
+          <%= device.device_type.upcase %>
+        </td>
+        <td>
+          <%= device.TAT_neutral %>
+        </td>
+         <td>
+          <%= device.TAT_unsatisfied %>
+        </td>
+        <td>
+          <%= device.TAT_very_unsatisfied %>
+        </td>
+        <td>
+          <%= device.created_at %>
+        </td>
+        <td>
+          <%= device.updated_at %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

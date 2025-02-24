@@ -4,7 +4,7 @@ class Repair < ApplicationRecord
 
   private
   def generate_order_number
-    last_order = Repair.last
+    last_order = Repair.lock.last
     self.order_number = last_order ? "ORD-#{last_order.id + 1000}" : "ORD-1000"
   end
 end

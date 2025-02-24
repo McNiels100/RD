@@ -53,6 +53,6 @@ class RepairsController < ApplicationController
 
   private
   def repair_params
-    params.expect(repair: [ :name, :email, :phone_number, :brand, :error_description, :imei, :serial, :model ])
+    params.expect(repair: [ :name, :email, :phone_number, :brand, :device_type, :error_description, :imei, :serial, :model ])
   end
 end

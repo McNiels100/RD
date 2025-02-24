@@ -9,6 +9,8 @@
     <%= form.telephone_field :phone_number, class: "new-input" %>
     <%= form.label :brand %>
     <%= form.select :brand, ["Apple", "Samsung", "OnePlus", "Sony"]%>
+    <%= form.label :device_type %>
+    <%= form.select :device_type, ["phone", "tablet", "console", "accessory", "hardware"]%>
     <%= form.label :error_description %>
     <%= form.text_area :error_description %>
     <%= form.label :imei %>

@@ -4,6 +4,7 @@
     <tr>
       <th>Order number</th>
       <th>Brand</th>
+      <th>Device type</th>
       <th>TAT</th>
       <th>Created</th>
       <th>Last update</th>
@@ -16,6 +17,9 @@
         </td>
         <td>
           <%= repair.brand %>
+        </td>
+        <td>
+          <%= repair.device_type.upcase %>
         </td>
         <td>
           N/A

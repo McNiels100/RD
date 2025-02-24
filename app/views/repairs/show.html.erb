@@ -4,6 +4,8 @@
     <h2>Device</h2>
     <%= form.label :brand %>
     <%= form.select :brand, ["Apple", "Samsung", "OnePlus", "Sony"]%>
+    <%= form.label :device_type %>
+    <%= form.select :device_type, ["phone", "tablet", "console", "accessory", "hardware"]%>
     <%= form.label :model %>
     <%= form.text_field :model %>
     <%= form.label :imei %>

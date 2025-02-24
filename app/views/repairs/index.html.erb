@@ -2,7 +2,7 @@
 <% cache @repairs do %>
   <table class="index-table">
     <tr>
-      <th>ID</th>
+      <th>ORD</th>
       <th>Brand</th>
       <th>TAT</th>
       <th>Created</th>
@@ -12,7 +12,7 @@
     <% @repairs.each do |repair| %>
       <tr>
         <td>
-          <%= link_to repair.id, repair %>
+          <%= link_to repair.order_number, repair %>
         </td>
         <td>
           <%= repair.brand %>

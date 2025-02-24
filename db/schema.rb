@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_19_104622) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_24_082126) do
   create_table "repairs", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -22,6 +22,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_19_104622) do
     t.string "model"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "order_number"
+    t.index ["order_number"], name: "index_repairs_on_order_number", unique: true
   end
 
   create_table "sessions", force: :cascade do |t|

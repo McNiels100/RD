@@ -1,2 +1,15 @@
-<h1>Users#index</h1>
+<h1><%= session[:user_email] %></h1>
 <p>Find me in app/views/users/index.html.erb</p>
+<p>Account level: <%= current_user.role %></p>
+<% if current_user.admin? %>
+  <a href="">Add devices</a>
+  <a href="">Create users</a>
+  <a href="">Create parts</a>
+  <a href="">Change password</a>
+<% elsif current_user.leader? %>
+  <a href="">Create users</a>
+  <a href="">Create parts</a>
+  <a href="">Change password</a>
+<% elsif current_user.technician? %>
+  <a href="">Change password</a>
+<% end %>

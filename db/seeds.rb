@@ -216,14 +216,22 @@ repair.save!
 
 # Login users
 User.destroy_all
-user = User.create! email_address: "test@company.com", password: "test123", password_confirmation: "test123", role: "admin"
+user = User.create! email_address: "admin@company.com", password: "admin123", password_confirmation: "admin123", role: "admin"
+
+user.save!
+# . . .
+
+user = User.create! email_address: "leader@company.com", password: "leader123", password_confirmation: "leader123", role: "leader"
+
+user.save!
+# . . .
+
+user = User.create! email_address: "technician@company.com", password: "technician123", password_confirmation: "technician123", role: "technician"
 
 user.save!
 
 # . . .
-user = User.create! email_address: "user@company.com", password: "user123", password_confirmation: "user123", role: "admin"
 
-user.save!
 
 # Devices and TAT
 Device.delete_all

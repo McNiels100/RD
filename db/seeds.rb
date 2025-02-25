@@ -216,12 +216,12 @@ repair.save!
 
 # Login users
 User.destroy_all
-user = User.create! email_address: "test@company.com", password: "test123", password_confirmation: "test123"
+user = User.create! email_address: "test@company.com", password: "test123", password_confirmation: "test123", role: "admin"
 
 user.save!
 
 # . . .
-user = User.create! email_address: "user@company.com", password: "user123", password_confirmation: "user123"
+user = User.create! email_address: "user@company.com", password: "user123", password_confirmation: "user123", role: "admin"
 
 user.save!
 

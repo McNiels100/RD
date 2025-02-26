@@ -1,4 +1,23 @@
-<h1>Repair: <%= @repair.order_number %></h1>
+<div class="repair-header">
+  <h1>Repair: <%= @repair.order_number %></h1>
+  <div class="tat-module">
+    <div class="tat-wrapper">
+      <div class="tat-box tat-green tooltip">
+        <span class="tooltiptext">Less than 2 working days</span>
+      </div>
+      <div class="tat-box tat-yellow tooltip">
+        <span class="tooltiptext">2 working days</span>
+      </div>
+      <div class="tat-box tat-orange tooltip">
+        <span class="tooltiptext">5 working days</span>
+      </div>
+      <div class="tat-box tat-red tooltip">
+        <span class="tooltiptext">14 working days</span>
+      </div>
+      <div class="tat-pointer pointer-green"></div>
+    </div>
+  </div>
+</div>
 <%= form_with model: @repair do |form| %>
   <div class="info-wrapper">
     <div class="info-module">

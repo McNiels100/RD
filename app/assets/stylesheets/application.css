@@ -14,6 +14,11 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.repair-header {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* Index table */
 
 .index-table {
@@ -166,4 +171,86 @@ body {
 
 .info-module:nth-child(even) {
   background-color: #dddddd;
+}
+
+/* TAT module */
+.tat-module {
+  margin: 0.67em;
+}
+
+.tat-wrapper {
+  width: 200px;
+  display: flex;
+  position: relative;
+
+  .tat-box {
+    width: 25%;
+    height: 37px;
+  }
+}
+
+.tat-green {
+  background-color: green;
+}
+
+.tat-yellow {
+  background-color: yellow;
+}
+
+.tat-orange {
+  background-color: orange;
+}
+
+.tat-red {
+  background-color: red;
+}
+
+.tat-pointer {
+  width: 5px;
+  height: 50px;
+  background-color: black;
+  position: absolute;
+  top: -5px;
+  border-radius: 20%;
+}
+
+.pointer-green {
+  left: 35px;
+}
+
+.pointer-yellow {
+  left: 85px;
+}
+
+.pointer-orange {
+  left: 140px;
+}
+
+.pointer-red {
+  left: 190px;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  right: 105%;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }

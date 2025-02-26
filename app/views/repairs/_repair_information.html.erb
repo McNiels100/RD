@@ -1,29 +1,48 @@
 <h1>Repair: <%= @repair.order_number %></h1>
-
 <%= form_with model: @repair do |form| %>
-  <div class="info-module">
-    <h2>Device</h2>
-    <%= form.label :brand %>
-    <%= form.select :brand, ["Apple", "Samsung", "OnePlus", "Sony"]%>
-    <%= form.label :device_type %>
-    <%= form.select :device_type, ["phone", "tablet", "console", "accessory", "hardware"]%>
-    <%= form.label :model %>
-    <%= form.text_field :model %>
-    <%= form.label :imei %>
-    <%= form.text_field :imei %>
-    <%= form.label :serial %>
-    <%= form.text_field :serial %>
-    <%= form.label :error_description %>
-    <%= form.text_area :error_description %>
-  </div>
-  <div class="info-module">
-    <h2>Customer</h2>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-    <%= form.label :email %>
-    <%= form.email_field :email %>
-    <%= form.label :phone_number, "Phone" %>
-    <%= form.telephone_field :phone_number, class: "new-input" %>
+  <div class="info-wrapper">
+    <div class="info-module">
+      <h2>Device</h2>
+      <%= form.label :brand %>
+      <%= form.select :brand, ["Apple", "Samsung", "OnePlus", "Sony"]%>
+      <%= form.label :device_type %>
+      <%= form.select :device_type, ["phone", "tablet", "console", "accessory", "hardware"]%>
+      <%= form.label :model %>
+      <%= form.text_field :model %>
+      <%= form.label :imei %>
+      <%= form.text_field :imei %>
+      <%= form.label :serial %>
+      <%= form.text_field :serial %>
+      <%= form.label :error_description %>
+      <%= form.text_area :error_description %>
+    </div>
+    <div class="info-module">
+      <h2>Customer</h2>
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+      <%= form.label :email %>
+      <%= form.email_field :email %>
+      <%= form.label :phone_number, "Phone" %>
+      <%= form.telephone_field :phone_number, class: "new-input" %>
+    </div>
+    <div class="info-module">
+      <h2>Insurance</h2>
+      <%= form.label :insurrance_company %>
+      <%= form.select :insurrance_company, ["Gjensidige", "Tryg Forsikring", "Alm. Brand"]%>
+      <%= form.label :insurance_number %>
+      <%= form.text_field :insurance_number, value: "9836563214" %>
+      <%= form.label :insurance_claim %>
+      <%= form.text_field :insurance_claim, value: "2025-01-08" %>
+    </div>
+    <div class="info-module">
+      <h2>Shop</h2>
+      <%= form.label :company %>
+      <%= form.select :company, ["Telia", "Telia", "Hi3g"]%>
+      <%= form.label :company_adress %>
+      <%= form.text_field :company_adress, value: "Ørbækvej 75, Shop 82, 5220 Odense, Denmark" %>
+      <%= form.label :shop_order_number %>
+      <%= form.text_field :shop_order_number, value: "1155889966" %>
+    </div>
   </div>
   <div class="action_module">
     <h2>Actions</h2>

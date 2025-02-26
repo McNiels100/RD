@@ -1,0 +1,15 @@
+<nav class="topnav">
+      <div class="top-nav-left">
+        <%= link_to "Home", root_path %>
+        <%= link_to "New", new_repair_path %>
+        <%= form_with url: "/repairs", method: :get do |form| %>
+          <%= form.search_field :query, placeholder: "Search", value: params[:query].presence %>
+          <%= form.select :search_in, [["Order", "order_number"], ["Phone", "phone_number"], ["Email", "email"], ["IMEI", "imei"], ["Serial", "serial"]], selected: params[:search_in].presence %>
+          <%= form.submit "Search" %>
+        <% end %>
+      </div>
+      <div class="top-nav-right">
+        <%= link_to session[:user_email], users_index_path if authenticated? %>
+        <%= button_to "Log out", session_path, method: :delete if authenticated? %>
+      </div>
+    </nav>

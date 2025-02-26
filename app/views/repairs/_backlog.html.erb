@@ -1,0 +1,38 @@
+<% cache @repairs do %>
+  <table class="index-table">
+    <tr>
+      <th>Order number</th>
+      <th>Brand</th>
+      <th>Device type</th>
+      <th>TAT</th>
+      <th>Created</th>
+      <th>Last update</th>
+      <th>Next TAT</th>
+    </tr>
+    <% @repairs.each do |repair| %>
+      <tr>
+        <td>
+          <%= link_to repair.order_number, repair %>
+        </td>
+        <td>
+          <%= repair.brand %>
+        </td>
+        <td>
+          <%= repair.device_type.upcase %>
+        </td>
+        <td>
+          N/A
+        </td>
+        <td>
+          <%= repair.created_at %>
+        </td>
+        <td>
+          <%= repair.updated_at %>
+        </td>
+        <td>
+          N/A
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

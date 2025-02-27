@@ -237,9 +237,9 @@ user.save!
 Device.delete_all
 device = Device.create(brand: 'Apple',
   device_type: 'phone',
-  tat_neutral: 2,
-  tat_unsatisfied: 5,
-  tat_very_unsatisfied: 14
+  tat_neutral: 1,
+  tat_unsatisfied: 2,
+  tat_very_unsatisfied: 3
 )
 
 device.save!
@@ -276,7 +276,7 @@ device.save!
 # . . .
 
 device = Device.create(brand: 'Apple',
-  device_type: 'acessory',
+  device_type: 'accessory',
   tat_neutral: 2,
   tat_unsatisfied: 5,
   tat_very_unsatisfied: 14
@@ -345,6 +345,24 @@ device = Device.create(brand: 'ASRock',
   tat_neutral: 14,
   tat_unsatisfied: 25,
   tat_very_unsatisfied: 30
+)
+device.save!
+# . . .
+
+device = Device.create(brand: 'OnePlus',
+  device_type: 'phone',
+  tat_neutral: 2,
+  tat_unsatisfied: 5,
+  tat_very_unsatisfied: 10
+)
+device.save!
+# . . .
+
+device = Device.create(brand: 'Xiaomi',
+  device_type: 'phone',
+  tat_neutral: 2,
+  tat_unsatisfied: 5,
+  tat_very_unsatisfied: 10
 )
 device.save!
 # . . .

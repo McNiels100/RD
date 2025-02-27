@@ -1,3 +1,3 @@
 class Device < ApplicationRecord
-  validates :brand, :device_type, :TAT_neutral, :TAT_unsatisfied, :TAT_very_unsatisfied, presence: true
+  validates :brand, :device_type, :tat_neutral, :tat_unsatisfied, :tat_very_unsatisfied, presence: true
 end

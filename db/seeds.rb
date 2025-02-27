@@ -237,9 +237,9 @@ user.save!
 Device.delete_all
 device = Device.create(brand: 'Apple',
   device_type: 'phone',
-  TAT_neutral: 2,
-  TAT_unsatisfied: 5,
-  TAT_very_unsatisfied: 14
+  tat_neutral: 2,
+  tat_unsatisfied: 5,
+  tat_very_unsatisfied: 14
 )
 
 device.save!
@@ -247,9 +247,9 @@ device.save!
 
 device = Device.create(brand: 'Apple',
   device_type: 'tablet',
-  TAT_neutral: 5,
-  TAT_unsatisfied: 10,
-  TAT_very_unsatisfied: 18
+  tat_neutral: 5,
+  tat_unsatisfied: 10,
+  tat_very_unsatisfied: 18
 )
 
 device.save!
@@ -257,9 +257,9 @@ device.save!
 
 device = Device.create(brand: 'Apple',
   device_type: 'computer',
-  TAT_neutral: 2,
-  TAT_unsatisfied: 5,
-  TAT_very_unsatisfied: 14
+  tat_neutral: 2,
+  tat_unsatisfied: 5,
+  tat_very_unsatisfied: 14
 )
 
 device.save!
@@ -267,9 +267,9 @@ device.save!
 
 device = Device.create(brand: 'Apple',
   device_type: 'wearable',
-  TAT_neutral: 5,
-  TAT_unsatisfied: 10,
-  TAT_very_unsatisfied: 18
+  tat_neutral: 5,
+  tat_unsatisfied: 10,
+  tat_very_unsatisfied: 18
 )
 
 device.save!
@@ -277,9 +277,9 @@ device.save!
 
 device = Device.create(brand: 'Apple',
   device_type: 'acessory',
-  TAT_neutral: 2,
-  TAT_unsatisfied: 5,
-  TAT_very_unsatisfied: 14
+  tat_neutral: 2,
+  tat_unsatisfied: 5,
+  tat_very_unsatisfied: 14
 )
 
 device.save!
@@ -287,9 +287,9 @@ device.save!
 
 device = Device.create(brand: 'Samsung',
   device_type: 'phone',
-  TAT_neutral: 7,
-  TAT_unsatisfied: 14,
-  TAT_very_unsatisfied: 30
+  tat_neutral: 7,
+  tat_unsatisfied: 14,
+  tat_very_unsatisfied: 30
 )
 
 device.save!
@@ -297,54 +297,54 @@ device.save!
 
 device = Device.create(brand: 'Samsung',
   device_type: 'tablet',
-  TAT_neutral: 7,
-  TAT_unsatisfied: 14,
-  TAT_very_unsatisfied: 30
+  tat_neutral: 7,
+  tat_unsatisfied: 14,
+  tat_very_unsatisfied: 30
 )
 device.save!
 # . . .
 
 device = Device.create(brand: 'Samsung',
   device_type: 'computer',
-  TAT_neutral: 15,
-  TAT_unsatisfied: 20,
-  TAT_very_unsatisfied: 30
+  tat_neutral: 15,
+  tat_unsatisfied: 20,
+  tat_very_unsatisfied: 30
 )
 device.save!
 # . . .
 
 device = Device.create(brand: 'Samsung',
   device_type: 'wearable',
-  TAT_neutral: 10,
-  TAT_unsatisfied: 15,
-  TAT_very_unsatisfied: 20
+  tat_neutral: 10,
+  tat_unsatisfied: 15,
+  tat_very_unsatisfied: 20
 )
 device.save!
 # . . .
 
 device = Device.create(brand: 'Samsung',
   device_type: 'accessory',
-  TAT_neutral: 7,
-  TAT_unsatisfied: 14,
-  TAT_very_unsatisfied: 30
+  tat_neutral: 7,
+  tat_unsatisfied: 14,
+  tat_very_unsatisfied: 30
 )
 device.save!
 # . . .
 
 device = Device.create(brand: 'Sony',
   device_type: 'console',
-  TAT_neutral: 14,
-  TAT_unsatisfied: 25,
-  TAT_very_unsatisfied: 30
+  tat_neutral: 14,
+  tat_unsatisfied: 25,
+  tat_very_unsatisfied: 30
 )
 device.save!
 # . . .
 
 device = Device.create(brand: 'ASRock',
   device_type: 'hardware',
-  TAT_neutral: 14,
-  TAT_unsatisfied: 25,
-  TAT_very_unsatisfied: 30
+  tat_neutral: 14,
+  tat_unsatisfied: 25,
+  tat_very_unsatisfied: 30
 )
 device.save!
 # . . .

@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_25_113356) do
-  create_table "devices", force: :cascade do |t|
+ActiveRecord::Schema[8.0].define(version: 2025_02_27_122346) do
+  create_table "Devices", force: :cascade do |t|
     t.string "brand"
     t.string "device_type"
-    t.integer "TAT_neutral"
-    t.integer "TAT_unsatisfied"
-    t.integer "TAT_very_unsatisfied"
+    t.integer "tat_neutral"
+    t.integer "tat_unsatisfied"
+    t.integer "tat_very_unsatisfied"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

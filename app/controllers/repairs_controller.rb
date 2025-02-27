@@ -20,6 +20,7 @@ class RepairsController < ApplicationController
 
   def show
     @repair = Repair.find(params[:id])
+    @device = Device.find_by(brand: @repair.brand, device_type: @repair.device_type)
   end
 
   def new

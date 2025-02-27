@@ -3,16 +3,24 @@
   <div class="tat-module">
     <div class="tat-wrapper">
       <div class="tat-box tat-green tooltip">
-        <span class="tooltiptext">Less than 2 working days</span>
+        <span class="tooltiptext">
+          Less than <%= @device.TAT_neutral %> working days
+        </span>
       </div>
       <div class="tat-box tat-yellow tooltip">
-        <span class="tooltiptext">2 working days</span>
+        <span class="tooltiptext">
+          <%= @device.TAT_neutral %> working days
+        </span>
       </div>
       <div class="tat-box tat-orange tooltip">
-        <span class="tooltiptext">5 working days</span>
+        <span class="tooltiptext">
+          <%= @device.TAT_unsatisfied %> working days
+        </span>
       </div>
       <div class="tat-box tat-red tooltip">
-        <span class="tooltiptext">14 working days</span>
+        <span class="tooltiptext">
+          <%= @device.TAT_very_unsatisfied %> working days
+        </span>
       </div>
       <div class="tat-pointer pointer-green">
         <div class="tooltip-pointer tooltip">

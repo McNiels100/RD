@@ -235,7 +235,7 @@ user.save!
 
 # Devices and TAT
 Device.delete_all
-device = Device.create(brand: 'apple',
+device = Device.create(brand: 'Apple',
   device_type: 'phone',
   TAT_neutral: 2,
   TAT_unsatisfied: 5,
@@ -245,7 +245,7 @@ device = Device.create(brand: 'apple',
 device.save!
 # . . .
 
-device = Device.create(brand: 'apple',
+device = Device.create(brand: 'Apple',
   device_type: 'tablet',
   TAT_neutral: 5,
   TAT_unsatisfied: 10,
@@ -255,7 +255,7 @@ device = Device.create(brand: 'apple',
 device.save!
 # . . .
 
-device = Device.create(brand: 'apple',
+device = Device.create(brand: 'Apple',
   device_type: 'computer',
   TAT_neutral: 2,
   TAT_unsatisfied: 5,
@@ -265,7 +265,7 @@ device = Device.create(brand: 'apple',
 device.save!
 # . . .
 
-device = Device.create(brand: 'apple',
+device = Device.create(brand: 'Apple',
   device_type: 'wearable',
   TAT_neutral: 5,
   TAT_unsatisfied: 10,
@@ -275,7 +275,7 @@ device = Device.create(brand: 'apple',
 device.save!
 # . . .
 
-device = Device.create(brand: 'apple',
+device = Device.create(brand: 'Apple',
   device_type: 'acessory',
   TAT_neutral: 2,
   TAT_unsatisfied: 5,
@@ -285,7 +285,7 @@ device = Device.create(brand: 'apple',
 device.save!
 # . . .
 
-device = Device.create(brand: 'samsung',
+device = Device.create(brand: 'Samsung',
   device_type: 'phone',
   TAT_neutral: 7,
   TAT_unsatisfied: 14,
@@ -295,7 +295,7 @@ device = Device.create(brand: 'samsung',
 device.save!
 # . . .
 
-device = Device.create(brand: 'samsung',
+device = Device.create(brand: 'Samsung',
   device_type: 'tablet',
   TAT_neutral: 7,
   TAT_unsatisfied: 14,
@@ -304,7 +304,7 @@ device = Device.create(brand: 'samsung',
 device.save!
 # . . .
 
-device = Device.create(brand: 'samsung',
+device = Device.create(brand: 'Samsung',
   device_type: 'computer',
   TAT_neutral: 15,
   TAT_unsatisfied: 20,
@@ -313,7 +313,7 @@ device = Device.create(brand: 'samsung',
 device.save!
 # . . .
 
-device = Device.create(brand: 'samsung',
+device = Device.create(brand: 'Samsung',
   device_type: 'wearable',
   TAT_neutral: 10,
   TAT_unsatisfied: 15,
@@ -322,7 +322,7 @@ device = Device.create(brand: 'samsung',
 device.save!
 # . . .
 
-device = Device.create(brand: 'samsung',
+device = Device.create(brand: 'Samsung',
   device_type: 'accessory',
   TAT_neutral: 7,
   TAT_unsatisfied: 14,
@@ -331,7 +331,7 @@ device = Device.create(brand: 'samsung',
 device.save!
 # . . .
 
-device = Device.create(brand: 'sony',
+device = Device.create(brand: 'Sony',
   device_type: 'console',
   TAT_neutral: 14,
   TAT_unsatisfied: 25,

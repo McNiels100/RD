@@ -8,6 +8,9 @@
       <th>TAT very unsatisfied</th>
       <th>Created</th>
       <th>Last update</th>
+      <% if current_user.admin? %>
+        <th>Actions</th>
+      <% end %>
     </tr>
     <% @devices.each do |device| %>
       <tr>
@@ -32,6 +35,12 @@
         <td>
           <%= device.updated_at %>
         </td>
+        <% if current_user.admin? %>
+          <td>
+            <%= link_to "Edit", device_path(device.id)  %>
+            <%= button_to "Delete", device, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </table>

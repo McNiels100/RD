@@ -1,5 +1,2 @@
-<%= render 'navbar_user' %>
-<div class="user-content">
-  <h1><%= session[:user_email] %></h1>
-  <p>Account level: <%= current_user.role %></p>
-</div>
+<h1>All users of [Company]</h1>
+<%= debug @users %>

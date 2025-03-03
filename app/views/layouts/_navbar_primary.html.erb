@@ -9,7 +9,7 @@
     <% end %>
   </div>
   <div class="top-nav-right">
-    <%= link_to session[:user_email], users_path if authenticated? %>
+    <%= link_to session[:user_email], panels_index_path if authenticated? %>
     <%= button_to "Log out", session_path, method: :delete if authenticated? %>
   </div>
 </nav>

@@ -1,3 +1,3 @@
-<h1>Devices#index</h1>
-<p>Find me in app/views/devices/index.html.erb</p>
-<%= debug @devices %>
+<h1>Device list for [company]</h1>
+<%= link_to "New device", new_device_path %>
+<%= render 'shared/devices_overview', devices: @devices %>

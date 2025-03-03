@@ -18,7 +18,8 @@ class SessionsController < ApplicationController
 
   def destroy
     terminate_session
-    session.delete(:user_email)
+    reset_session
+    clear_cache
     redirect_to new_session_path
   end
 end

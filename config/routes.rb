@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get "users/index"
   resource :session
   resources :passwords, param: :token
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -18,4 +17,9 @@ Rails.application.routes.draw do
 
   resources :repairs
   resources :devices
+  resources :users, only: [ :index ] do
+    collection do
+      get "manage_users"
+    end
+  end
 end

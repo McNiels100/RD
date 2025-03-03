@@ -17,9 +17,5 @@ Rails.application.routes.draw do
 
   resources :repairs
   resources :devices
-  resources :users, only: [ :index ] do
-    collection do
-      get "manage_users"
-    end
-  end
+  resources :users
 end

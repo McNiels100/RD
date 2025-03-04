@@ -1,6 +1,7 @@
 class RepairsController < ApplicationController
   def index
     @repairs = Repair.all
+    @devices = Device.all
 
     # Filter search by id
     @repairs = @repairs.where(order_number: "RD-" + params[:query]) if params[:search_in]=="order_number"

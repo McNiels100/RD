@@ -20,8 +20,8 @@
         <td>
           <%= repair.device_type.upcase %>
         </td>
-        <td>
-          N/A
+        <td class="<%= calculate_tat_stage(find_tat(repair), repair.created_at, "tat") %>">
+          <%= @tat_status %>
         </td>
         <td>
           <%= repair.created_at %>

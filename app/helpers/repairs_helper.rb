@@ -5,15 +5,19 @@ module RepairsHelper
     case tat_days
     when 0..device.tat_neutral
       @tat_status = "Good"
+      @days_to_next_stage = device.tat_neutral - tat_days
       tat_css = output + "-green"
     when device.tat_neutral..device.tat_unsatisfied
       @tat_status = "Neutral"
+      @days_to_next_stage = device.tat_unsatisfied - tat_days
       tat_css = output + "-yellow"
     when device.tat_unsatisfied..device.tat_very_unsatisfied
       @tat_status = "Unsatisfied"
+      @days_to_next_stage = device.tat_very_unsatisfied - tat_days
       tat_css = output + "-orange"
     else
       @tat_status = "Very unsatisfied"
+      @days_to_next_stage = "N/A"
       tat_css = output + "-red"
     end
     tat_css

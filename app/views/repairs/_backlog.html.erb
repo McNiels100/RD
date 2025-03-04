@@ -7,7 +7,7 @@
       <th>TAT</th>
       <th>Created</th>
       <th>Last update</th>
-      <th>Next TAT</th>
+      <th>Days to next TAT</th>
     </tr>
     <% @repairs.each do |repair| %>
       <tr>
@@ -30,7 +30,7 @@
           <%= repair.updated_at %>
         </td>
         <td>
-          N/A
+          <%= @days_to_next_stage %>
         </td>
       </tr>
     <% end %>

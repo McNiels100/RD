@@ -24,7 +24,7 @@
       </div>
       <div class="tat-pointer <%= calculate_tat_stage(@device, @repair.created_at, "pointer") %>">
         <div class="tooltip-pointer tooltip">
-          <span class="tooltiptext">Next TAT: 19-01</span>
+          <span class="tooltiptext">Days to next TAT: <%= @days_to_next_stage %></span>
         </div>
       </div>
     </div>

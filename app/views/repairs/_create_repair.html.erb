@@ -9,7 +9,7 @@
     <%= form.label :brand %>
     <%= form.select :brand, @brands, include_blank: true %>
     <%= form.label :device_type %>
-    <%= form.select :device_type, ["phone", "tablet", "console", "accessory", "hardware"], include_blank: true%>
+    <%= form.select :device_type, @device_types, include_blank: true %>
     <%= form.label :error_description %>
     <%= form.text_area :error_description %>
     <%= form.label :imei %>

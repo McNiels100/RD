@@ -28,6 +28,7 @@ class RepairsController < ApplicationController
     @repair = Repair.new
     @devices = Device.all
     @brands = @devices.pluck(:brand).uniq
+    @device_types = @devices.pluck(:device_type).uniq
   end
 
   def create

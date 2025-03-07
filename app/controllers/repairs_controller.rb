@@ -34,6 +34,7 @@ class RepairsController < ApplicationController
   def create
     @repair = Repair.new(repair_params)
     if @repair.save
+      flash[:success] = "Repair was successfully created."
       redirect_to @repair
     else
       flash.now[:error] = @repair.errors.full_messages.to_sentence + "!"

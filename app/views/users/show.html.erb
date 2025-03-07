@@ -1,0 +1,15 @@
+<h1>Edit permissions for user ID: <%= @user.id %></h1>
+<%= form_with model: @user do |user| %>
+  <div class="info-wrapper">
+    <div class="info-module">
+      <h2>Employee</h2>
+      <%= user.label :name %>
+      <%= user.text_field :name %>
+      <%= user.label :email_address %>
+      <%= user.text_field :email_address %>
+      <%= user.label :role %>
+      <%= user.select :role, ["admin", "leader", "technician"] %>
+      <%= user.submit :Save %>
+    </div>
+  </div>
+<% end %>

@@ -37,8 +37,10 @@
         </td>
         <% if current_user.admin? %>
           <td>
-            <%= link_to "Edit", device_path(device.id)  %>
-            <%= button_to "Delete", device, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+            <div class="table-actions">
+              <%= link_to "Edit", device_path(device.id), class: "btn edit-color"  %>
+              <%= button_to "Delete", device, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn delete-color" %>
+            </div>
           </td>
         <% end %>
       </tr>

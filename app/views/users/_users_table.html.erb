@@ -17,8 +17,10 @@
       <td><%= user.created_at %></td>
       <td><%= user.updated_at %></td>
       <td>
-        <%= link_to "Edit", user_path(user.id)  %>
-        <%= button_to "Delete", user, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+        <div class="table-actions">
+          <%= link_to "Edit", user_path(user.id), class: "btn edit-color" %>
+          <%= button_to "Delete", user, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn delete-color" %>
+        </div>
       </td>
     </tr>
   <% end %>

@@ -1,4 +1,5 @@
 class DevicesController < ApplicationController
+  before_action :require_admin
   def index
     @devices = Device.all
   end

@@ -11,4 +11,33 @@ class ApplicationController < ActionController::Base
   def clear_cache
     Rails.cache.clear
   end
+
+  private
+  def require_admin
+    unless current_user&.admin?
+      flash[:alert] = "You must be an admin to access this section."
+      redirect_to root_path
+    end
+  end
+
+  def require_leader
+    unless current_user&.leader?
+      flash[:alert] = "You must be a leader to access this section."
+      redirect_to root_path
+    end
+  end
+
+  def require_technician
+    unless current_user&.technician?
+      flash[:alert] = "You must be a technician to access this section."
+      redirect_to root_path
+    end
+  end
+
+  def require_admin_or_leader
+    unless current_user&.admin? || current_user&.leader?
+      flash[:alert] = "You must be an admin or a leader to access this section."
+      redirect_to root_path
+    end
+  end
 end

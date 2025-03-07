@@ -297,3 +297,11 @@ body {
   padding: 1px 16px;
   height: 1000px;
 }
+
+/* Alert notification banner */
+.flash-banner {
+  padding: 20px;
+  background-color: #04AA6D;
+  color: white;
+  text-align: center;
+}

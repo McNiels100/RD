@@ -32,7 +32,9 @@ repair = Repair.create!(
   imei: 138768580228309,
   serial: 'SA8028SA3463',
   model: 'iPhone 15 Pro 128GB Black',
-  device_type: 'phone'
+  device_type: 'phone',
+  created_at: 3.day.ago,
+  updated_at: 3.day.ago
 )
 
 repair = Repair.create!(
@@ -68,7 +70,9 @@ repair = Repair.create!(
   imei: 404691323879560,
   serial: 'SA3456SA7890',
   model: '13R',
-  device_type: 'phone'
+  device_type: 'phone',
+  created_at: 3.day.ago,
+  updated_at: 3.day.ago
 )
 
 repair = Repair.create!(
@@ -91,7 +95,9 @@ repair = Repair.create!(
   error_description: %(DOA. The S-pen cannot track. Sometimes you can poke with it. But is impossible to draw one line without it breaking. It was like it when I opened the sales box.),
   imei: 425230367890870,
   model: 'S25 Ultra',
-  device_type: 'phone'
+  device_type: 'phone',
+  created_at: 31.day.ago,
+  updated_at: 2.day.ago
 )
 
 repair = Repair.create!(
@@ -103,7 +109,9 @@ repair = Repair.create!(
   imei: 630576122387474,
   serial: 'SA5678SA9012',
   model: 'iPhone 14',
-  device_type: 'phone'
+  device_type: 'phone',
+  created_at: 2.day.ago,
+  updated_at: 2.day.ago
 )
 
 repair = Repair.create!(
@@ -115,7 +123,9 @@ repair = Repair.create!(
   imei: 630576122387474,
   serial: 'SA5678SA9012',
   model: 'iPhone 14',
-  device_type: 'phone'
+  device_type: 'phone',
+  created_at: 15.day.ago,
+  updated_at: 10.day.ago
 )
 
 repair = Repair.create!(
@@ -138,7 +148,9 @@ repair = Repair.create!(
   error_description: %(My Dead Space Remake CD is stuck inside the PlayStation.),
   serial: 'SA6789SA0123',
   model: 'PS5 slim disc',
-  device_type: 'console'
+  device_type: 'console',
+  created_at: 26.day.ago,
+  updated_at: 10.day.ago
 )
 
 repair = Repair.create!(

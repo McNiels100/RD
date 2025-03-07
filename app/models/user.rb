@@ -7,7 +7,6 @@ class User < ApplicationRecord
   # Check user roles
   ROLES = %w[admin leader technician].freeze
 
-  validates :name, presence: true
   validates :role, inclusion: { in: ROLES }
 
   def admin?

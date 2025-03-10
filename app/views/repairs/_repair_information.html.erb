@@ -77,9 +77,6 @@
   </div>
   <div class="action_module">
     <h2>Actions</h2>
-    <% flash.each do |key, message| %>
-      <div class="flash <%= key %>"><%= message %></div>
-    <% end %>
     <%= form.submit :Save %>
     <button>Close</button>
     <button>Delete</button>

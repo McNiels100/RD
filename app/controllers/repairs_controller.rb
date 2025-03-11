@@ -22,11 +22,6 @@ class RepairsController < ApplicationController
   def show
     @repair = Repair.find(params[:id])
     @device = Device.find_by(brand: @repair.brand, device_type: @repair.device_type)
-    if @repair.locked? && @repair.locked_by != current_user.email_address
-      flash[:alert] = "This repair is currently being edited by #{@repair.locked_by}."
-    else
-      @repair.lock(current_user)
-    end
   end
 
   def new
@@ -49,35 +44,16 @@ class RepairsController < ApplicationController
 
   def edit
     @repair = Repair.find(params[:id])
-    if @repair.locked? && @repair.locked_by != current_user.email_address
-      redirect_to @repair, alert: "This repair is currently being edited by #{@repair.locked_by}."
-    else
-      @repair.lock(current_user)
-    end
   end
 
   def update
     @repair = Repair.find(params[:id])
-    if @repair.locked_by != current_user.email_address
-      redirect_to @repair, alert: "This repair is currently being edited by #{@repair.locked_by}."
-    elsif @repair.update(repair_params)
-      @repair.unlock
+    if @repair.update(repair_params)
       flash[:success] = "Repair was successfully updated."
       redirect_to @repair
     else
       flash.now[:error] = @repair.errors.full_messages.to_sentence + "!"
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
-  def destroy
-    if @repair.locked_by != current_user.email_address
-      redirect_to @repair, alert: "This repair is currently being edited by #{@repair.locked_by}."
-    else
-      @repair.unlock
-      @repair.destroy
-      flash[:success] = "Repair was successfully deleted."
-      redirect_to repairs_url
+      render :show, status: :unprocessable_entity
     end
   end
 

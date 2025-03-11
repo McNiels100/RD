@@ -1,5 +1,5 @@
 <!-- app/views/repairs/_repair.html.erb -->
-<div id="repair_<%= repair.id %>">
+<div id="repair_<%= repair.id %>" class="flash-banner alert">
   <% if repair.locked? %>
     <p>
       This repair is locked by <%= repair.locked_by %> at <%= repair.locked_at %>.

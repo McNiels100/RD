@@ -328,10 +328,17 @@ body {
   height: 1000px;
 }
 
-/* Alert notification banner */
+/* Notification banners */
 .flash-banner {
   padding: 20px;
-  background-color: #04AA6D;
   color: white;
   text-align: center;
+}
+
+.alert {
+  background-color: orange;
+}
+
+.success {
+  background-color: #04AA6D;
 }

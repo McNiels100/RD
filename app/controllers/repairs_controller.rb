@@ -1,4 +1,6 @@
 class RepairsController < ApplicationController
+  before_action :set_repair, only: [ :lock, :unlock ]
+
   def index
     @repairs = Repair.all
     @devices = Device.all
@@ -57,7 +59,45 @@ class RepairsController < ApplicationController
     end
   end
 
+  def lock
+    if @repair.locked? && !@repair.locked_by?(current_user.email_address)
+      # Repair is already locked by another user
+      flash[:alert] = "This repair is already locked by #{@repair.locked_by}."
+    else
+      # Lock the repair for the current user
+      @repair.lock!(current_user.email_address)
+      flash[:notice] = "Repair locked for editing."
+    end
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace("repair_#{@repair.id}", partial: "repair", locals: { repair: @repair })
+      end
+    end
+  end
+
+  def unlock
+    if @repair.locked_by?(current_user.email_address)
+      # Unlock the repair
+      @repair.unlock!
+      flash[:notice] = "Repair unlocked."
+    else
+      # Repair is locked by another user
+      flash[:alert] = "You cannot unlock this repair. It is locked by #{@repair.locked_by}."
+    end
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace("repair_#{@repair.id}", partial: "repair", locals: { repair: @repair })
+      end
+    end
+  end
+
   private
+  def set_repair
+    @repair = Repair.find(params[:id])
+  end
+
   def repair_params
     params.expect(repair: [ :name, :email, :phone_number, :brand, :device_type, :error_description, :imei, :serial, :model ])
   end

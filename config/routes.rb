@@ -16,7 +16,12 @@ Rails.application.routes.draw do
 
   root "repairs#index"
 
-  resources :repairs
+resources :repairs do
+  member do
+    post :lock
+    post :unlock
+  end
+end
   resources :devices
   resources :users
 end

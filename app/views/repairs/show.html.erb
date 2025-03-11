@@ -1,3 +1,4 @@
 <% content_for :title, @repair.order_number %>
+<%= render partial: 'repair', locals: { repair: @repair } %>
 <%= render 'repair_information' %>
 <%= render 'parts' %>

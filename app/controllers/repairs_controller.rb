@@ -60,15 +60,9 @@ class RepairsController < ApplicationController
   end
 
   def lock
-    if @repair.locked? && !@repair.locked_by?(current_user.email_address)
-      # Repair is already locked by another user
-      flash[:alert] = "This repair is already locked by #{@repair.locked_by}."
-    else
-      # Lock the repair for the current user
-      @repair.lock!(current_user.email_address)
-      flash[:notice] = "Repair locked for editing."
+    if @repair.lock!(current_user.email_address)
+      ActionCable.server.broadcast("repair_#{@repair.id}", { action: "lock", html: render_to_string(partial: "repair", locals: { repair: @repair }) })
     end
-
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.replace("repair_#{@repair.id}", partial: "repair", locals: { repair: @repair })
@@ -77,15 +71,9 @@ class RepairsController < ApplicationController
   end
 
   def unlock
-    if @repair.locked_by?(current_user.email_address)
-      # Unlock the repair
-      @repair.unlock!
-      flash[:notice] = "Repair unlocked."
-    else
-      # Repair is locked by another user
-      flash[:alert] = "You cannot unlock this repair. It is locked by #{@repair.locked_by}."
+    if @repair.unlock!
+      ActionCable.server.broadcast("repair_#{@repair.id}", { action: "unlock", html: render_to_string(partial: "repair", locals: { repair: @repair }) })
     end
-
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.replace("repair_#{@repair.id}", partial: "repair", locals: { repair: @repair })

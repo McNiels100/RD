@@ -1,4 +1,6 @@
 <% content_for :title, @repair.order_number %>
-<%= render partial: 'repair', locals: { repair: @repair } %>
+<div id="repair_container" data-repair-id="<%= @repair.id %>">
+  <%= render partial: 'repair', locals: { repair: @repair } %>
+</div>
 <%= render 'repair_information' %>
 <%= render 'parts' %>

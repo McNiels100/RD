@@ -2,8 +2,8 @@ class Repair < ApplicationRecord
   before_create :generate_order_number
   validates :name, :email, :phone_number, :brand, :error_description, :model, presence: true
 
-   # Lock the repair for a specific user (by email)
-   def lock!(email)
+  # Lock the repair for a specific user (by email)
+  def lock!(email)
     update(locked_by: email, locked_at: Time.current)
   end
 

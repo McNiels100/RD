@@ -342,3 +342,11 @@ body {
 .success {
   background-color: #04AA6D;
 }
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}

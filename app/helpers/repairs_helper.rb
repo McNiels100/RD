@@ -28,6 +28,10 @@ module RepairsHelper
     device
   end
 
+  def lock_visibility_class(repair)
+    repair.locked? ? "show" : "hide"
+  end
+
 
   private
   def working_days_between(start_date, end_date)

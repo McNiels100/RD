@@ -1,8 +1,8 @@
 <!-- app/views/repairs/_repair.html.erb -->
-<div id="repair_<%= repair.id %>" class="flash-banner alert hide <%= "show" if repair.locked? %>">
+<div id="repair_<%= repair.id %>" class="flash-banner alert <%= lock_visibility_class(repair) %>">
   <% if repair.locked? %>
     <p>
-      This repair is being worked on by <%= repair.locked_by %> at <%= repair.locked_at %>.
+      This repair is being worked on by <%= repair.locked_by %> since <%= repair.locked_at %>.
       <% if repair.locked_by?(current_user.email_address) || current_user.admin? %>
         <%= button_to 'Unlock', unlock_repair_path(repair), method: :post, form: { data: { turbo_stream: true } } %>
       <% end %>

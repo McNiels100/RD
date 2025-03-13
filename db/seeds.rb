@@ -317,14 +317,6 @@ user = User.create!(
 )
 
 user = User.create!(
-  email_address: "leader.three@company.com",
-  password: "leaderthree123",
-  password_confirmation: "leaderthree123",
-  role: "leader",
-  name: "Leader Three"
-)
-
-user = User.create!(
   email_address: "sarah.davis@company.com",
   password: "sarah123",
   password_confirmation: "sarah123",

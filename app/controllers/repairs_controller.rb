@@ -1,5 +1,6 @@
 class RepairsController < ApplicationController
-  before_action :set_repair, only: [ :lock, :unlock ]
+  before_action :set_repair, only: [ :show, :edit, :update, :lock, :unlock ]
+  before_action :ensure_repair_locked_by_current_user, only: [ :edit, :update ]
 
   def index
     @repairs = Repair.all
@@ -22,7 +23,6 @@ class RepairsController < ApplicationController
   end
 
   def show
-    @repair = Repair.find(params[:id])
     @device = Device.find_by(brand: @repair.brand, device_type: @repair.device_type)
   end
 
@@ -45,11 +45,9 @@ class RepairsController < ApplicationController
   end
 
   def edit
-    @repair = Repair.find(params[:id])
   end
 
   def update
-    @repair = Repair.find(params[:id])
     if @repair.update(repair_params)
       flash[:success] = "Repair was successfully updated."
       redirect_to @repair
@@ -88,5 +86,12 @@ class RepairsController < ApplicationController
 
   def repair_params
     params.expect(repair: [ :name, :email, :phone_number, :brand, :device_type, :error_description, :imei, :serial, :model ])
+  end
+
+  def ensure_repair_locked_by_current_user
+    unless @repair.locked_by?(current_user.email_address)
+      flash[:error] = "You cannot edit this repair because it is not locked by you."
+      redirect_to @repair
+    end
   end
 end

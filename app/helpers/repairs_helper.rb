@@ -28,6 +28,14 @@ module RepairsHelper
     device
   end
 
+  def disable_if_not_locked_by_current_user(repair)
+    if repair.locked_by.nil? || repair.locked_by?(current_user.email_address)
+      {} # No disabled attribute
+    else
+      { disabled: true } # Add disabled attribute
+    end
+  end
+
   private
   def working_days_between(start_date, end_date)
     total_days = (start_date.to_date..end_date.to_date).to_a

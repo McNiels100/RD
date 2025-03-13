@@ -61,22 +61,22 @@ class RepairsController < ApplicationController
 
   def lock
     if @repair.lock!(current_user.email_address)
-      ActionCable.server.broadcast("repair_#{@repair.id}", { action: "lock", html: render_to_string(partial: "repair", locals: { repair: @repair }) })
+      ActionCable.server.broadcast("repair_#{@repair.id}", { action: "lock", html: render_to_string(partial: "repair_lock", locals: { repair: @repair }) })
     end
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.replace("repair_#{@repair.id}", partial: "repair", locals: { repair: @repair })
+        render turbo_stream: turbo_stream.replace("repair_#{@repair.id}", partial: "repair_lock", locals: { repair: @repair })
       end
     end
   end
 
   def unlock
     if @repair.unlock!
-      ActionCable.server.broadcast("repair_#{@repair.id}", { action: "unlock", html: render_to_string(partial: "repair", locals: { repair: @repair, unlocked_by_admin: true }) })
+      ActionCable.server.broadcast("repair_#{@repair.id}", { action: "unlock", html: render_to_string(partial: "repair_lock", locals: { repair: @repair, unlocked_by_admin: true }) })
     end
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.replace("repair_#{@repair.id}", partial: "repair", locals: { repair: @repair, unlocked_by_admin: true })
+        render turbo_stream: turbo_stream.replace("repair_#{@repair.id}", partial: "repair_lock", locals: { repair: @repair, unlocked_by_admin: true })
       end
     end
   end

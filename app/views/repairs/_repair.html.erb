@@ -1,5 +1,5 @@
 <!-- app/views/repairs/_repair.html.erb -->
-<div id="repair_<%= repair.id %>" class="flash-banner alert <%= lock_visibility_class(repair) %>">
+<div id="repair_<%= repair.id %>" class="flash-banner alert">
   <% if repair.locked? %>
     <p>
       This repair is being worked on by <%= repair.locked_by %> since <%= repair.locked_at %>.
@@ -13,5 +13,8 @@
       This repair is unlocked.
       <%#= button_to 'Lock for Editing', lock_repair_path(repair), method: :post, form: { data: { turbo_stream: true } } %>-->
     <!--    </p>-->
+  <% end %>
+  <% if unlocked_by_admin %>
+    <p>This repair was unlocked by admin: </p>
   <% end %>
 </div>

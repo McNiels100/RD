@@ -20,7 +20,9 @@
   </head>
   <body>
     <% flash.each do |key, message| %>
-      <div class="flash-banner success <%= key %>"><%= message %></div>
+      <div class="flash-banner success <%= key %>">
+        <p><%= message %></p>
+      </div>
     <% end %>
     <%= render 'layouts/navbar_primary' %>
     <main>

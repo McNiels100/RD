@@ -30,6 +30,8 @@ const connectToRepairChannel = () => {
             const repairDiv = document.getElementById(`repair_${repairId}`);
             if (repairDiv) {
               repairDiv.innerHTML = data.html;
+              console.log(repairDiv.innerHTML = data.html);
+              console.log('admin unblocked you');
             }
           }
         }

@@ -72,11 +72,11 @@ class RepairsController < ApplicationController
 
   def unlock
     if @repair.unlock!
-      ActionCable.server.broadcast("repair_#{@repair.id}", { action: "unlock", html: render_to_string(partial: "repair", locals: { repair: @repair }) })
+      ActionCable.server.broadcast("repair_#{@repair.id}", { action: "unlock", html: render_to_string(partial: "repair", locals: { repair: @repair, unlocked_by_admin: true }) })
     end
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.replace("repair_#{@repair.id}", partial: "repair", locals: { repair: @repair })
+        render turbo_stream: turbo_stream.replace("repair_#{@repair.id}", partial: "repair", locals: { repair: @repair, unlocked_by_admin: true })
       end
     end
   end

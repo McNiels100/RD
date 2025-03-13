@@ -330,9 +330,14 @@ body {
 
 /* Notification banners */
 .flash-banner {
-  padding: 20px;
   color: white;
   text-align: center;
+}
+
+.flash-banner p {
+  padding: 20px;
+  margin-block-start: 0;
+  margin-block-end: 0;
 }
 
 .alert {

@@ -5,11 +5,11 @@ one:
   device_type: MyString
   tat_neutral: 1
   tat_unsatisfied: 1
-  tat_very_unsatified: MyString
+  tat_very_unsatisfied: 1
 
 two:
   brand: MyString
   device_type: MyString
   tat_neutral: 1
   tat_unsatisfied: 1
-  tat_very_unsatified: MyString
+  tat_very_unsatisfied: 1

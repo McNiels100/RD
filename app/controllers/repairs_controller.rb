@@ -1,5 +1,6 @@
 class RepairsController < ApplicationController
   before_action :set_repair, only: [ :show, :edit, :update, :lock, :unlock ]
+  before_action :set_device_data, only: [ :new, :create ]
   before_action :ensure_repair_locked_by_current_user, only: [ :edit, :update ]
 
   def index
@@ -28,9 +29,6 @@ class RepairsController < ApplicationController
 
   def new
     @repair = Repair.new
-    @devices = Device.all
-    @brands = @devices.pluck(:brand).uniq
-    @device_types = @devices.pluck(:device_type).uniq
   end
 
   def create
@@ -82,6 +80,12 @@ class RepairsController < ApplicationController
   private
   def set_repair
     @repair = Repair.find(params[:id])
+  end
+
+  def set_device_data
+    @devices = Device.all
+    @brands = @devices.pluck(:brand).uniq
+    @device_types = @devices.pluck(:device_type).uniq
   end
 
   def repair_params

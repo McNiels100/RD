@@ -1,5 +1,5 @@
 <%= render 'layouts/navbar_panels' %>
 <div class="user-content">
-  <h1><%= session[:user_email] %></h1>
+  <h1><%= cookies.signed[:user_email] %></h1>
   <p>Account level: <%= current_user.role %></p>
 </div>

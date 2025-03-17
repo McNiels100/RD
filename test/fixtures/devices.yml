@@ -3,13 +3,13 @@
 one:
   brand: MyString
   device_type: MyString
-  TAT_neutral: 1
-  TAT_unsatisfied: 1
-  TAT_very_unsatified: MyString
+  tat_neutral: 1
+  tat_unsatisfied: 1
+  tat_very_unsatified: MyString
 
 two:
   brand: MyString
   device_type: MyString
-  TAT_neutral: 1
-  TAT_unsatisfied: 1
-  TAT_very_unsatified: MyString
+  tat_neutral: 1
+  tat_unsatisfied: 1
+  tat_very_unsatified: MyString

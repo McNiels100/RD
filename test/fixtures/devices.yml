@@ -1,15 +1,22 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  brand: MyString
-  device_type: MyString
-  tat_neutral: 1
-  tat_unsatisfied: 1
-  tat_very_unsatisfied: 1
+  brand: Samsung
+  device_type: phone
+  tat_neutral: 5
+  tat_unsatisfied: 10
+  tat_very_unsatisfied: 30
 
 two:
-  brand: MyString
-  device_type: MyString
-  tat_neutral: 1
-  tat_unsatisfied: 1
-  tat_very_unsatisfied: 1
+  brand: Apple
+  device_type: tablet
+  tat_neutral: 3
+  tat_unsatisfied: 7
+  tat_very_unsatisfied: 15
+
+three:
+  brand: Apple
+  device_type: phone
+  tat_neutral: 3
+  tat_unsatisfied: 7
+  tat_very_unsatisfied: 15

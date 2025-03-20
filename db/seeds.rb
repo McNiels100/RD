@@ -171,6 +171,7 @@ repair = Repair.create!(
   phone_number: 91724280,
   brand: 'Samsung',
   error_description: %(The charger cable is beginning to crack. I have just used it normally for less than a year. Thus it must be exchanged as I for a fact know it cannot be repaired. I want the same original Samsung cable. Not any other color.),
+  serial: "SM3945999547",
   model: 'Samsung cable',
   device_type: 'accessory'
 )
@@ -181,6 +182,7 @@ repair = Repair.create!(
   phone_number: 30421415,
   brand: 'ASRock',
   error_description: %(DOA. A RAM slot does not work. The one to the farthest right.),
+  serial: "AS9284739",
   model: 'X870E Taichi',
   device_type: 'hardware'
 )

@@ -1,6 +1,7 @@
 class Repair < ApplicationRecord
   before_create :generate_order_number
-  validates :name, :email, :phone_number, :brand, :device_type, :error_description, :imei, :serial, :model, presence: true
+  validates :name, :email, :phone_number, :brand, :device_type, :error_description, :model, presence: true
+  validate :imei_or_serial_present
 
   # Lock the repair for a specific user (by email)
   def lock!(email)
@@ -32,5 +33,11 @@ class Repair < ApplicationRecord
   def generate_order_number
     last_order = Repair.lock.last
     self.order_number = last_order ? "RD-#{last_order.id + 1000}" : "RD-1000"
+  end
+
+  def imei_or_serial_present
+    if imei.blank? && serial.blank?
+      errors.add(:base, "Either IMEI or Serial must be present")
+    end
   end
 end

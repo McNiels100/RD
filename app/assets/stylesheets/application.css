@@ -348,6 +348,10 @@ body {
   background-color: #04AA6D;
 }
 
+.error {
+  background-color: #f44336;
+}
+
 .hide {
   display: none;
 }

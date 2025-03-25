@@ -1,0 +1,13 @@
+<h1>Create new status</h1>
+<%= form_with model: @status do |form| %>
+  <div class="form-wrapper">
+    <p>Before proceeding. Please make sure there isn't another status with the same meaning.</p>
+
+    <%= form.label :name %>
+    <%= form.text_field :name, placeholder: "Input exactly how the status should be displayed." %>
+    <%= form.label :active %>
+    <%= form.select :active, ["false", "true"] %>
+
+    <%= form.submit %>
+  </div>
+<% end %>

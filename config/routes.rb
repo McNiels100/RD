@@ -16,12 +16,17 @@ Rails.application.routes.draw do
 
   root "repairs#index"
 
-resources :repairs do
-  member do
-    post :lock
-    post :unlock
+  resources :repairs do
+    member do
+      post :lock
+      post :unlock
+    end
   end
-end
   resources :devices
   resources :users
+  resources :statuses do
+    member do
+      patch :toggle_active  # Handles both activation/deactivation
+    end
+  end
 end

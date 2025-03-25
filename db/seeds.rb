@@ -440,3 +440,17 @@ device = Device.create!(
   tat_unsatisfied: 5,
   tat_very_unsatisfied: 10
 )
+
+# Repair statuses
+Status.delete_all
+
+Status.create!([
+  { name: "Received", active: true },
+  { name: "Diagnosing", active: true },
+  { name: "Waiting for Parts", active: true },
+  { name: "In Repair", active: true },
+  { name: "Testing", active: true },
+  { name: "Ready for Pickup", active: true },
+  { name: "Completed", active: true },
+  { name: "Cancelled", active: false }
+])

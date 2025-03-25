@@ -1,0 +1,22 @@
+<table class="index-table">
+  <tr>
+    <th>ID</th>
+    <th>Status</th>
+    <th>Active</th>
+    <th>Created</th>
+    <th>Actions</th>
+  </tr>
+  <% @statuses.each do |status| %>
+    <tr>
+      <td><%= status.id %></td>
+      <td><%= status.name %></td>
+      <td><%= status.active %></td>
+      <td><%= status.created_at %></td>
+      <td>
+        <div class="table-actions">
+          <%= toggle_status_button(status) %>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+</table>

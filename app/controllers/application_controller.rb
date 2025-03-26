@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
   helper_method :current_user
+  before_action :ensure_desktop_user
 
   def current_user
     @current_user ||= User.find(cookies.signed[:user_id]) if cookies.signed[:user_id]
@@ -13,6 +14,16 @@ class ApplicationController < ActionController::Base
   end
 
   private
+  def ensure_desktop_user
+    if mobile_device?
+      render status: :forbidden
+    end
+  end
+
+  def mobile_device?
+    request.user_agent =~ /Mobi|Android|iPhone|iPad|iPod|BlackBerry|Opera Mini/i
+  end
+
   def require_admin
     unless current_user&.admin?
       flash[:alert] = "You must be an admin to access this section."

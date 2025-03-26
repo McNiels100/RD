@@ -11,7 +11,7 @@
       <td><%= status.id %></td>
       <td><%= status.name %></td>
       <td><%= status.active %></td>
-      <td><%= status.created_at %></td>
+      <td><%= status.created_at.to_formatted_s(:rfc822) %></td>
       <td>
         <div class="table-actions">
           <%= toggle_status_button(status) %>

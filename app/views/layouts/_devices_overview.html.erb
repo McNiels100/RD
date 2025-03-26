@@ -30,10 +30,10 @@
           <%= device.tat_very_unsatisfied %>
         </td>
         <td>
-          <%= device.created_at %>
+          <%= device.created_at.to_formatted_s(:rfc822)  %>
         </td>
         <td>
-          <%= device.updated_at %>
+          <%= device.updated_at.to_formatted_s(:rfc822)  %>
         </td>
         <% if current_user.admin? %>
           <td>

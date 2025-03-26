@@ -14,8 +14,8 @@
       <td><%= user.role %></td>
       <td><%= user.name %></td>
       <td><%= user.email_address %></td>
-      <td><%= user.created_at %></td>
-      <td><%= user.updated_at %></td>
+      <td><%= user.created_at.to_formatted_s(:rfc822) %></td>
+      <td><%= user.updated_at.to_formatted_s(:rfc822) %></td>
       <td>
         <div class="table-actions">
           <%= link_to "Edit", user_path(user.id), class: "btn edit-color" %>

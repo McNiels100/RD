@@ -28,10 +28,10 @@
           <%= repair.current_status&.name || 'Unknown' %>
         </td>
         <td>
-          <%= repair.created_at %>
+          <%= repair.created_at.to_formatted_s(:short) %>
         </td>
         <td>
-          <%= repair.updated_at %>
+          <%= repair.updated_at.to_formatted_s(:short) %>
         </td>
         <td>
           <%= @days_to_next_stage %>

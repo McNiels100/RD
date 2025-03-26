@@ -8,7 +8,8 @@
               <span class="flag"><%= rs.status.name %></span>
               <span class="time-wrapper"><span class="time"><%= rs.created_at.to_formatted_s(:short) %></span></span>
             </div>
-            <div class="desc"><%= User.find(rs.user_id).email_address || 'System' %>: <%= rs.notes %></div>
+            <div class="desc"><%= User.find(rs.user_id).email_address || 'System' %></div>
+            <div class="desc"><%= rs.notes %></div>
           </div>
         </li>
       <% end %>

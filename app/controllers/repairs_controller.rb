@@ -1,7 +1,7 @@
 class RepairsController < ApplicationController
-  before_action :set_repair, only: [ :show, :edit, :update, :lock, :unlock ]
+  before_action :set_repair, only: [ :show, :edit, :update, :lock, :unlock, :add_status ]
   before_action :set_device_data, only: [ :new, :create ]
-  before_action :ensure_repair_locked_by_current_user, only: [ :edit, :update ]
+  before_action :ensure_repair_locked_by_current_user, only: [ :edit, :update, :add_status ]
 
   def index
     @repairs = Repair.all
@@ -34,6 +34,7 @@ class RepairsController < ApplicationController
   def create
     @repair = Repair.new(repair_params)
     if @repair.save
+      @repair.add_status(Status.find_by(name: "Received").id, current_user)
       flash[:success] = "Repair was successfully created."
       redirect_to @repair
     else
@@ -47,6 +48,9 @@ class RepairsController < ApplicationController
 
   def update
     if @repair.update(repair_params)
+      if params[:repair][:status_id].present?
+        @repair.add_status(params[:repair][:status_id], current_user, params[:repair][:status_notes])
+      end
       flash[:success] = "Repair was successfully updated."
       redirect_to @repair
     else
@@ -75,6 +79,22 @@ class RepairsController < ApplicationController
         render turbo_stream: turbo_stream.replace("repair_#{@repair.id}", partial: "repair_lock", locals: { repair: @repair, unlocked_by_admin: true })
       end
     end
+  end
+
+  def add_status
+    @repair = Repair.find(params[:id])
+    status_id = params[:repair][:status_id]
+    notes = params[:repair][:status_notes]
+    user = current_user # Assuming you have a `current_user` method
+
+    if status_id.present?
+      @repair.add_status(status_id, user, notes)
+      flash[:success] = "Status updated successfully."
+    else
+      flash[:error] = "Please select a status."
+    end
+
+    redirect_to repair_path(@repair)
   end
 
   private

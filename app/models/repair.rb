@@ -3,6 +3,20 @@ class Repair < ApplicationRecord
   validates :name, :email, :phone_number, :brand, :device_type, :error_description, :model, presence: true
   validate :imei_or_serial_present
 
+  has_many :repair_statuses, dependent: :destroy
+  has_many :statuses, through: :repair_statuses
+
+  # Returns the current status
+  def current_status
+    repair_statuses.order(created_at: :desc).first&.status
+  end
+
+  # Add a new status to the repair
+  def add_status(status_id, user = nil, notes = nil)
+    status = Status.find(status_id)
+    repair_statuses.create!(status: status, user: user, notes: notes)
+  end
+
   # Lock the repair for a specific user (by email)
   def lock!(email)
     update(locked_by: email, locked_at: Time.current)

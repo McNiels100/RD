@@ -1,0 +1,16 @@
+  <div class="status-change-form">
+      <%= form_with(model: @repair, url: add_status_repair_path(@repair), method: :post) do |f| %>
+        <div class="field">
+          <%= f.label :status_id, "Change Status" %>
+          <%= f.collection_select :status_id, Status.active, :id, :name, include_blank: "Select Status" %>
+        </div>
+        
+        <div class="field">
+          <%= f.label :status_notes, "Notes" %>
+          <%= f.text_area :status_notes %>
+        </div>
+        
+        <%= f.submit "Update Status", class: "btn new-color" %>
+      <% end %>
+    </div>
+</div>

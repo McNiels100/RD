@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_25_102051) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_25_144550) do
   create_table "Devices", force: :cascade do |t|
     t.string "brand"
     t.string "device_type"
@@ -19,6 +19,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_25_102051) do
     t.integer "tat_very_unsatisfied"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "repair_statuses", force: :cascade do |t|
+    t.integer "repair_id", null: false
+    t.integer "status_id", null: false
+    t.integer "user_id", null: false
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["repair_id"], name: "index_repair_statuses_on_repair_id"
+    t.index ["status_id"], name: "index_repair_statuses_on_status_id"
+    t.index ["user_id"], name: "index_repair_statuses_on_user_id"
   end
 
   create_table "repairs", force: :cascade do |t|
@@ -65,5 +77,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_25_102051) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "repair_statuses", "repairs"
+  add_foreign_key "repair_statuses", "statuses"
+  add_foreign_key "repair_statuses", "users"
   add_foreign_key "sessions", "users"
 end

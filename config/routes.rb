@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     member do
       post :lock
       post :unlock
+      post :add_status
     end
   end
   resources :devices

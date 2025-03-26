@@ -5,6 +5,7 @@
       <th>Brand</th>
       <th>Device type</th>
       <th>TAT</th>
+      <th>Status</th>
       <th>Created</th>
       <th>Last update</th>
       <th>Days to next TAT</th>
@@ -22,6 +23,9 @@
         </td>
         <td class="<%= calculate_tat_stage(find_tat(repair), repair.created_at, "tat") %>">
           <%= @tat_status %>
+        </td>
+        <td>
+          <%= repair.current_status&.name || 'Unknown' %>
         </td>
         <td>
           <%= repair.created_at %>

@@ -74,6 +74,10 @@ body {
   background-color: #45a049;
 }
 
+.status-color {
+  background-color: rgb(255, 80, 80)
+}
+
 /* Top navigation */
 
 .topnav {
@@ -676,3 +680,60 @@ body {
     margin: 1em 4em 0 4em;
   }
 }
+
+/* Status module */
+.status-module {
+  padding: 25px 15px; /* Increased padding for better spacing */
+  margin: 10px 0px;
+  background-color: #333;
+  display: flex;
+  flex-direction: column; /* Use column layout for better vertical alignment */
+  gap: 10px; /* Add gap between elements */
+}
+
+.status-module .form-row {
+  display: flex;
+  width: 100%;
+  align-items: stretch; /* Vertically align items */
+}
+
+.status-module .field {
+  flex: 1; /* Equal width for fields */
+  margin: 0 5px; /* Add margin for spacing between fields */
+}
+
+.status-module label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px; /* Consistent font size */
+}
+
+.status-module select,
+.status-module textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px; /* Consistent padding */
+  font-size: 16px; /* Consistent font size */
+  border-radius: 4px;
+  border: 1px solid #ccc; /* Add border for consistency */
+  background-color: white; /* Ensure background is consistent */
+  color: #333; /* Ensure text color is consistent */
+}
+
+.status-module textarea {
+  height: 41px;
+}
+
+.status-module .btn {
+  width: auto;
+  padding: 10px 20px; /* Consistent button padding */
+  font-size: 16px; /* Consistent button font size */
+  margin: 0 0 3px 0;
+}
+
+/* Placeholder style for consistency */
+.status-module ::placeholder {
+  color: #ccc; /* Light gray placeholder text */
+}
+
+

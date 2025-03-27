@@ -11,7 +11,7 @@
       <%# No message shown if the current user locked it %>
     <% end %>
     <% if unlocked_by_admin %>
-      <p>This repair was unlocked by admin: </p>
+      <p>This repair was unlocked by admin: <%= admin_email %></p>
     <% end %>
   </div>
 </div>

@@ -25,6 +25,7 @@ class RepairsController < ApplicationController
 
   def show
     @device = Device.find_by(brand: @repair.brand, device_type: @repair.device_type)
+    @repair_locked_by_current_user = @repair.locked_by?(current_user.email_address) # Add this line
   end
 
   def new

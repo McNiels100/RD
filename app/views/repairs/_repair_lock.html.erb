@@ -1,18 +1,14 @@
 <div id="repair_container" data-repair-id="<%= @repair.id %>">
   <div id="repair_<%= repair.id %>" class="flash-banner alert">
-    <% if repair.locked? %>
+    <% if repair.locked? && !locked_by_current_user %>
       <p>
         This repair is being worked on by <%= repair.locked_by %> since <%= repair.locked_at %>.
-        <% if repair.locked_by?(current_user.email_address) || current_user.admin? %>
-          <%= button_to 'Unlock', unlock_repair_path(repair), method: :post, form: { data: { turbo_stream: true } } %>
-        <% end %>
       </p>
-      <!-- Button to mannualy unlock repair if needed in the future -->
-      <%# else %>
-      <!--    <p>
-      This repair is unlocked.
-      <%#= button_to 'Lock for Editing', lock_repair_path(repair), method: :post, form: { data: { turbo_stream: true } } %>-->
-      <!--    </p>-->
+      <% if current_user.admin? %>
+        <%= button_to 'Unlock', unlock_repair_path(repair), method: :post, form: { data: { turbo_stream: true } } %>
+      <% end %>
+    <% elsif repair.locked? && locked_by_current_user %>
+      <%# No message shown if the current user locked it %>
     <% end %>
     <% if unlocked_by_admin %>
       <p>This repair was unlocked by admin: </p>

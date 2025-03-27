@@ -42,6 +42,14 @@ class RepairsControllerTest < ActionDispatch::IntegrationTest
     assert repair.save, "Could not save repair with all info filled except IMEI"
   end
 
+  test "should set initial status to 'Received' when saved" do
+    user = users(:one)
+    repair = Repair.new(name: "John Doe", email: "john.doe@example.com", phone_number: "88888888", brand: "Apple", error_description: "Broken screen", imei: "987654321098765", serial: "AP8948973450", model: "iPhone 16e", device_type: "phone",)
+    assert repair.save, "Could not save repair with info"
+    set_status = repair.add_status(Status.find_by(name: "Received").id, user)
+    assert set_status, "Could not set initial status to Received"
+  end
+
   # Read
   test "should get all repairs" do
     repair = Repair.all

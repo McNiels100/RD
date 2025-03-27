@@ -1,9 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  active: false
+  name: Received
+  active: true
 
 two:
-  name: MyString
+  name: Cancelled
   active: false

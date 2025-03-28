@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   private
   def ensure_desktop_user
     if mobile_device?
-      render status: :forbidden
+      render file: Rails.root.join("public", "406-unsupported-browser.html"), status: :not_acceptable, layout: false
     end
   end
 

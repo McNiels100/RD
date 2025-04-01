@@ -14,7 +14,7 @@
       <td><%= status.created_at.to_formatted_s(:rfc822) %></td>
       <td>
         <div class="table-actions">
-          <%= toggle_status_button(status) %>
+          <%= toggle_status_button(status, toggle_active_status_path(status)) %>
         </div>
       </td>
     </tr>

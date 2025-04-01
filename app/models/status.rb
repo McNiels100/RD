@@ -5,4 +5,5 @@ class Status < ApplicationRecord
   has_many :repairs, through: :repair_statuses
 
   scope :active, -> { where(active: true) }
+  scope :inactive, -> { where(active: false) }
 end

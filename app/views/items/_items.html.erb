@@ -1,7 +1,7 @@
 <table class="index-table">
   <tr>
     <th>ID</th>
-    <th>SKU</th>
+    <th>SKU-prefix</th>
     <th>Description</th>
     <th>Base price</th>
     <th>Category</th>
@@ -13,7 +13,7 @@
   <% @items.each do |item| %>
     <tr>
       <td><%= item.id %></td>
-      <td><%= item.sku %></td>
+      <td><%= item.sku_prefix %></td>
       <td><%= item.description %></td>
       <td><%= item.base_price %></td>
       <td><%= item.category %></td>

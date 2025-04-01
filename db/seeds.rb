@@ -469,3 +469,44 @@ repair = Repair.create!(
   device_type: 'hardware'
 )
 repair.add_status(Status.find_by(name: "Received").id, User.last) # Using User.last as the acting user
+
+# Items
+item = Item.create!(
+  sku_prefix: "APP-I16E-128-BLA-",
+  description: "iPhone 16e 128GB Black",
+  base_price: 599.00,
+  category: "phone",
+  active: true,
+  created_at: 3.days.ago,
+  updated_at: 3.days.ago
+)
+
+item = Item.create!(
+  sku_prefix: "SAM-S25E-256-BLU-",
+  description: "Samsung Galaxy S25 Edge 256GB Blue",
+  base_price: 1099.00,
+  category: "phone",
+  active: true,
+  created_at: 3.days.ago,
+  updated_at: 3.days.ago
+)
+
+item = Item.create!(
+  sku_prefix: "P-SAM-PHO-S25E-",
+  description: "Display - Samsung Galaxy S25 Edge",
+  base_price: 119.99,
+  category: "parts",
+  active: true,
+  created_at: 3.days.ago,
+  updated_at: 3.days.ago
+)
+
+item = Item.create!(
+  sku_prefix: "P-APP-PHO-I16O-",
+  description: "Display - iPhone 16 Pro",
+  base_price: 99.99,
+  category: "parts",
+  active: true,
+  created_at: 3.days.ago,
+  updated_at: 3.days.ago
+)

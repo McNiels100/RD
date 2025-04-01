@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_01_083343) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_01_142414) do
   create_table "Devices", force: :cascade do |t|
     t.string "brand"
     t.string "device_type"
@@ -22,7 +22,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_01_083343) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.string "sku"
+    t.string "sku_prefix"
     t.text "description"
     t.decimal "base_price"
     t.string "category"

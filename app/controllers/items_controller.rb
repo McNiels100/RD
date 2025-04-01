@@ -23,6 +23,17 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      flash[:success] = "Item was successfully updated."
+      redirect_to items_path
+    else
+      flash.now[:error] = @item.errors.full_messages.to_sentence + "!"
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   def toggle_active
     @item = Item.find(params[:id])
     @item.update(active: !@item.active) # Toggles true/false
@@ -32,6 +43,6 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.expect(item: [ :sku, :description, :base_price, :category, :active ])
+    params.expect(item: [ :sku_prefix, :description, :base_price, :category, :active ])
   end
 end

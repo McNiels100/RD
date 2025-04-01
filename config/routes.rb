@@ -30,4 +30,9 @@ Rails.application.routes.draw do
       patch :toggle_active  # Handles both activation/deactivation
     end
   end
+  resources :items do
+    member do
+      patch :toggle_active  # Handles both activation/deactivation
+    end
+  end
 end

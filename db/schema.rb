@@ -10,13 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_25_144550) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_01_083343) do
   create_table "Devices", force: :cascade do |t|
     t.string "brand"
     t.string "device_type"
     t.integer "tat_neutral"
     t.integer "tat_unsatisfied"
     t.integer "tat_very_unsatisfied"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "sku"
+    t.text "description"
+    t.decimal "base_price"
+    t.string "category"
+    t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

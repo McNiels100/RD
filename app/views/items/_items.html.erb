@@ -1,0 +1,30 @@
+<table class="index-table">
+  <tr>
+    <th>ID</th>
+    <th>SKU</th>
+    <th>Description</th>
+    <th>Base price</th>
+    <th>Category</th>
+    <th>Created</th>
+    <th>Last update</th>
+    <th>Active</th>
+    <th>Actions</th>
+  </tr>
+  <% @items.each do |item| %>
+    <tr>
+      <td><%= item.id %></td>
+      <td><%= item.sku %></td>
+      <td><%= item.description %></td>
+      <td><%= item.base_price %></td>
+      <td><%= item.category %></td>
+      <td><%= item.created_at.to_formatted_s(:rfc822) %></td>
+      <td><%= item.updated_at.to_formatted_s(:rfc822) %></td>
+      <td><%= item.active %></td>
+      <td>
+        <div class="table-actions">
+          <%= toggle_status_button(item, toggle_active_item_path(item)) %>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+</table>

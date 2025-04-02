@@ -1,15 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  sku_prefix: MyString
-  description: MyText
-  base_price: 9.99
-  category: MyString
-  active: false
+  sku_prefix: APP-I16E-128-BLA-
+  description: iPhone 16e 128GB Black
+  base_price: 599.00
+  category: phone
+  active: true
 
 two:
-  sku_prefix: MyString
-  description: MyText
-  base_price: 9.99
-  category: MyString
-  active: false
+  sku_prefix: SAM-S25E-256-BLU-
+  description: Samsung Galaxy S25 Edge 256GB Blue
+  base_price: 1099.00
+  category: phone
+  active: true

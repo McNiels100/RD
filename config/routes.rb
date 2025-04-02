@@ -35,4 +35,5 @@ Rails.application.routes.draw do
       patch :toggle_active  # Handles both activation/deactivation
     end
   end
+  resources :inventories
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_01_142414) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_02_102553) do
   create_table "Devices", force: :cascade do |t|
     t.string "brand"
     t.string "device_type"
@@ -19,6 +19,29 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_01_142414) do
     t.integer "tat_very_unsatisfied"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "inventories", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.string "location", null: false
+    t.integer "imei"
+    t.string "serial"
+    t.integer "created_by_user_id"
+    t.integer "used_by_user_id"
+    t.integer "repair_id"
+    t.string "sku"
+    t.string "status", default: "in_stock"
+    t.datetime "used_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_by_user_id"], name: "index_inventories_on_created_by_user_id"
+    t.index ["imei", "serial"], name: "index_inventories_on_imei_and_serial", unique: true
+    t.index ["imei"], name: "index_inventories_on_imei"
+    t.index ["item_id"], name: "index_inventories_on_item_id"
+    t.index ["repair_id"], name: "index_inventories_on_repair_id"
+    t.index ["serial"], name: "index_inventories_on_serial"
+    t.index ["sku"], name: "index_inventories_on_sku"
+    t.index ["used_by_user_id"], name: "index_inventories_on_used_by_user_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -87,6 +110,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_01_142414) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "inventories", "items"
+  add_foreign_key "inventories", "repairs"
+  add_foreign_key "inventories", "users", column: "created_by_user_id"
+  add_foreign_key "inventories", "users", column: "used_by_user_id"
   add_foreign_key "repair_statuses", "repairs"
   add_foreign_key "repair_statuses", "statuses"
   add_foreign_key "repair_statuses", "users"

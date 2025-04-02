@@ -9,7 +9,7 @@ class Inventory < ApplicationRecord
   validates :imei, uniqueness: { allow_nil: true }
   validates :serial, uniqueness: { allow_blank: true }
 
-  enum status: {
+  enum :status, {
      in_stock: "in_stock",
      allocated: "allocated",
      in_repair: "in_repair",

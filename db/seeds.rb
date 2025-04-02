@@ -8,9 +8,15 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-# Repair statuses
-Status.delete_all
+# Clean tables
+Inventory.destroy_all
+Item.destroy_all
+Repair.destroy_all
+Device.destroy_all
+Status.destroy_all
+User.destroy_all
 
+# Repair statuses
 Status.create!([
   { name: "Received", active: true },
   { name: "Diagnosing", active: true },
@@ -23,8 +29,6 @@ Status.create!([
 ])
 
 # Login users
-User.destroy_all
-
 user = User.create!(
   email_address: "admin@company.com",
   password: "admin123",
@@ -162,8 +166,6 @@ user = User.create!(
 )
 
 # Devices and TAT
-Device.delete_all
-
 device = Device.create!(
   brand: 'Apple',
   device_type: 'phone',
@@ -277,8 +279,6 @@ device = Device.create!(
 )
 
 # Repair orders
-Repair.delete_all
-
 repair = Repair.create!(
   name: 'Nicklas Jensen',
   email: 'nicklas@example.com',
@@ -472,7 +472,7 @@ repair.add_status(Status.find_by(name: "Received").id, User.last) # Using User.l
 
 # Items
 item = Item.create!(
-  sku_prefix: "APP-I16E-128-BLA-",
+  sku_prefix: "APP-I16E-128-BLA",
   description: "iPhone 16e 128GB Black",
   base_price: 599.00,
   category: "phone",
@@ -482,7 +482,7 @@ item = Item.create!(
 )
 
 item = Item.create!(
-  sku_prefix: "SAM-S25E-256-BLU-",
+  sku_prefix: "SAM-S25E-256-BLU",
   description: "Samsung Galaxy S25 Edge 256GB Blue",
   base_price: 1099.00,
   category: "phone",
@@ -492,7 +492,7 @@ item = Item.create!(
 )
 
 item = Item.create!(
-  sku_prefix: "P-SAM-PHO-S25E-",
+  sku_prefix: "P-SAM-PHO-S25E",
   description: "Display - Samsung Galaxy S25 Edge",
   base_price: 119.99,
   category: "parts",
@@ -502,11 +502,27 @@ item = Item.create!(
 )
 
 item = Item.create!(
-  sku_prefix: "P-APP-PHO-I16O-",
+  sku_prefix: "P-APP-PHO-I16O",
   description: "Display - iPhone 16 Pro",
   base_price: 99.99,
   category: "parts",
   active: true,
+  created_at: 3.days.ago,
+  updated_at: 3.days.ago
+)
+
+# Inventories
+inventory = Inventory.create!(
+  item_id: Item.first.id,
+  location: "Shelf B7",
+  imei: "123456789012345",
+  serial: "ABC123",
+  created_by_user_id: User.first.id,
+  used_by_user_id: User.last.id,
+  repair_id: Repair.first.id,
+  sku: "#{Item.first.sku_prefix}-#{rand(10000).to_s.rjust(4, "0")}",
+  status: :used,
+  used_at: 1.days.ago,
   created_at: 3.days.ago,
   updated_at: 3.days.ago
 )

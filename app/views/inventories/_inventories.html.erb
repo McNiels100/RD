@@ -1,0 +1,38 @@
+<table class="index-table">
+  <tr>
+    <th>ID</th>
+    <th>Description</th>
+    <th>Location</th>
+    <th>Category</th>
+    <th>IMEI</th>
+    <th>Serial</th>
+    <th>Created by</th>
+    <th>Used by</th>
+    <th>Repair</th>
+    <th>Status</th>
+    <th>SKU</th>
+    <th>Created</th>
+    <th>Last update</th>
+  </tr>
+  <% @inventories.each do |inventory| %>
+    <tr>
+      <td><%= inventory.id %></td>
+      <td><%= inventory.item&.description %></td>
+      <td><%= inventory.location %></td>
+      <td><%= inventory.item&.category %></td>
+      <td><%= inventory.imei %></td>
+      <td><%= inventory.serial %></td>
+      <td><%= inventory.created_by_user&.email_address %></td>
+      <td><%= inventory.used_by_user&.email_address %></td>
+      <td><%= inventory.repair&.order_number %></td>
+      <td><%= inventory.status %></td>
+      <td><%= inventory.sku %></td>
+      <td><%= inventory.created_at.to_formatted_s(:rfc822) %></td>
+      <td><%= inventory.updated_at.to_formatted_s(:rfc822) %></td>
+      <td>
+        <div class="table-actions">
+        </div>
+      </td>
+    </tr>
+  <% end %>
+</table>

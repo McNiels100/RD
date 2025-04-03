@@ -2,7 +2,7 @@
 <%= form_with model: @inventory do |form| %>
   <div class="form-wrapper">
     <%= form.label :item_id, "Description" %>
-    <%= form.collection_select :item_id, Item.all, :id, :description, include_blank: true %>
+    <%= form.collection_select :item_id, Item.active, :id, :description, include_blank: true %>
     <%= form.label :location %>
     <%= form.select :location, ["Shelf A3", "Shelf A10"], include_blank: true %>
     <%= form.label :imei %>

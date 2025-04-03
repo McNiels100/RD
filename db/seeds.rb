@@ -30,6 +30,14 @@ Status.create!([
 
 # Login users
 user = User.create!(
+  email_address: "bob.johnson@company.com",
+  password: "bob123",
+  password_confirmation: "bob123",
+  role: "technician",
+  name: "Bob Johnson"
+)
+
+user = User.create!(
   email_address: "admin@company.com",
   password: "admin123",
   password_confirmation: "admin123",
@@ -59,14 +67,6 @@ user = User.create!(
   password_confirmation: "alice123",
   role: "technician",
   name: "Alice Smith"
-)
-
-user = User.create!(
-  email_address: "bob.johnson@company.com",
-  password: "bob123",
-  password_confirmation: "bob123",
-  role: "technician",
-  name: "Bob Johnson"
 )
 
 user = User.create!(
@@ -523,6 +523,211 @@ inventory = Inventory.create!(
   sku: "#{Item.first.sku_prefix}-#{rand(10000).to_s.rjust(4, "0")}",
   status: :used,
   used_at: 1.days.ago,
+  created_at: 3.days.ago,
+  updated_at: 3.days.ago
+)
+
+inventory = Inventory.create!(
+  item_id: Item.first.id,
+  location: "Shelf B7",
+  imei: "356938035643809",
+  serial: "SN12345678",
+  created_by_user_id: User.first.id,
+  used_by_user_id: User.last.id,
+  repair_id: Repair.first.id,
+  sku: "#{Item.first.sku_prefix}-#{rand(10000).to_s.rjust(4, "0")}",
+  status: :used,
+  used_at: 1.days.ago,
+  created_at: 3.days.ago,
+  updated_at: 3.days.ago
+)
+
+inventory = Inventory.create!(
+  item_id: Item.first.id,
+  location: "Shelf B7",
+  imei: "490154203237516",
+  serial: "C02XJ5ABCDEF",
+  created_by_user_id: User.first.id,
+  used_by_user_id: User.last.id,
+  repair_id: Repair.first.id,
+  sku: "#{Item.first.sku_prefix}-#{rand(10000).to_s.rjust(4, "0")}",
+  status: :used,
+  used_at: 1.days.ago,
+  created_at: 3.days.ago,
+  updated_at: 3.days.ago
+)
+
+inventory = Inventory.create!(
+  item_id: Item.first.id,
+  location: "Shelf B7",
+  imei: "862548036759014",
+  serial: "F2LXYZ987654",
+  created_by_user_id: User.first.id,
+  used_by_user_id: User.last.id,
+  repair_id: Repair.first.id,
+  sku: "#{Item.first.sku_prefix}-#{rand(10000).to_s.rjust(4, "0")}",
+  status: :used,
+  used_at: 1.days.ago,
+  created_at: 3.days.ago,
+  updated_at: 3.days.ago
+)
+
+inventory = Inventory.create!(
+  item_id: Item.first.id,
+  location: "Shelf B7",
+  imei: "011456123456789",
+  serial: "HT456XYZ7890",
+  created_by_user_id: User.first.id,
+  used_by_user_id: User.last.id,
+  repair_id: Repair.first.id,
+  sku: "#{Item.first.sku_prefix}-#{rand(10000).to_s.rjust(4, "0")}",
+  status: :used,
+  used_at: 1.days.ago,
+  created_at: 3.days.ago,
+  updated_at: 3.days.ago
+)
+
+inventory = Inventory.create!(
+  item_id: Item.first.id,
+  location: "Shelf B7",
+  imei: "352756108935720",
+  serial: "A1B2C3D4E5F6",
+  created_by_user_id: User.first.id,
+  used_by_user_id: User.last.id,
+  repair_id: Repair.first.id,
+  sku: "#{Item.first.sku_prefix}-#{rand(10000).to_s.rjust(4, "0")}",
+  status: :used,
+  used_at: 1.days.ago,
+  created_at: 3.days.ago,
+  updated_at: 3.days.ago
+)
+
+inventory = Inventory.create!(
+  item_id: Item.first.id,
+  location: "Shelf B7",
+  imei: "869706035739124",
+  serial: "X0XX00XX1234",
+  created_by_user_id: User.first.id,
+  used_by_user_id: User.last.id,
+  repair_id: Repair.first.id,
+  sku: "#{Item.first.sku_prefix}-#{rand(10000).to_s.rjust(4, "0")}",
+  status: :used,
+  used_at: 1.days.ago,
+  created_at: 3.days.ago,
+  updated_at: 3.days.ago
+)
+
+inventory = Inventory.create!(
+  item_id: Item.first.id,
+  location: "Shelf B7",
+  imei: "012345678901234",
+  serial: "SER9876ZYXWV",
+  created_by_user_id: User.first.id,
+  used_by_user_id: User.last.id,
+  repair_id: Repair.first.id,
+  sku: "#{Item.first.sku_prefix}-#{rand(10000).to_s.rjust(4, "0")}",
+  status: :used,
+  used_at: 1.days.ago,
+  created_at: 3.days.ago,
+  updated_at: 3.days.ago
+)
+
+inventory = Inventory.create!(
+  item_id: Item.first.id,
+  location: "Shelf B7",
+  imei: "358240051111112",
+  serial: "PLM963QAZ852",
+  created_by_user_id: User.first.id,
+  used_by_user_id: User.last.id,
+  repair_id: Repair.first.id,
+  sku: "#{Item.first.sku_prefix}-#{rand(10000).to_s.rjust(4, "0")}",
+  status: :used,
+  used_at: 1.days.ago,
+  created_at: 3.days.ago,
+  updated_at: 3.days.ago
+)
+
+inventory = Inventory.create!(
+  item_id: Item.first.id,
+  location: "Shelf B7",
+  imei: "864567123456789",
+  serial: "NPI789KLM456",
+  created_by_user_id: User.first.id,
+  used_by_user_id: User.last.id,
+  repair_id: Repair.first.id,
+  sku: "#{Item.first.sku_prefix}-#{rand(10000).to_s.rjust(4, "0")}",
+  status: :used,
+  used_at: 1.days.ago,
+  created_at: 3.days.ago,
+  updated_at: 3.days.ago
+)
+
+inventory = Inventory.create!(
+  item_id: Item.first.id,
+  location: "Shelf B7",
+  imei: "359987654321012",
+  serial: "ZXC123VBN456",
+  created_by_user_id: User.first.id,
+  used_by_user_id: User.last.id,
+  repair_id: Repair.first.id,
+  sku: "#{Item.first.sku_prefix}-#{rand(10000).to_s.rjust(4, "0")}",
+  status: :used,
+  used_at: 1.days.ago,
+  created_at: 3.days.ago,
+  updated_at: 3.days.ago
+)
+
+inventory = Inventory.create!(
+  item_id: Item.last.id,
+  location: "Shelf E1",
+  serial: "DAL5X9K2M8P3",
+  created_by_user_id: User.last.id,
+  sku: "#{Item.first.sku_prefix}-#{rand(10000).to_s.rjust(4, "0")}",
+  status: :in_stock,
+  created_at: 3.days.ago,
+  updated_at: 3.days.ago
+)
+
+inventory = Inventory.create!(
+  item_id: Item.last.id,
+  location: "Shelf E1",
+  serial: "F8H2JN6R1K9L",
+  created_by_user_id: User.last.id,
+  sku: "#{Item.first.sku_prefix}-#{rand(10000).to_s.rjust(4, "0")}",
+  status: :in_stock,
+  created_at: 3.days.ago,
+  updated_at: 3.days.ago
+)
+
+inventory = Inventory.create!(
+  item_id: Item.last.id,
+  location: "Shelf E1",
+  serial: "APM5678XYZ12",
+  created_by_user_id: User.last.id,
+  sku: "#{Item.first.sku_prefix}-#{rand(10000).to_s.rjust(4, "0")}",
+  status: :in_stock,
+  created_at: 3.days.ago,
+  updated_at: 3.days.ago
+)
+
+inventory = Inventory.create!(
+  item_id: Item.last.id,
+  location: "Shelf E1",
+  serial: "SN-2024-8765",
+  created_by_user_id: User.last.id,
+  sku: "#{Item.first.sku_prefix}-#{rand(10000).to_s.rjust(4, "0")}",
+  status: :in_stock,
+  created_at: 3.days.ago,
+  updated_at: 3.days.ago
+)
+
+inventory = Inventory.create!(
+  item_id: Item.last.id,
+  location: "Shelf E1",
+  serial: "QCW4B7T9F2R6",
+  created_by_user_id: User.last.id,
+  sku: "#{Item.first.sku_prefix}-#{rand(10000).to_s.rjust(4, "0")}",
+  status: :in_stock,
   created_at: 3.days.ago,
   updated_at: 3.days.ago
 )

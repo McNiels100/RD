@@ -6,6 +6,8 @@ class Repair < ApplicationRecord
   has_many :repair_statuses, dependent: :destroy
   has_many :statuses, through: :repair_statuses
 
+  has_many :repair_items, dependent: :destroy
+
   # Returns the current status
   def current_status
     repair_statuses.order(created_at: :desc).first&.status

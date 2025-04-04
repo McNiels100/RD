@@ -1,0 +1,11 @@
+<%= form_with url: add_item_repair_path(@repair), method: :post do |item| %>
+  <div class="form-group">
+    <%= item.collection_select :inventory_id,
+          Inventory.in_stock,
+          :id,
+          lambda { |inventory| "#{inventory.item.description} (#{inventory.sku})" },
+          { prompt: "Select an item..." },
+          { class: "form-control" } %>
+  </div>
+  <%= item.submit "Add Item", class: "btn new-color" %>
+<% end %>

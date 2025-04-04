@@ -87,12 +87,12 @@ class RepairsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get device by id" do
-    repair = Repair.find(1)
+    repair = repairs(:one)
     assert repair
   end
 
   test "should get TAT by brand and device type" do
-    repair = Repair.find(0)
+    repair = repairs(:one)
     device = Device.find_by(brand: repair.brand, device_type: repair.device_type)
     assert device
   end

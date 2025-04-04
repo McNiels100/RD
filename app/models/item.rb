@@ -5,4 +5,6 @@ class Item < ApplicationRecord
 
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
+
+  has_many :inventories, dependent: :destroy
 end

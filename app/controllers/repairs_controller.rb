@@ -1,7 +1,7 @@
 class RepairsController < ApplicationController
-  before_action :set_repair, only: [ :show, :edit, :update, :lock, :unlock, :add_status ]
+  before_action :set_repair, only: [ :show, :edit, :update, :lock, :unlock, :add_status, :add_item, :remove_item ]
   before_action :set_device_data, only: [ :new, :create ]
-  before_action :ensure_repair_locked_by_current_user, only: [ :edit, :update, :add_status ]
+  before_action :ensure_repair_locked_by_current_user, only: [ :edit, :update, :add_status, :add_item, :remove_item ]
 
   def index
     @repairs = Repair.all
@@ -95,8 +95,37 @@ class RepairsController < ApplicationController
     else
       flash[:error] = "Please select a status."
     end
-
     redirect_to repair_path(@repair)
+  end
+
+  def add_item
+    inventory = Inventory.find(params[:inventory_id])
+
+    # Create the repair item association
+    repair_item = @repair.repair_items.new(inventory: inventory, description: inventory&.item.description, unit_price: inventory&.item.base_price, quantity: 1)
+
+    if repair_item.save
+      # Update inventory status
+      inventory.allocate_to_repair(@repair, current_user)
+      flash[:success] = "Item added to repair successfully."
+    else
+      flash[:error] = "Failed to add item to repair: #{repair_item.errors.full_messages.join(', ')}"
+    end
+    redirect_to @repair
+  end
+
+  def remove_item
+    repair_item = @repair.repair_items.find(params[:repair_item_id])
+    inventory = repair_item.inventory
+
+    if repair_item.destroy
+      # Return item to stock
+      inventory.return_to_stock
+      flash[:success] = "Item removed from repair."
+    else
+      flash[:error] = "Failed to remove item from repair."
+    end
+    redirect_to @repair
   end
 
   private

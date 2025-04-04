@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  repair: one
+  quantity: 1
+  unit_price: 9.99
+  inventory: one
+  notes: MyText
+  description: MyText
+
+two:
+  repair: two
+  quantity: 1
+  unit_price: 9.99
+  inventory: two
+  notes: MyText
+  description: MyText

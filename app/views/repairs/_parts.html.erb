@@ -1,22 +1,33 @@
 <table class="index-table">
   <tr>
-    <th>Part nr.</th>
-    <th>Qty</th>
+    <th>SKU</th>
     <th>Description</th>
+    <th>IMEI/Serial</th>
     <th>Price</th>
+    <th>Action</th>
   </tr>
-  <tr>
-    <td>
-      <%= 'SAMS25LCD'  %>
-    </td>
-    <td>
-      <%= 1 %>
-    </td>
-    <td>
-      <%= 'Samsung S25 display' %>
-    </td>
-    <td>
-      <%= 120 %>
-    </td>
-  </tr>
+  <% if @repair.repair_items.any? %>
+    <% @repair.repair_items.each do |item| %>
+      <tr>
+        <td>
+          <%= item.inventory.sku %>
+        </td>
+        <td>
+          <%= item.description %>
+        </td>
+        <td>
+          <%= "#{item.inventory.imei} / #{item.inventory.serial}" %>
+        </td>
+        <td>
+          <%= item.unit_price %>
+        </td>
+        <td>
+          <%= button_to "Remove", remove_item_repair_path(@repair,
+              repair_item_id: item.id),
+              method: :delete, class: "btn edit-color",
+              data: { confirm: "Are you sure you want to remove this item?" } %>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
 </table>

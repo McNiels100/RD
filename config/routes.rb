@@ -21,6 +21,8 @@ Rails.application.routes.draw do
       post :lock
       post :unlock
       post :add_status
+      post :add_item
+      delete :remove_item
     end
   end
   resources :devices

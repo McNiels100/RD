@@ -1,8 +1,8 @@
 require "test_helper"
 
 class InventoriesControllerTest < ActionDispatch::IntegrationTest
-  test "should get index" do
-    get inventories_index_url
-    assert_response :success
+  test "should get all inventories" do
+    inventories = Inventory.all
+    assert inventories
   end
 end

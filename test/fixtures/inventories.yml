@@ -2,8 +2,8 @@
 
 one:
   item: one
-  location: MyString
+  location: B17
 
 two:
   item: two
-  location: MyString
+  location: A1

@@ -20,8 +20,16 @@ h1 {
 
 .flex-container {
     display: flex;
-    justify-content: center;
     align-items: flex-start;
+}
+
+.content-center {
+    justify-content: center;
+}
+
+.content-right {
+    justify-content: right;
+    margin-right: 10px;
 }
 
 .repair-header {
@@ -198,6 +206,10 @@ h1 {
         border-radius: 4px;
         box-sizing: border-box;
         background-color: white;
+    }
+
+    textarea {
+        height: 110px;
     }
 
     input[type="submit"] {

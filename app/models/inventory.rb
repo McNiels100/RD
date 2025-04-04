@@ -37,4 +37,13 @@ class Inventory < ApplicationRecord
       status: :in_stock
     )
   end
+
+  def allocate_to_repair(repair, user)
+    update!(
+      repair: repair,
+      used_by_user: user,
+      used_at: Time.current,
+      status: :allocated
+    )
+  end
 end

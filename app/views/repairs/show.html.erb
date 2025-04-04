@@ -2,7 +2,10 @@
 <%= render partial: "repair_lock", locals: { repair: @repair, unlocked_by_admin: false, locked_by_current_user: @repair_locked_by_current_user } %>
 <%= render "repair_information" %>
 <%= render "set_status" %>
-<div class="flex-container">
+<div class="flex-container content-right">
+  <button class="btn new-color" data-action="click->open#inventory">Add parts</button>
+</div>
+<div class="flex-container content-center">
   <%= render "status_history" %>
   <%= render "parts" %>
 </div>

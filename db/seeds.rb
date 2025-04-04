@@ -502,7 +502,7 @@ item = Item.create!(
 )
 
 item = Item.create!(
-  sku_prefix: "P-APP-PHO-I16O",
+  sku_prefix: "P-APP-PHO-I16P",
   description: "Display - iPhone 16 Pro",
   base_price: 99.99,
   category: "parts",

@@ -25,7 +25,7 @@ class RepairsController < ApplicationController
 
   def show
     @device = Device.find_by(brand: @repair.brand, device_type: @repair.device_type)
-    @repair_locked_by_current_user = @repair.locked_by?(current_user.email_address) # Add this line
+    @repair_locked_by_current_user = @repair.locked_by?(current_user.email_address)
   end
 
   def new
@@ -87,7 +87,7 @@ class RepairsController < ApplicationController
     @repair = Repair.find(params[:id])
     status_id = params[:repair][:status_id]
     notes = params[:repair][:status_notes]
-    user = current_user # Assuming you have a `current_user` method
+    user = current_user
 
     if status_id.present?
       @repair.add_status(status_id, user, notes)

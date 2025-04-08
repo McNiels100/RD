@@ -23,11 +23,15 @@ Rails.application.routes.draw do
       post :add_status
     end
   end
+
   resources :devices
   resources :users
+
   resources :statuses do
     member do
       patch :toggle_active  # Handles both activation/deactivation
     end
   end
+
+  resources :inventories
 end

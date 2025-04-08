@@ -1,7 +1,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  id: 0
   name: Nicklas Jensen
   email: nick@example.com
   brand: Samsung
@@ -12,7 +11,6 @@ one:
   model: S23 FE
 
 two:
-  id: 1
   name: John Doe
   email: john.doe@example.com
   brand: Apple

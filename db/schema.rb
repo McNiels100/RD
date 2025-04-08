@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_07_104257) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_08_073735) do
   create_table "Devices", force: :cascade do |t|
     t.string "brand"
     t.string "device_type"
@@ -19,6 +19,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_07_104257) do
     t.integer "tat_very_unsatisfied"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "inventories", force: :cascade do |t|
+    t.integer "imei"
+    t.string "serial"
+    t.string "location"
+    t.string "status", default: "in_stock"
+    t.integer "repair_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["repair_id"], name: "index_inventories_on_repair_id"
   end
 
   create_table "repair_statuses", force: :cascade do |t|
@@ -77,6 +88,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_07_104257) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "inventories", "repairs"
   add_foreign_key "repair_statuses", "repairs"
   add_foreign_key "repair_statuses", "statuses"
   add_foreign_key "repair_statuses", "users"

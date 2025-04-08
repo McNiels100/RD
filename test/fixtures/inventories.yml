@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  imei: 356728109476543
+  serial:
+  location: A7
+  status: in_stock
+  repair: one
+
+two:
+  imei:
+  serial: F17LTWY2JCL7
+  location: B2
+  status: allocated_repair
+  repair: two

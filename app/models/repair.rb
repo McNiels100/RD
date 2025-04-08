@@ -1,7 +1,8 @@
 class Repair < ApplicationRecord
+  include ImeiSerialValidation
+
   before_create :generate_order_number
   validates :name, :email, :phone_number, :brand, :device_type, :error_description, :model, presence: true
-  validate :imei_or_serial_present
 
   has_many :repair_statuses, dependent: :destroy
   has_many :statuses, through: :repair_statuses

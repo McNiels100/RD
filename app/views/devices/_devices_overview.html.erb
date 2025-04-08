@@ -38,7 +38,7 @@
         <% if current_user.admin? %>
           <td>
             <div class="table-actions">
-              <%= link_to "Edit", device_path(device.id), class: "btn edit-color"  %>
+              <%= link_to "Edit", edit_device_path(device), class: "btn edit-color"  %>
               <%= button_to "Delete", device, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn delete-color" %>
             </div>
           </td>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_08_073735) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_09_065913) do
   create_table "Devices", force: :cascade do |t|
     t.string "brand"
     t.string "device_type"
@@ -29,7 +29,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_08_073735) do
     t.integer "repair_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description"
     t.index ["repair_id"], name: "index_inventories_on_repair_id"
+  end
+
+  create_table "repair_items", force: :cascade do |t|
+    t.integer "repair_id", null: false
+    t.integer "inventory_id", null: false
+    t.decimal "unit_price"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["inventory_id"], name: "index_repair_items_on_inventory_id"
+    t.index ["repair_id"], name: "index_repair_items_on_repair_id"
   end
 
   create_table "repair_statuses", force: :cascade do |t|
@@ -89,6 +101,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_08_073735) do
   end
 
   add_foreign_key "inventories", "repairs"
+  add_foreign_key "repair_items", "inventories"
+  add_foreign_key "repair_items", "repairs"
   add_foreign_key "repair_statuses", "repairs"
   add_foreign_key "repair_statuses", "statuses"
   add_foreign_key "repair_statuses", "users"

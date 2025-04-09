@@ -10,730 +10,769 @@
  */
 
 body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.flex-container {
-  display: flex;
-  justify-content: center;
-  align-items:flex-start
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .repair-header {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+/* Flexbox */
+.flex-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.content-center {
+    justify-content: center;
+}
+.content-right {
+    justify-content: flex-end;
 }
 
 /* Index table */
-
 .index-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
 
-  & td,
-  th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
+    & td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
 
-  & tr:nth-child(even) {
-    background-color: #dddddd;
-  }
+    & tr:nth-child(even) {
+        background-color: #dddddd;
+    }
 }
 
 .table-actions {
-  display: flex;
+    display: flex;
 }
 
 .btn {
-  padding: 10px 20px;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border: none;
-  border-radius: 4px;
+    padding: 10px 20px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
 }
 
 /* Specific styles for edit and delete buttons */
 .edit-color {
-  background-color: orange;
+    background-color: orange;
 }
 
 .delete-color {
-  background-color: red;
+    background-color: red;
 }
 
 .new-color {
-  background-color: #45a049;
+    background-color: #45a049;
 }
 
 .status-color {
-  background-color: rgb(255, 80, 80)
+    background-color: rgb(255, 80, 80);
 }
 
 /* Top navigation */
 
 .topnav {
-  display: flex;
-  justify-content: space-between;
-  overflow: hidden;
-  background-color: #333;
-
-  div {
     display: flex;
-  }
+    justify-content: space-between;
+    overflow: hidden;
+    background-color: #333;
+
+    div {
+        display: flex;
+    }
 }
 
 .topnav a {
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
 }
 
 .topnav a:hover {
-  background-color: #ddd;
-  color: black;
+    background-color: #ddd;
+    color: black;
 }
 
 .topnav a.active {
-  background-color: #04AA6D;
-  color: white;
+    background-color: #04aa6d;
+    color: white;
 }
 
 .topnav button {
-  background-color: #04AA6D;
-  border: none;
-  color: white;
-  padding: 14px 16px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 17px;
-  cursor: pointer;
+    background-color: #04aa6d;
+    border: none;
+    color: white;
+    padding: 14px 16px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+    cursor: pointer;
 }
 
 .topnav form {
-  display: inline;
+    display: inline;
 
-  input,
-  select {
-    margin-top: 12px;
-  }
+    input,
+    select {
+        margin-top: 12px;
+    }
 }
 
 /* New repair inputs and login page */
 .form-wrapper {
-  width: 40%;
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
+    width: 40%;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
 
-  input[type=text],
-  input[type=email],
-  input[type=tel],
-  input[type=password],
-  textarea,
-  select {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    background-color: white;
-  }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="password"],
+    textarea,
+    select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        background-color: white;
+    }
 
-  input[type=submit] {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+    input[type="submit"] {
+        width: 100%;
+        background-color: #4caf50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
 
-  input[type=submit]:hover {
-    background-color: #45a049;
-  }
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
 }
 
 /* Show repair information  */
 .info-wrapper {
-  display: flex;
+    display: flex;
 }
 
 .info-module {
-  width: 40%;
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
+    width: 40%;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
 
-  input[type=text],
-  input[type=email],
-  input[type=tel],
-  input[type=password],
-  textarea,
-  select {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    background-color: white;
-  }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="password"],
+    textarea,
+    select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        background-color: white;
+    }
 
-  input[type=submit] {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+    input[type="submit"] {
+        width: 100%;
+        background-color: #4caf50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
 
-  input[type=submit]:hover {
-    background-color: #45a049;
-  }
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
 }
 
 .info-module:nth-child(even) {
-  background-color: #dddddd;
+    background-color: #dddddd;
 }
 
 /* TAT module */
 .tat-module {
-  margin: 0.67em;
+    margin: 0.67em;
 }
 
 .tat-wrapper {
-  width: 200px;
-  display: flex;
-  position: relative;
+    width: 200px;
+    display: flex;
+    position: relative;
 
-  .tat-box {
-    width: 25%;
-    height: 37px;
-  }
+    .tat-box {
+        width: 25%;
+        height: 37px;
+    }
 }
 
 .tat-green {
-  background-color: green;
+    background-color: green;
 }
 
 .tat-yellow {
-  background-color: yellow;
+    background-color: yellow;
 }
 
 .tat-orange {
-  background-color: orange;
+    background-color: orange;
 }
 
 .tat-red {
-  background-color: red;
+    background-color: red;
 }
 
 .tat-pointer {
-  width: 5px;
-  height: 50px;
-  background-color: black;
-  position: absolute;
-  top: -5px;
-  border-radius: 20%;
+    width: 5px;
+    height: 50px;
+    background-color: black;
+    position: absolute;
+    top: -5px;
+    border-radius: 20%;
 }
 
 .pointer-green {
-  left: 35px;
+    left: 35px;
 }
 
 .pointer-yellow {
-  left: 85px;
+    left: 85px;
 }
 
 .pointer-orange {
-  left: 140px;
+    left: 140px;
 }
 
 .pointer-red {
-  left: 190px;
+    left: 190px;
 }
 
 .tooltip {
-  position: relative;
-  display: inline-block;
+    position: relative;
+    display: inline-block;
 }
 
 .tooltip .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
 
-  /* Position the tooltip */
-  position: absolute;
-  z-index: 1;
-  top: -5px;
-  right: 105%;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    right: 105%;
 }
 
 .tooltip:hover .tooltiptext {
-  visibility: visible;
+    visibility: visible;
 }
 
 .tooltip-pointer {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 /* User settings navbar */
 
 .user-nav {
-  margin: 0;
-  padding: 0;
-  width: 25%;
-  background-color: #f1f1f1;
-  position: fixed;
-  height: 100%;
-  overflow: auto;
+    margin: 0;
+    padding: 0;
+    width: 25%;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
 }
 
 .user-nav a {
-  display: block;
-  color: #000;
-  padding: 8px 16px;
-  text-decoration: none;
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
 }
 
 .user-nav a.active {
-  background-color: #04AA6D;
-  color: white;
+    background-color: #04aa6d;
+    color: white;
 }
 
 .user-nav a:hover:not(.active) {
-  background-color: #555;
-  color: white;
+    background-color: #555;
+    color: white;
 }
 
 /* User content block */
 .user-content {
-  margin-left: 25%;
-  padding: 1px 16px;
-  height: 1000px;
+    margin-left: 25%;
+    padding: 1px 16px;
+    height: 1000px;
 }
 
 /* Notification banners */
 .flash-banner {
-  color: white;
-  text-align: center;
+    color: white;
+    text-align: center;
 }
 
 .flash-banner p {
-  padding: 20px;
-  margin-block-start: 0;
-  margin-block-end: 0;
+    padding: 20px;
+    margin-block-start: 0;
+    margin-block-end: 0;
 }
 
 .alert {
-  background-color: orange;
+    background-color: orange;
 }
 
 .success {
-  background-color: #04AA6D;
+    background-color: #04aa6d;
 }
 
 .error {
-  background-color: #f44336;
+    background-color: #f44336;
 }
 
 .hide {
-  display: none;
+    display: none;
 }
 
 .show {
-  display: block;
+    display: block;
 }
 
 /* Repair status history */
 
 .timeline {
-  position: relative;
-  width: 660px;
-  margin: 0 auto;
-  margin-top: 20px;
-  padding: 1em 0;
-  list-style-type: none;
+    position: relative;
+    width: 660px;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 1em 0;
+    list-style-type: none;
 }
 
 .timeline:before {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  content: " ";
-  display: block;
-  width: 6px;
-  height: 100%;
-  margin-left: -3px;
-  background: rgb(80, 80, 80);
-  background: -moz-linear-gradient(
-    top,
-    rgba(80, 80, 80, 0) 0%,
-    rgb(80, 80, 80) 8%,
-    rgb(80, 80, 80) 92%,
-    rgba(80, 80, 80, 0) 100%
-  );
-  background: -webkit-gradient(
-    linear,
-    left top,
-    left bottom,
-    color-stop(0%, rgba(30, 87, 153, 1)),
-    color-stop(100%, rgba(125, 185, 232, 1))
-  );
-  background: -webkit-linear-gradient(
-    top,
-    rgba(80, 80, 80, 0) 0%,
-    rgb(80, 80, 80) 8%,
-    rgb(80, 80, 80) 92%,
-    rgba(80, 80, 80, 0) 100%
-  );
-  background: -o-linear-gradient(
-    top,
-    rgba(80, 80, 80, 0) 0%,
-    rgb(80, 80, 80) 8%,
-    rgb(80, 80, 80) 92%,
-    rgba(80, 80, 80, 0) 100%
-  );
-  background: -ms-linear-gradient(
-    top,
-    rgba(80, 80, 80, 0) 0%,
-    rgb(80, 80, 80) 8%,
-    rgb(80, 80, 80) 92%,
-    rgba(80, 80, 80, 0) 100%
-  );
-  background: linear-gradient(
-    to bottom,
-    rgba(80, 80, 80, 0) 0%,
-    rgb(80, 80, 80) 8%,
-    rgb(80, 80, 80) 92%,
-    rgba(80, 80, 80, 0) 100%
-  );
+    position: absolute;
+    left: 50%;
+    top: 0;
+    content: " ";
+    display: block;
+    width: 6px;
+    height: 100%;
+    margin-left: -3px;
+    background: rgb(80, 80, 80);
+    background: -moz-linear-gradient(
+        top,
+        rgba(80, 80, 80, 0) 0%,
+        rgb(80, 80, 80) 8%,
+        rgb(80, 80, 80) 92%,
+        rgba(80, 80, 80, 0) 100%
+    );
+    background: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0%, rgba(30, 87, 153, 1)),
+        color-stop(100%, rgba(125, 185, 232, 1))
+    );
+    background: -webkit-linear-gradient(
+        top,
+        rgba(80, 80, 80, 0) 0%,
+        rgb(80, 80, 80) 8%,
+        rgb(80, 80, 80) 92%,
+        rgba(80, 80, 80, 0) 100%
+    );
+    background: -o-linear-gradient(
+        top,
+        rgba(80, 80, 80, 0) 0%,
+        rgb(80, 80, 80) 8%,
+        rgb(80, 80, 80) 92%,
+        rgba(80, 80, 80, 0) 100%
+    );
+    background: -ms-linear-gradient(
+        top,
+        rgba(80, 80, 80, 0) 0%,
+        rgb(80, 80, 80) 8%,
+        rgb(80, 80, 80) 92%,
+        rgba(80, 80, 80, 0) 100%
+    );
+    background: linear-gradient(
+        to bottom,
+        rgba(80, 80, 80, 0) 0%,
+        rgb(80, 80, 80) 8%,
+        rgb(80, 80, 80) 92%,
+        rgba(80, 80, 80, 0) 100%
+    );
 
-  z-index: 5;
+    z-index: 5;
 }
 
 .timeline li {
-  padding: 1em 0;
+    padding: 1em 0;
 }
 
 .timeline li:after {
-  content: "";
-  display: block;
-  height: 0;
-  clear: both;
-  visibility: hidden;
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
 }
 
 .direction-l {
-  position: relative;
-  width: 300px;
-  float: left;
-  text-align: right;
+    position: relative;
+    width: 300px;
+    float: left;
+    text-align: right;
 }
 
 .direction-r {
-  position: relative;
-  width: 300px;
-  float: right;
+    position: relative;
+    width: 300px;
+    float: right;
 }
 
 .flag-wrapper {
-  position: relative;
-  display: inline-block;
+    position: relative;
+    display: inline-block;
 
-  text-align: center;
+    text-align: center;
 }
 
 .flag {
-  position: relative;
-  display: inline;
-  background: rgb(248, 248, 248);
-  padding: 6px 10px;
-  border-radius: 5px;
+    position: relative;
+    display: inline;
+    background: rgb(248, 248, 248);
+    padding: 6px 10px;
+    border-radius: 5px;
 
-  font-weight: 600;
-  text-align: left;
+    font-weight: 600;
+    text-align: left;
 }
 
 .direction-l .flag {
-  -webkit-box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.15),
-    0 0 1px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.15);
-  box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow:
+        -1px 1px 1px rgba(0, 0, 0, 0.15),
+        0 0 1px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow:
+        -1px 1px 1px rgba(0, 0, 0, 0.15),
+        0 0 1px rgba(0, 0, 0, 0.15);
+    box-shadow:
+        -1px 1px 1px rgba(0, 0, 0, 0.15),
+        0 0 1px rgba(0, 0, 0, 0.15);
 }
 
 .direction-r .flag {
-  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15),
-    0 0 1px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.15);
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow:
+        1px 1px 1px rgba(0, 0, 0, 0.15),
+        0 0 1px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow:
+        1px 1px 1px rgba(0, 0, 0, 0.15),
+        0 0 1px rgba(0, 0, 0, 0.15);
+    box-shadow:
+        1px 1px 1px rgba(0, 0, 0, 0.15),
+        0 0 1px rgba(0, 0, 0, 0.15);
 }
 
 .direction-l .flag:before,
 .direction-r .flag:before {
-  position: absolute;
-  top: 50%;
-  right: -40px;
-  content: " ";
-  display: block;
-  width: 12px;
-  height: 12px;
-  margin-top: -10px;
-  background: #fff;
-  border-radius: 10px;
-  border: 4px solid rgb(255, 80, 80);
-  z-index: 10;
+    position: absolute;
+    top: 50%;
+    right: -40px;
+    content: " ";
+    display: block;
+    width: 12px;
+    height: 12px;
+    margin-top: -10px;
+    background: #fff;
+    border-radius: 10px;
+    border: 4px solid rgb(255, 80, 80);
+    z-index: 10;
 }
 
 .direction-r .flag:before {
-  left: -40px;
+    left: -40px;
 }
 
 .direction-l .flag:after {
-  content: "";
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  height: 0;
-  width: 0;
-  margin-top: -8px;
-  border: solid transparent;
-  border-left-color: rgb(248, 248, 248);
-  border-width: 8px;
-  pointer-events: none;
+    content: "";
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    height: 0;
+    width: 0;
+    margin-top: -8px;
+    border: solid transparent;
+    border-left-color: rgb(248, 248, 248);
+    border-width: 8px;
+    pointer-events: none;
 }
 
 .direction-r .flag:after {
-  content: "";
-  position: absolute;
-  right: 100%;
-  top: 50%;
-  height: 0;
-  width: 0;
-  margin-top: -8px;
-  border: solid transparent;
-  border-right-color: rgb(248, 248, 248);
-  border-width: 8px;
-  pointer-events: none;
+    content: "";
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    height: 0;
+    width: 0;
+    margin-top: -8px;
+    border: solid transparent;
+    border-right-color: rgb(248, 248, 248);
+    border-width: 8px;
+    pointer-events: none;
 }
 
 .time-wrapper {
-  display: inline;
+    display: inline;
 
-  line-height: 1em;
-  font-size: 0.66666em;
-  color: rgb(250, 80, 80);
-  vertical-align: middle;
+    line-height: 1em;
+    font-size: 0.66666em;
+    color: rgb(250, 80, 80);
+    vertical-align: middle;
 }
 
 .direction-l .time-wrapper {
-  float: left;
+    float: left;
 }
 
 .direction-r .time-wrapper {
-  float: right;
+    float: right;
 }
 
 .time {
-  display: inline-block;
-  padding: 4px 6px;
-  background: rgb(248, 248, 248);
+    display: inline-block;
+    padding: 4px 6px;
+    background: rgb(248, 248, 248);
 }
 
 .desc {
-  margin: 1em 0.75em 0 0;
+    margin: 1em 0.75em 0 0;
 
-  font-size: 0.77777em;
-  font-style: italic;
-  line-height: 1.5em;
+    font-size: 0.77777em;
+    font-style: italic;
+    line-height: 1.5em;
 }
 
 .direction-r .desc {
-  margin: 1em 0 0 0.75em;
+    margin: 1em 0 0 0.75em;
 }
 
 /* ================ Timeline Media Queries ================ */
 
 @media screen and (max-width: 660px) {
-  .timeline {
-    width: 100%;
-    padding: 4em 0 1em 0;
-  }
+    .timeline {
+        width: 100%;
+        padding: 4em 0 1em 0;
+    }
 
-  .timeline li {
-    padding: 2em 0;
-  }
+    .timeline li {
+        padding: 2em 0;
+    }
 
-  .direction-l,
-  .direction-r {
-    float: none;
-    width: 100%;
+    .direction-l,
+    .direction-r {
+        float: none;
+        width: 100%;
 
-    text-align: center;
-  }
+        text-align: center;
+    }
 
-  .flag-wrapper {
-    text-align: center;
-  }
+    .flag-wrapper {
+        text-align: center;
+    }
 
-  .flag {
-    background: rgb(255, 255, 255);
-    z-index: 15;
-  }
+    .flag {
+        background: rgb(255, 255, 255);
+        z-index: 15;
+    }
 
-  .direction-l .flag:before,
-  .direction-r .flag:before {
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    content: " ";
-    display: block;
-    width: 12px;
-    height: 12px;
-    margin-left: -9px;
-    background: #fff;
-    border-radius: 10px;
-    border: 4px solid rgb(255, 80, 80);
-    z-index: 10;
-  }
+    .direction-l .flag:before,
+    .direction-r .flag:before {
+        position: absolute;
+        top: -30px;
+        left: 50%;
+        content: " ";
+        display: block;
+        width: 12px;
+        height: 12px;
+        margin-left: -9px;
+        background: #fff;
+        border-radius: 10px;
+        border: 4px solid rgb(255, 80, 80);
+        z-index: 10;
+    }
 
-  .direction-l .flag:after,
-  .direction-r .flag:after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: -8px;
-    height: 0;
-    width: 0;
-    margin-left: -8px;
-    border: solid transparent;
-    border-bottom-color: rgb(255, 255, 255);
-    border-width: 8px;
-    pointer-events: none;
-  }
+    .direction-l .flag:after,
+    .direction-r .flag:after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: -8px;
+        height: 0;
+        width: 0;
+        margin-left: -8px;
+        border: solid transparent;
+        border-bottom-color: rgb(255, 255, 255);
+        border-width: 8px;
+        pointer-events: none;
+    }
 
-  .time-wrapper {
-    display: block;
-    position: relative;
-    margin: 4px 0 0 0;
-    z-index: 14;
-  }
+    .time-wrapper {
+        display: block;
+        position: relative;
+        margin: 4px 0 0 0;
+        z-index: 14;
+    }
 
-  .direction-l .time-wrapper {
-    float: none;
-  }
+    .direction-l .time-wrapper {
+        float: none;
+    }
 
-  .direction-r .time-wrapper {
-    float: none;
-  }
+    .direction-r .time-wrapper {
+        float: none;
+    }
 
-  .desc {
-    position: relative;
-    margin: 1em 0 0 0;
-    padding: 1em;
-    background: rgb(245, 245, 245);
-    -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+    .desc {
+        position: relative;
+        margin: 1em 0 0 0;
+        padding: 1em;
+        background: rgb(245, 245, 245);
+        -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
 
-    z-index: 15;
-  }
+        z-index: 15;
+    }
 
-  .direction-l .desc,
-  .direction-r .desc {
-    position: relative;
-    margin: 1em 1em 0 1em;
-    padding: 1em;
+    .direction-l .desc,
+    .direction-r .desc {
+        position: relative;
+        margin: 1em 1em 0 1em;
+        padding: 1em;
 
-    z-index: 15;
-  }
+        z-index: 15;
+    }
 }
 
 @media screen and (min-width: 400px) and (max-width: 660px) {
-  .direction-l .desc,
-  .direction-r .desc {
-    margin: 1em 4em 0 4em;
-  }
+    .direction-l .desc,
+    .direction-r .desc {
+        margin: 1em 4em 0 4em;
+    }
 }
 
 /* Status module */
 .status-module {
-  padding: 25px 15px; /* Increased padding for better spacing */
-  margin: 10px 0px;
-  background-color: #333;
-  display: flex;
-  flex-direction: column; /* Use column layout for better vertical alignment */
-  gap: 10px; /* Add gap between elements */
+    padding: 25px 15px; /* Increased padding for better spacing */
+    margin: 10px 0px;
+    background-color: #333;
+    display: flex;
+    flex-direction: column; /* Use column layout for better vertical alignment */
+    gap: 10px; /* Add gap between elements */
 }
 
 .status-module .form-row {
-  display: flex;
-  width: 100%;
-  align-items: stretch; /* Vertically align items */
+    display: flex;
+    width: 100%;
+    align-items: stretch; /* Vertically align items */
 }
 
 .status-module .field {
-  flex: 1; /* Equal width for fields */
-  margin: 0 5px; /* Add margin for spacing between fields */
+    flex: 1; /* Equal width for fields */
+    margin: 0 5px; /* Add margin for spacing between fields */
 }
 
 .status-module label {
-  display: block;
-  margin-bottom: 5px;
-  font-size: 16px; /* Consistent font size */
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px; /* Consistent font size */
 }
 
 .status-module select,
 .status-module textarea {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 10px; /* Consistent padding */
-  font-size: 16px; /* Consistent font size */
-  border-radius: 4px;
-  border: 1px solid #ccc; /* Add border for consistency */
-  background-color: white; /* Ensure background is consistent */
-  color: #333; /* Ensure text color is consistent */
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px; /* Consistent padding */
+    font-size: 16px; /* Consistent font size */
+    border-radius: 4px;
+    border: 1px solid #ccc; /* Add border for consistency */
+    background-color: white; /* Ensure background is consistent */
+    color: #333; /* Ensure text color is consistent */
 }
 
 .status-module textarea {
-  height: 41px;
+    height: 41px;
 }
 
 .status-module .btn {
-  width: auto;
-  padding: 10px 20px; /* Consistent button padding */
-  font-size: 16px; /* Consistent button font size */
-  margin: 0 0 3px 0;
+    width: auto;
+    padding: 10px 20px; /* Consistent button padding */
+    font-size: 16px; /* Consistent button font size */
+    margin: 0 0 3px 0;
 }
 
 /* Placeholder style for consistency */
 .status-module ::placeholder {
-  color: #ccc; /* Light gray placeholder text */
+    color: #ccc; /* Light gray placeholder text */
 }
 
+/* Add parts module */
+.add-parts-form {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    margin-bottom: 15px;
 
+    .field select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+}

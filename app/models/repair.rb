@@ -7,6 +7,8 @@ class Repair < ApplicationRecord
   has_many :repair_statuses, dependent: :destroy
   has_many :statuses, through: :repair_statuses
 
+  has_many :repair_items, dependent: :destroy
+
   # Returns the current status
   def current_status
     repair_statuses.order(created_at: :desc).first&.status
@@ -16,6 +18,31 @@ class Repair < ApplicationRecord
   def add_status(status_id, user = nil, notes = nil)
     status = Status.find(status_id)
     repair_statuses.create!(status: status, user: user, notes: notes)
+  end
+
+  # Add a new RepairItem to the repair
+  def add_repair_item(inventory_id)
+      inventory = Inventory.find(inventory_id)
+
+      # Ensure the inventory item is actually available before trying to allocate it.
+      unless inventory.in_stock?
+             errors.add(:base, "Inventory item '#{inventory.description}' is not in stock (Current status: #{inventory.status}). Cannot allocate.")
+             return false
+      end
+
+      # Use a transaction to ensure both the inventory update and the repair item creation succeed or fail together.
+      ActiveRecord::Base.transaction do
+        inventory.update!(
+          status: :allocated_repair,
+          repair_id: self.id # self.id refers to the ID of the current Repair instance
+        )
+
+        repair_items.create!(
+          inventory: inventory,
+          description: inventory.description,
+          unit_price: 0
+        )
+      end
   end
 
   # Lock the repair for a specific user (by email)

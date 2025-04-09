@@ -1,5 +1,7 @@
 <%= form_with model: @inventory do |form| %>
   <div class="form-wrapper">
+    <%= form.label :description %>
+    <%= form.text_area :description, placeholder: "Input description" %>
     <%= form.label :imei %>
     <%= form.text_field :imei, placeholder: "Input IMEI" %>
     <%= form.label :serial %>

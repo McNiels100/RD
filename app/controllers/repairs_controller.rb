@@ -26,6 +26,8 @@ class RepairsController < ApplicationController
   def show
     @device = Device.find_by(brand: @repair.brand, device_type: @repair.device_type)
     @repair_locked_by_current_user = @repair.locked_by?(current_user.email_address)
+    @repair_items = @repair.repair_items.order(created_at: :desc)
+    @inventory = Inventory.new
   end
 
   def new
@@ -95,7 +97,19 @@ class RepairsController < ApplicationController
     else
       flash[:error] = "Please select a status."
     end
+    redirect_to repair_path(@repair)
+  end
 
+  def add_repair_item
+    @repair = Repair.find(params[:id])
+    inventory_id = params[:inventory]
+
+    if inventory_id.present?
+      @repair.add_repair_item(inventory_id)
+      flash[:success] = "Repair item added successfully."
+    else
+      flash[:error] = "Please select an inventory item to use."
+    end
     redirect_to repair_path(@repair)
   end
 

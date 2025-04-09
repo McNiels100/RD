@@ -1,22 +1,24 @@
 <table class="index-table">
   <tr>
-    <th>Part nr.</th>
-    <th>Qty</th>
     <th>Description</th>
-    <th>Price</th>
+    <th>Unit price</th>
+    <th>Created at</th>
+    <th>Updated at</th>
   </tr>
-  <tr>
-    <td>
-      <%= 'SAMS25LCD'  %>
-    </td>
-    <td>
-      <%= 1 %>
-    </td>
-    <td>
-      <%= 'Samsung S25 display' %>
-    </td>
-    <td>
-      <%= 120 %>
-    </td>
-  </tr>
+  <% @repair_items.each do |item| %>
+    <tr>
+      <td>
+        <%= item.description  %>
+      </td>
+      <td>
+        <%= item.unit_price %>
+      </td>
+      <td>
+        <%= item.created_at %>
+      </td>
+      <td>
+        <%= item.updated_at %>
+      </td>
+    </tr>
+  <% end %>
 </table>

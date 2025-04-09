@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_09_065913) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_09_102538) do
   create_table "Devices", force: :cascade do |t|
     t.string "brand"
     t.string "device_type"
@@ -25,12 +25,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_09_065913) do
     t.integer "imei"
     t.string "serial"
     t.string "location"
-    t.string "status", default: "in_stock"
     t.integer "repair_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "description"
+    t.integer "status", default: 0
     t.index ["repair_id"], name: "index_inventories_on_repair_id"
+    t.index ["status"], name: "index_inventories_on_status"
   end
 
   create_table "repair_items", force: :cascade do |t|

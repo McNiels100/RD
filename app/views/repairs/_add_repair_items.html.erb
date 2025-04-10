@@ -12,14 +12,15 @@
        data-toggle-target="toggleable">
     <%= form_with url: add_repair_item_repair_path(@repair), method: :post, data: { turbo: false } do |form| %>
       <div class="field">
+        <span class="close-btn" data-action="click->toggle#toggle"><i class="fa fa-close"></i></span>
         <%= form.collection_select :inventory,
               Inventory.where(repair_id: nil).order(:description),
               :id,
               :description,
               { prompt: "Choose an item..." } %>
-      </div>
-      <div class="actions">
-        <%= form.submit "Add Selected Item", class: "btn new-color" %>
+        <div class="actions">
+          <%= form.submit "Add Part", class: "btn new-color" %>
+        </div>
       </div>
     <% end %>
   </div>

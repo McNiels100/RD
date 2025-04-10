@@ -762,17 +762,49 @@ body {
 
 /* Add parts module */
 .add-parts-form {
-    margin-top: 15px;
-    padding: 15px;
-    background-color: #f2f2f2;
-    border-radius: 5px;
-    margin-bottom: 15px;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+
+    .field {
+        position: relative;
+        background-color: #fefefe;
+        margin: 15% auto; /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
 
     .field select {
         width: 100%;
+        margin-top: 12px;
         padding: 10px;
         margin-bottom: 10px;
         border-radius: 4px;
         border: 1px solid #ccc;
+    }
+
+    .field .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+
+    .field .close-btn {
+        color: #aaa;
+        float: right;
+    }
+
+    .field .close-btn:hover,
+    .close-btn:focus {
+        color: black;
+        cursor: pointer;
     }
 }

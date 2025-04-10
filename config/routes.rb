@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       post :unlock
       post :add_status
       post :add_repair_item
+      delete :remove_repair_item
     end
   end
 

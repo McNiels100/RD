@@ -25,7 +25,7 @@ class Repair < ApplicationRecord
       inventory = Inventory.find(inventory_id)
 
       # Ensure the inventory item is actually available before trying to allocate it.
-      unless inventory.in_stock?
+      unless inventory.in_stock? || inventory.returned_to_stock?
              errors.add(:base, "Inventory item '#{inventory.description}' is not in stock (Current status: #{inventory.status}). Cannot allocate.")
              return false
       end
@@ -43,6 +43,14 @@ class Repair < ApplicationRecord
           unit_price: 0
         )
       end
+  end
+
+  def remove_repair_item(repair_item)
+    ActiveRecord::Base.transaction do
+      inventory = repair_item.inventory
+      repair_item.destroy!
+      inventory.update!(status: :returned_to_stock, repair_id: nil)
+    end
   end
 
   # Lock the repair for a specific user (by email)

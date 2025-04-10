@@ -113,6 +113,19 @@ class RepairsController < ApplicationController
     redirect_to repair_path(@repair)
   end
 
+  def remove_repair_item
+    @repair = Repair.find(params[:id])
+    repair_item = RepairItem.find(params[:item_id])
+
+    if repair_item.present?
+      @repair.remove_repair_item(repair_item)
+      flash[:success] = "Repair item removed successfully."
+    else
+      flash[:error] = "Repair item not found."
+    end
+    redirect_to repair_path(@repair)
+  end
+
   private
   def set_repair
     @repair = Repair.find(params[:id])

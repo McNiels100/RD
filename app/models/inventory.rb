@@ -5,7 +5,8 @@ class Inventory < ApplicationRecord
 
   enum :status, {
     in_stock: 0,
-    allocated_repair: 1
+    allocated_repair: 1,
+    returned_to_stock: 2
   }
 
   validates :status, presence: true

@@ -4,6 +4,7 @@
     <th>Unit price</th>
     <th>Created at</th>
     <th>Updated at</th>
+    <th>Actions</th>
   </tr>
   <% @repair_items.each do |item| %>
     <tr>
@@ -18,6 +19,14 @@
       </td>
       <td>
         <%= item.updated_at %>
+      </td>
+      <td>
+        <%= button_to remove_repair_item_repair_path(@repair, item_id: item.id),
+                        method: :delete,
+                        form: { data: { turbo_confirm: 'Are you sure?' } },
+                        params: { action: 'remove_repair_item' } do %>
+          <i class="fa fa-trash"></i>
+        <% end %>
       </td>
     </tr>
   <% end %>

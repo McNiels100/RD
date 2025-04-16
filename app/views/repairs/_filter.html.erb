@@ -26,9 +26,9 @@
         </div>
         <div class="field-item">
           <h2>TAT</h2>
-          <% ["Good", "Neutral", "Unsatisfied", "Very unsatisfied"].each do |status| %>
-            <%= form.checkbox :tat_statuses, { multiple: true, checked: checkbox_checked?(:tat_statuses, status) }, status, nil %>
-            <%= form.label "tat_statuses_#{status.parameterize}", status %>
+          <% RepairsHelper::TAT_STATUSES.each do |status| %>
+            <%= form.checkbox :tat_statuses, { multiple: true, checked: checkbox_checked?(:tat_statuses, status[:name]) }, status[:name], nil %>
+            <%= form.label "tat_statuses_#{status[:name].parameterize}", status[:name] %>
           <% end %>
         </div>
         <div class="actions">

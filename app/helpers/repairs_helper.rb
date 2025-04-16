@@ -1,28 +1,32 @@
 module RepairsHelper
+  TAT_STATUSES = [
+    { name: "Good", css_sufix: "green" },
+    { name: "Neutral", css_sufix: "yellow" },
+    { name: "Unsatisfied", css_sufix: "orange" },
+    { name: "Very unsatisfied", css_sufix: "red" }
+  ]
   def calculate_tat_info(device, created_at, output = nil)
       tat_days = working_days_between(created_at, Time.zone.now)
 
       case tat_days
       when 0..device.tat_neutral
-        status = "Good"
+        status = TAT_STATUSES[0]
         days_to_next_stage = device.tat_neutral - tat_days
-        css_class = output ? "#{output}-green" : "green"
       when device.tat_neutral..device.tat_unsatisfied
-        status = "Neutral"
+        status = TAT_STATUSES[1]
         days_to_next_stage = device.tat_unsatisfied - tat_days
-        css_class = output ? "#{output}-yellow" : "yellow"
       when device.tat_unsatisfied..device.tat_very_unsatisfied
-        status = "Unsatisfied"
+        status = TAT_STATUSES[2]
         days_to_next_stage = device.tat_very_unsatisfied - tat_days
-        css_class = output ? "#{output}-orange" : "orange"
       else
-        status = "Very unsatisfied"
+        status = TAT_STATUSES[3]
         days_to_next_stage = "N/A"
-        css_class = output ? "#{output}-red" : "red"
       end
 
+      css_class = output ? "#{output}-#{status[:css_sufix]}" : status[:css_sufix]
+
       {
-        status: status,
+        status: status[:name],
         days_to_next_stage: days_to_next_stage,
         css_class: css_class
       }

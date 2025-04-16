@@ -1,0 +1,25 @@
+<div data-controller="toggle" data-toggle-hidden-class="hidden">
+  <button type="button"
+              class="btn new-color"
+              data-action="click->toggle#toggle">
+    Filter
+  </button>
+  <div
+       class="modal hidden"
+       data-toggle-target="toggleable">
+    <%= form_with do |form| %>
+      <div class="field">
+        <span class="close-btn" data-action="click->toggle#toggle"><i class="fa fa-close"></i></span>
+        <%= form.checkbox :apple %>
+        <%= form.label :apple, "Apple" %>
+        <%= form.checkbox :samsung %>
+        <%= form.label :samsung, "Samsung" %>
+        <%= form.checkbox :oneplus %>
+        <%= form.label :oneplus, "OnePlus" %>
+        <div class="actions">
+          <%= form.submit "Apply", class: "btn new-color" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

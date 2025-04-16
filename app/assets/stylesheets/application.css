@@ -14,11 +14,6 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.repair-header {
-    display: flex;
-    justify-content: space-between;
-}
-
 .hidden {
     display: none;
 }
@@ -38,6 +33,18 @@ body {
 }
 .content-right {
     justify-content: flex-end;
+}
+
+.content-space-between {
+    justify-content: space-between;
+}
+
+.align-items-start {
+    align-items: flex-start;
+}
+
+.align-items-end {
+    align-items: flex-end;
 }
 
 /* Index table */
@@ -761,7 +768,7 @@ body {
 }
 
 /* Add parts module */
-.add-parts-form {
+.modal {
     position: fixed;
     z-index: 1;
     left: 0;

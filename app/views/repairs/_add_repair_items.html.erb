@@ -1,14 +1,12 @@
 <div data-controller="toggle" data-toggle-hidden-class="hidden">
   <div class="add-parts-button flex-container content-right">
     <button type="button"
-              id="add-parts-button"
               class="btn new-color"
               data-action="click->toggle#toggle">
       Add Parts
     </button>
   </div>
-  <div id="add-parts-form"
-       class="add-parts-form hidden"
+  <div class="modal hidden"
        data-toggle-target="toggleable">
     <%= form_with url: add_repair_item_repair_path(@repair), method: :post, data: { turbo: false } do |form| %>
       <div class="field">

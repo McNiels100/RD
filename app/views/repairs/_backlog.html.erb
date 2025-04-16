@@ -11,6 +11,7 @@
       <th>Days to next TAT</th>
     </tr>
     <% @repairs.each do |repair| %>
+      <% device = find_tat(repair) %>
       <tr>
         <td>
           <%= link_to repair.order_number, repair %>
@@ -21,8 +22,8 @@
         <td>
           <%= repair.device_type.upcase %>
         </td>
-        <td class="<%= calculate_tat_stage(find_tat(repair), repair.created_at, "tat") %>">
-          <%= @tat_status %>
+        <td class="<%= set_tat_css(device, repair.created_at, "tat") %>">
+          <%= determine_tat_status(device, repair.created_at) %>
         </td>
         <td>
           <%= repair.current_status&.name || 'Unknown' %>
@@ -34,7 +35,7 @@
           <%= repair.updated_at.to_formatted_s(:short) %>
         </td>
         <td>
-          <%= @days_to_next_stage %>
+          <%= days_to_next_tat_stage(device, repair.created_at) %>
         </td>
       </tr>
     <% end %>

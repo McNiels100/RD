@@ -23,6 +23,21 @@ module RepairsHelper
     tat_css
   end
 
+  def determine_tat_status(device, created_at)
+    tat_days = working_days_between(created_at, Time.zone.now)
+
+    case tat_days
+    when 0..device.tat_neutral
+      "Good"
+    when device.tat_neutral..device.tat_unsatisfied
+      "Neutral"
+    when device.tat_unsatisfied..device.tat_very_unsatisfied
+      "Unsatisfied"
+    else
+      "Very unsatisfied"
+    end
+  end
+
   def find_tat(repair)
     device = Device.find_by(brand: repair.brand, device_type: repair.device_type)
     device

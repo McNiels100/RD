@@ -26,6 +26,19 @@ class RepairsController < ApplicationController
     if params[:brands].present?
       @repairs = @repairs.where(brand: params[:brands])
     end
+
+    # Filter by TAT status
+    if params[:tat_statuses].present?
+      filtered_repairs = []
+      @repairs.find_each do |repair|
+        device = Device.find_by(brand: repair.brand, device_type: repair.device_type)
+        if device
+          status = helpers.determine_tat_status(device, repair.created_at)
+          filtered_repairs << repair.id if params[:tat_statuses].include?(status)
+        end
+      end
+      @repairs = Repair.where(id: filtered_repairs)
+    end
   end
 
   def show

@@ -1,6 +1,6 @@
 class RepairsController < ApplicationController
   before_action :set_repair, only: [ :show, :edit, :update, :lock, :unlock, :add_status ]
-  before_action :set_device_data, only: [ :new, :create ]
+  before_action :set_device_data, only: [ :index, :new, :create, :show ]
   before_action :ensure_repair_locked_by_current_user, only: [ :edit, :update, :add_status ]
 
   def index
@@ -21,6 +21,11 @@ class RepairsController < ApplicationController
 
     # Filter search by serial
     @repairs = @repairs.where(serial: params[:query]) if params[:search_in]=="serial"
+
+    # Filter by selected brands
+    if params[:brands].present?
+      @repairs = @repairs.where(brand: params[:brands])
+    end
   end
 
   def show

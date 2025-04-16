@@ -7,15 +7,16 @@
   <div
        class="modal hidden"
        data-toggle-target="toggleable">
-    <%= form_with do |form| %>
+    <%= form_with url: repairs_path, method: :get do |form| %>
       <div class="field">
+        <h1>Brands</h1>
         <span class="close-btn" data-action="click->toggle#toggle"><i class="fa fa-close"></i></span>
-        <%= form.checkbox :apple %>
-        <%= form.label :apple, "Apple" %>
-        <%= form.checkbox :samsung %>
-        <%= form.label :samsung, "Samsung" %>
-        <%= form.checkbox :oneplus %>
-        <%= form.label :oneplus, "OnePlus" %>
+        <div class="field-item">
+          <% @brands.each do |brand| %>
+            <%= form.checkbox :brands, { multiple: true, checked: checkbox_checked?(:brands, brand) }, brand, nil %>
+            <%= form.label "brands_#{brand.parameterize}", brand %>
+          <% end %>
+        </div>
         <div class="actions">
           <%= form.submit "Apply", class: "btn new-color" %>
         </div>

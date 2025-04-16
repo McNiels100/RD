@@ -1,10 +1,11 @@
 module RepairsHelper
   TAT_STATUSES = [
-    { name: "Good", css_sufix: "green" },
-    { name: "Neutral", css_sufix: "yellow" },
-    { name: "Unsatisfied", css_sufix: "orange" },
-    { name: "Very unsatisfied", css_sufix: "red" }
+    { name: "Good", css_sufix: "green", id: "tat_statuses_good" },
+    { name: "Neutral", css_sufix: "yellow", id: "tat_statuses_neutral" },
+    { name: "Unsatisfied", css_sufix: "orange", id: "tat_statuses_unsatisfied" },
+    { name: "Very unsatisfied", css_sufix: "red", id: "tat_statuses_very_unsatisfied" }
   ]
+
   def calculate_tat_info(device, created_at, output = nil)
       tat_days = working_days_between(created_at, Time.zone.now)
 

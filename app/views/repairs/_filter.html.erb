@@ -4,10 +4,9 @@
               data-action="click->toggle#toggle">
     Filter
   </button>
-  <div
-       class="modal hidden"
+  <div class="modal hidden"
        data-toggle-target="toggleable">
-    <%= form_with url: repairs_path, method: :get do |form| %>
+    <%= form_with url: repairs_path, method: :get, data: { action: "submit->toggle#toggle" } do |form| %>
       <div class="field">
         <span class="close-btn" data-action="click->toggle#toggle"><i class="fa fa-close"></i></span>
         <div class="field-item">
@@ -20,15 +19,15 @@
         <div class="field-item">
           <h2>Device types</h2>
           <% @device_types.each do |type| %>
-            <%= form.checkbox :types, { multiple: true, checked: checkbox_checked?(:types, type) }, type, nil %>
-            <%= form.label "types_#{type.parameterize}", type %>
+            <%= form.checkbox :device_types, { multiple: true, checked: checkbox_checked?(:device_types, type) }, type, nil %>
+            <%= form.label "device_types_#{type.parameterize}", type %>
           <% end %>
         </div>
         <div class="field-item">
           <h2>TAT</h2>
           <% RepairsHelper::TAT_STATUSES.each do |status| %>
-            <%= form.checkbox :tat_statuses, { multiple: true, checked: checkbox_checked?(:tat_statuses, status[:name]) }, status[:name], nil %>
-            <%= form.label "tat_statuses_#{status[:name].parameterize}", status[:name] %>
+            <%= form.checkbox :tat_statuses, { multiple: true, checked: checkbox_checked?(:tat_statuses, status[:name]), id: status[:id] }, status[:name], nil %>
+            <%= form.label status[:id], status[:name] %>
           <% end %>
         </div>
         <div class="actions">

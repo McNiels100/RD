@@ -1,33 +1,35 @@
-<table class="index-table">
-  <tr>
-    <th>Description</th>
-    <th>Unit price</th>
-    <th>Created at</th>
-    <th>Updated at</th>
-    <th>Actions</th>
-  </tr>
-  <% @repair_items.each do |item| %>
+<div id="repair_parts_<%= @repair.id %>" class="index-table">
+  <table class="index-table">
     <tr>
-      <td>
-        <%= item.description  %>
-      </td>
-      <td>
-        <%= item.unit_price %>
-      </td>
-      <td>
-        <%= item.created_at %>
-      </td>
-      <td>
-        <%= item.updated_at %>
-      </td>
-      <td>
-        <%= button_to remove_repair_item_repair_path(@repair, item_id: item.id),
-                        method: :delete,
-                        form: { data: { turbo_confirm: 'Are you sure?' } },
-                        params: { action: 'remove_repair_item' } do %>
-          <i class="fa fa-trash"></i>
-        <% end %>
-      </td>
+      <th>Description</th>
+      <th>Unit price</th>
+      <th>Created at</th>
+      <th>Updated at</th>
+      <th>Actions</th>
     </tr>
-  <% end %>
-</table>
+    <% @repair_items.each do |item| %>
+      <tr>
+        <td>
+          <%= item.description  %>
+        </td>
+        <td>
+          <%= item.unit_price %>
+        </td>
+        <td>
+          <%= item.created_at %>
+        </td>
+        <td>
+          <%= item.updated_at %>
+        </td>
+        <td>
+          <%= button_to remove_repair_item_repair_path(@repair, item_id: item.id),
+                          method: :delete,
+                          form: { data: { turbo_confirm: 'Are you sure?', turbo_stream: true } },
+                          params: { action: 'remove_repair_item' } do %>
+            <i class="fa fa-trash"></i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

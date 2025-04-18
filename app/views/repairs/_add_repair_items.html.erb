@@ -8,7 +8,12 @@
   </div>
   <div class="modal hidden"
        data-toggle-target="toggleable">
-    <%= form_with url: add_repair_item_repair_path(@repair), method: :post, data: { turbo: false } do |form| %>
+    <%= form_with url: add_repair_item_repair_path(@repair),
+        method: :post,
+        data: {
+            turbo_stream: true,
+            action: "turbo:submit-end->toggle#toggle"
+        } do |form| %>
       <div class="field">
         <h2>Parts list</h2>
         <span class="close-btn" data-action="click->toggle#toggle"><i class="fa fa-close"></i></span>

@@ -146,7 +146,16 @@ class RepairsController < ApplicationController
     else
       flash[:error] = "Please select an inventory item to use."
     end
-    redirect_to repair_path(@repair)
+    respond_to do |format|
+        format.html { redirect_to repair_path(@repair) }
+        format.turbo_stream {
+          @repair_items = @repair.repair_items.order(created_at: :desc)
+          render turbo_stream: [
+            turbo_stream.replace("repair_parts_#{@repair.id}", partial: "parts"),
+            render_turbo_flash
+          ]
+        }
+      end
   end
 
   def remove_repair_item
@@ -159,7 +168,16 @@ class RepairsController < ApplicationController
     else
       flash[:error] = "Repair item not found."
     end
-    redirect_to repair_path(@repair)
+    respond_to do |format|
+        format.html { redirect_to repair_path(@repair) }
+        format.turbo_stream {
+          @repair_items = @repair.repair_items.order(created_at: :desc)
+          render turbo_stream: [
+            turbo_stream.replace("repair_parts_#{@repair.id}", partial: "parts"),
+            render_turbo_flash
+          ]
+        }
+      end
   end
 
   private

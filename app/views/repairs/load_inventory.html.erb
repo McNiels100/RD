@@ -1,0 +1,5 @@
+<%= turbo_frame_tag "inventory_select" do %>
+  <%= select_tag :inventory,
+        options_from_collection_for_select(@inventory, :id, :description),
+        prompt: "Choose an item..." %>
+<% end %>

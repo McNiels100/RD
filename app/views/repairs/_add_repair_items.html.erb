@@ -17,11 +17,11 @@
       <div class="field">
         <h2>Parts list</h2>
         <span class="close-btn" data-action="click->toggle#toggle"><i class="fa fa-close"></i></span>
-        <%= form.collection_select :inventory,
-              Inventory.where(repair_id: nil).order(:description),
-              :id,
-              :description,
-              { prompt: "Choose an item..." } %>
+        <%= turbo_frame_tag "inventory_select",
+                            src: load_inventory_repair_path(@repair),
+                            loading: "lazy" do %>
+          <p>Loading inventory...</p>
+        <% end %>
         <div class="actions">
           <%= form.submit "Add Part", class: "btn new-color" %>
         </div>

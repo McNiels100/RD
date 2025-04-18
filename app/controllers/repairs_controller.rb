@@ -1,7 +1,7 @@
 class RepairsController < ApplicationController
   before_action :set_repair, only: [ :show, :edit, :update, :lock, :unlock, :add_status, :add_repair_item, :remove_repair_item ]
   before_action :set_device_data, only: [ :index, :new, :create, :show ]
-  before_action :ensure_repair_locked_by_current_user, only: [ :edit, :update, :add_status ]
+  before_action :ensure_repair_locked_by_current_user, only: [ :edit, :update, :add_status, :add_repair_item, :remove_repair_item ]
 
   def index
     @repairs = Repair.all
@@ -56,7 +56,6 @@ class RepairsController < ApplicationController
     @device = Device.find_by(brand: @repair.brand, device_type: @repair.device_type)
     @repair_locked_by_current_user = @repair.locked_by?(current_user.email_address)
     @repair_items = @repair.repair_items.order(created_at: :desc)
-    @inventory = Inventory.new
   end
 
   def new
@@ -164,6 +163,11 @@ class RepairsController < ApplicationController
       format.html { redirect_to repair_path(@repair) }
       format.turbo_stream { render_repair_items_stream }
     end
+  end
+
+  def load_inventory
+    @repair = Repair.find(params[:id])
+    @inventory = Inventory.where(repair_id: nil).order(:description)
   end
 
   private

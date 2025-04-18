@@ -23,9 +23,7 @@ class RepairsController < ApplicationController
     @repairs = @repairs.where(serial: params[:query]) if params[:search_in]=="serial"
 
     # Filter by selected brands
-    if params[:brands].present?
-      @repairs = @repairs.where(brand: params[:brands])
-    end
+    @repairs = @repairs.where(brand: params[:brands]) if params[:brands].present?
 
     # Filter by device type
     if params[:device_types].present?

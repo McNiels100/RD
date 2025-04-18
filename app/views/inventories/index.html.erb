@@ -9,7 +9,7 @@
       <th>Serial</th>
       <th>Location</th>
       <th>Status</th>
-      <th>Repair ID</th>
+      <th>Order number</th>
       <th>Created at</th>
       <th>Last update</th>
       <th>Actions</th>
@@ -35,7 +35,7 @@
           <%= inventory.status %>
         </td>
         <td>
-          <%= inventory.repair_id %>
+          <%= inventory.repair&.order_number %>
         </td>
         <td>
           <%= inventory.created_at.to_formatted_s(:rfc822)  %>

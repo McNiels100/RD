@@ -469,3 +469,38 @@ repair = Repair.create!(
   device_type: 'hardware'
 )
 repair.add_status(Status.find_by(name: "Received").id, User.last) # Using User.last as the acting user
+
+# Inventory
+Inventory.delete_all
+
+5.times do
+  inventory = Inventory.create!(
+    description: 'Display - Samsung Galaxy S23 FE',
+    serial: "SM#{rand(1000000)}",
+    location: "B7"
+  )
+end
+
+5.times do
+  inventory = Inventory.create!(
+    description: 'Battery - Apple iPhone 15 Pro',
+    serial: "AP#{rand(1000000)}",
+    location: "A1"
+  )
+end
+
+5.times do
+  inventory = Inventory.create!(
+    description: 'Speaker - OnePlus 13R',
+    serial: "OP#{rand(1000000)}",
+    location: "C3"
+  )
+end
+
+5.times do
+  inventory = Inventory.create!(
+    description: 'Mainboard - Xiaomi 14T Pro Blue',
+    serial: "#{rand(1000000)}",
+    location: "E2"
+  )
+end

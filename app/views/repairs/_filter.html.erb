@@ -30,6 +30,13 @@
             <%= form.label status[:id], status[:name] %>
           <% end %>
         </div>
+        <div class="field-item">
+          <h2>Repair statuses</h2>
+          <% Status.active.each do |repair_status| %>
+            <%= form.checkbox :repair_statuses, { multiple: true, checked: checkbox_checked?(:repair_statuses, repair_status.name), id: repair_status.id }, repair_status.name, nil %>
+            <%= form.label repair_status.id, repair_status.name %>
+          <% end %>
+        </div>
         <div class="actions">
           <%= form.submit "Apply", class: "btn new-color" %>
         </div>

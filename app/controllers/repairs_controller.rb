@@ -147,7 +147,7 @@ class RepairsController < ApplicationController
     end
     respond_to do |format|
       format.html { redirect_to repair_path(@repair) }
-      format.turbo_stream
+      format.turbo_stream { render_repair_items_stream }
     end
   end
 
@@ -162,7 +162,7 @@ class RepairsController < ApplicationController
     end
     respond_to do |format|
       format.html { redirect_to repair_path(@repair) }
-      format.turbo_stream
+      format.turbo_stream { render_repair_items_stream }
     end
   end
 
@@ -190,5 +190,15 @@ class RepairsController < ApplicationController
 
   def render_turbo_flash
     turbo_stream.replace("flash", partial: "layouts/flash")
+  end
+
+  def render_repair_items_stream
+    render turbo_stream: [
+      turbo_stream.replace("repair_parts_#{@repair.id}",
+                           partial: "parts",
+                           locals: { repair: @repair,
+                                     repair_items: @repair.repair_items.order(created_at: :desc) }),
+      render_turbo_flash
+    ]
   end
 end

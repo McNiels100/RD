@@ -1,9 +1,0 @@
-<%= turbo_stream.replace "repair_parts_#{@repair.id}" do %>
-  <%= render partial: "parts", locals: {
-      repair: @repair,
-      repair_items: @repair.repair_items.order(created_at: :desc)
-  } %>
-<% end %>
-<%= turbo_stream.replace "flash" do %>
-  <%= render partial: "layouts/flash" %>
-<% end %>

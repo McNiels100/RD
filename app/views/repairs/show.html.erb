@@ -5,5 +5,5 @@
 <%= render "add_repair_items" %>
 <div class="flex-container content-center">
   <%= render "status_history" %>
-  <%= render "parts" %>
+  <%= render "parts", repair: @repair, repair_items: @repair_items %>
 </div>

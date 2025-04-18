@@ -1,5 +1,5 @@
 class RepairsController < ApplicationController
-  before_action :set_repair, only: [ :show, :edit, :update, :lock, :unlock, :add_status ]
+  before_action :set_repair, only: [ :show, :edit, :update, :lock, :unlock, :add_status, :add_repair_item, :remove_repair_item ]
   before_action :set_device_data, only: [ :index, :new, :create, :show ]
   before_action :ensure_repair_locked_by_current_user, only: [ :edit, :update, :add_status ]
 
@@ -137,7 +137,6 @@ class RepairsController < ApplicationController
   end
 
   def add_repair_item
-    @repair = Repair.find(params[:id])
     inventory_id = params[:inventory]
 
     if inventory_id.present?
@@ -147,19 +146,12 @@ class RepairsController < ApplicationController
       flash[:error] = "Please select an inventory item to use."
     end
     respond_to do |format|
-        format.html { redirect_to repair_path(@repair) }
-        format.turbo_stream {
-          @repair_items = @repair.repair_items.order(created_at: :desc)
-          render turbo_stream: [
-            turbo_stream.replace("repair_parts_#{@repair.id}", partial: "parts"),
-            render_turbo_flash
-          ]
-        }
-      end
+      format.html { redirect_to repair_path(@repair) }
+      format.turbo_stream
+    end
   end
 
   def remove_repair_item
-    @repair = Repair.find(params[:id])
     repair_item = RepairItem.find(params[:item_id])
 
     if repair_item.present?
@@ -169,15 +161,9 @@ class RepairsController < ApplicationController
       flash[:error] = "Repair item not found."
     end
     respond_to do |format|
-        format.html { redirect_to repair_path(@repair) }
-        format.turbo_stream {
-          @repair_items = @repair.repair_items.order(created_at: :desc)
-          render turbo_stream: [
-            turbo_stream.replace("repair_parts_#{@repair.id}", partial: "parts"),
-            render_turbo_flash
-          ]
-        }
-      end
+      format.html { redirect_to repair_path(@repair) }
+      format.turbo_stream
+    end
   end
 
   private

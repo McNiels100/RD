@@ -1,4 +1,4 @@
-<div id="repair_parts_<%= @repair.id %>" class="index-table">
+<div id="repair_parts_<%= repair.id %>" class="index-table">
   <table class="index-table">
     <tr>
       <th>Description</th>
@@ -7,7 +7,7 @@
       <th>Updated at</th>
       <th>Actions</th>
     </tr>
-    <% @repair_items.each do |item| %>
+    <% repair_items.each do |item| %>
       <tr>
         <td>
           <%= item.description  %>
@@ -22,7 +22,7 @@
           <%= item.updated_at %>
         </td>
         <td>
-          <%= button_to remove_repair_item_repair_path(@repair, item_id: item.id),
+          <%= button_to remove_repair_item_repair_path(repair, item_id: item.id),
                           method: :delete,
                           form: { data: { turbo_confirm: 'Are you sure?', turbo_stream: true } },
                           params: { action: 'remove_repair_item' } do %>

@@ -122,9 +122,9 @@ class RepairsController < ApplicationController
 
     if status_id.present?
       @repair.add_status(status_id, user, notes)
-      flash[:success] = "Status updated successfully."
+      flash.now[:success] = "Status updated successfully."
     else
-      flash[:error] = "Please select a status."
+      flash.now[:error] = "Please select a status."
     end
     respond_to do |format|
       format.html { redirect_to repair_path(@repair) }
@@ -141,9 +141,9 @@ class RepairsController < ApplicationController
 
     if inventory_id.present?
       @repair.add_repair_item(inventory_id)
-      flash[:success] = "Repair item added successfully."
+      flash.now[:success] = "Repair item added successfully."
     else
-      flash[:error] = "Please select an inventory item to use."
+      flash.now[:error] = "Please select an inventory item to use."
     end
     respond_to do |format|
       format.html { redirect_to repair_path(@repair) }
@@ -156,9 +156,9 @@ class RepairsController < ApplicationController
 
     if repair_item.present?
       @repair.remove_repair_item(repair_item)
-      flash[:success] = "Repair item removed successfully."
+      flash.now[:success] = "Repair item removed successfully."
     else
-      flash[:error] = "Repair item not found."
+      flash.now[:error] = "Repair item not found."
     end
     respond_to do |format|
       format.html { redirect_to repair_path(@repair) }

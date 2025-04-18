@@ -7,7 +7,7 @@
       <div class="field">
         <%= f.text_area :status_notes, placeholder: "Input note (optional)." %>
       </div>
-      <%= f.submit "Update Status", class: "btn status-color" %>
+      <%= f.submit "Update Status", class: "btn status-color", data: { disable_with: "Updating..." } %>
     </div>
   <% end %>
 </div>

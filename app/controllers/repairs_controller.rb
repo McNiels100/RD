@@ -126,7 +126,14 @@ class RepairsController < ApplicationController
     else
       flash[:error] = "Please select a status."
     end
-    redirect_to repair_path(@repair)
+    respond_to do |format|
+      format.html { redirect_to repair_path(@repair) }
+      format.turbo_stream {
+        render turbo_stream: [
+          turbo_stream.replace("status_history_#{@repair.id}", partial: "status_history"),
+          render_turbo_flash        ]
+      }
+    end
   end
 
   def add_repair_item
@@ -167,7 +174,7 @@ class RepairsController < ApplicationController
   end
 
   def repair_params
-    params.expect(repair: [ :name, :email, :phone_number, :brand, :device_type, :error_description, :imei, :serial, :model ])
+    params.require(:repair).permit(:name, :email, :phone_number, :brand, :device_type, :error_description, :imei, :serial, :model)
   end
 
   def ensure_repair_locked_by_current_user
@@ -175,5 +182,9 @@ class RepairsController < ApplicationController
       flash[:error] = "You cannot edit this repair because it is not locked by you."
       redirect_to @repair
     end
+  end
+
+  def render_turbo_flash
+    turbo_stream.replace("flash", partial: "layouts/flash")
   end
 end

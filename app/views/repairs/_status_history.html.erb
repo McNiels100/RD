@@ -1,28 +1,30 @@
-<div class="status-history">
-  <ul class="timeline">
-    <% if @repair.repair_statuses.any? %>
-      <% @repair.repair_statuses.order(created_at: :desc).each do |rs| %>
-        <li>
-          <div class="<%= cycle('direction-r', 'direction-l') %>">
-            <div class="flag-wrapper">
-              <span class="flag"><%= rs.status.name %></span>
-              <span class="time-wrapper"><span class="time"><%= rs.created_at.to_formatted_s(:short) %></span></span>
+<div id="status_history_<%= @repair.id %>">
+  <div class="status-history">
+    <ul class="timeline">
+      <% if @repair.repair_statuses.any? %>
+        <% @repair.repair_statuses.order(created_at: :desc).each do |rs| %>
+          <li>
+            <div class="<%= cycle('direction-r', 'direction-l') %>">
+              <div class="flag-wrapper">
+                <span class="flag"><%= rs.status.name %></span>
+                <span class="time-wrapper"><span class="time"><%= rs.created_at.to_formatted_s(:short) %></span></span>
+              </div>
+              <div class="desc"><%= User.find(rs.user_id).email_address || 'System' %></div>
+              <div class="desc"><%= rs.notes %></div>
             </div>
-            <div class="desc"><%= User.find(rs.user_id).email_address || 'System' %></div>
-            <div class="desc"><%= rs.notes %></div>
+          </li>
+        <% end %>
+      <% else %>
+        <li>
+          <div class="direction-l">
+            <div class="flag-wrapper">
+              <span class="flag">No status history available.</span>
+              <span class="time-wrapper"><span class="time">0000</span></span>
+            </div>
+            <div class="desc">Contact an admin if help is needed.</div>
           </div>
         </li>
       <% end %>
-    <% else %>
-      <li>
-        <div class="direction-l">
-          <div class="flag-wrapper">
-            <span class="flag">No status history available.</span>
-            <span class="time-wrapper"><span class="time">0000</span></span>
-          </div>
-          <div class="desc">Contact an admin if help is needed.</div>
-        </div>
-      </li>
-    <% end %>
-  </ul>
+    </ul>
+  </div>
 </div>

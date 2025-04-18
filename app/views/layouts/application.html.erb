@@ -20,11 +20,7 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <% flash.each do |key, message| %>
-      <div class="flash-banner <%= key %>">
-        <p><%= message %></p>
-      </div>
-    <% end %>
+    <%= render 'layouts/flash' %>
     <%= render 'layouts/navbar_primary' %>
     <main>
       <%= yield %>

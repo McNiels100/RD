@@ -7,11 +7,14 @@ class Repair < ApplicationRecord
   has_many :repair_statuses, dependent: :destroy
   has_many :statuses, through: :repair_statuses
 
+  has_one :latest_repair_status, -> { order(created_at: :desc) }, class_name: "RepairStatus"
+  has_one :latest_status, through: :latest_repair_status, source: :status
+
   has_many :repair_items, dependent: :destroy
 
   # Returns the current status
   def current_status
-    repair_statuses.order(created_at: :desc).first&.status
+    latest_status
   end
 
   # Add a new status to the repair

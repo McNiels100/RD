@@ -35,11 +35,8 @@ class RepairsController < ApplicationController
     # Filter by repair statuses
     if params[:repair_statuses].present?
       status_ids = Status.active.where(name: params[:repair_statuses]).pluck(:id)
-      @repairs = @repairs.joins(:repair_statuses)
-                         .where(repair_statuses: { id: RepairStatus.select("MAX(id)")
-                         .group(:repair_id) })
-                         .where(repair_statuses: { status_id: status_ids })
-    end # There must be some way to simplify this query
+      @repairs = @repairs.joins(:latest_status).where(statuses: { id: status_ids })
+    end
 
     # Filter by TAT status
     if params[:tat_statuses].present?

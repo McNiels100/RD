@@ -1,4 +1,6 @@
 class RepairsController < ApplicationController
+  include Paginatable
+
   before_action :set_repair, only: [ :show, :edit, :update, :lock, :unlock, :add_status, :add_repair_item, :remove_repair_item ]
   before_action :set_device_data, only: [ :index, :new, :create, :show ]
   before_action :ensure_repair_locked_by_current_user, only: [ :edit, :update, :add_status, :add_repair_item, :remove_repair_item ]
@@ -48,6 +50,9 @@ class RepairsController < ApplicationController
       end
       @repairs = Repair.where(id: filtered_repairs)
     end
+
+    # Paginate the filtered repairs
+    @repairs = paginate(@repairs)
   end
 
   def show

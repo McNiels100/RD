@@ -815,3 +815,46 @@ body {
         cursor: pointer;
     }
 }
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.pagination a.active {
+    background-color: #04aa6d;
+    color: white;
+}
+
+.pagination-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.pagination-info {
+    margin-bottom: 10px;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.pagination .ellipsis {
+    padding: 8px 16px;
+    color: #333;
+}
+
+.pagination a.disabled {
+    color: #ccc;
+    pointer-events: none;
+}

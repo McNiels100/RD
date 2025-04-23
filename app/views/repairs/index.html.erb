@@ -3,3 +3,5 @@
   <%= render 'filter' %>
 </div>
 <%= render 'backlog' %>
+<%= render 'layouts/pagination', page: @page, total_pages: @total_pages,
+           per_page: @per_page, total_items: @total_items %>

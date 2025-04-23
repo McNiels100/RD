@@ -1,0 +1,27 @@
+<% if total_pages > 1 %>
+  <div class="pagination-container">
+    <div class="pagination-info">
+      <%= page_info(page, per_page, total_items) %>
+    </div>
+    <div class="pagination">
+      <%= prev_next_link(true, page, total_pages, params) %>
+      <% window = pagination_window(page, total_pages) %>
+      <% if window[:show_first_page] %>
+        <%= page_link(1, page, params) %>
+        <% if window[:show_first_ellipsis] %>
+          <span class="ellipsis">...</span>
+        <% end %>
+      <% end %>
+      <% (window[:start]..window[:end]).each do |page_num| %>
+        <%= page_link(page_num, page, params) %>
+      <% end %>
+      <% if window[:show_last_page] %>
+        <% if window[:show_last_ellipsis] %>
+          <span class="ellipsis">...</span>
+        <% end %>
+        <%= page_link(total_pages, page, params) %>
+      <% end %>
+      <%= prev_next_link(false, page, total_pages, params) %>
+    </div>
+  </div>
+<% end %>

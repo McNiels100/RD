@@ -10,9 +10,6 @@
     <%= form.text_field :tat_unsatisfied, placeholder: "Input how many working days it takes for a repair to become ORANGE in TAT." %>
     <%= form.label :tat_very_unsatisfied %>
     <%= form.text_field :tat_very_unsatisfied, placeholder: "Input how many working days it takes for a repair to become RED in TAT." %>
-    <% flash.each do |key, message| %>
-      <div style="color:red" class="flash <%= key %>"><%= message %></div>
-    <% end %>
     <%= form.submit %>
   </div>
 <% end %>

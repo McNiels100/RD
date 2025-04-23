@@ -7,6 +7,8 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+#
+# Load seeds in production using bin/kamal console with command 'kamal app exec 'rails db:reset DISABLE_DATABASE_ENVIRONMENT_CHECK=1''
 
 # Repair statuses
 Status.delete_all

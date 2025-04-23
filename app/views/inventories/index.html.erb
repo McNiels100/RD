@@ -1,57 +1,5 @@
 <h1>Inventories</h1>
 <%= link_to "New inventory", new_inventory_path, class: "btn new-color" %>
-<% cache @inventories do %>
-  <table class="index-table">
-    <tr>
-      <th>ID</th>
-      <th>Description</th>
-      <th>IMEI</th>
-      <th>Serial</th>
-      <th>Location</th>
-      <th>Status</th>
-      <th>Order number</th>
-      <th>Created at</th>
-      <th>Last update</th>
-      <th>Actions</th>
-    </tr>
-    <% @inventories.each do |inventory| %>
-      <tr>
-        <td>
-          <%= inventory.id  %>
-        </td>
-        <td>
-          <%= inventory.description %>
-        </td>
-        <td>
-          <%= inventory.imei %>
-        </td>
-        <td>
-          <%= inventory.serial %>
-        </td>
-        <td>
-          <%= inventory.location %>
-        </td>
-        <td>
-          <%= inventory.status %>
-        </td>
-        <td>
-          <%= inventory.repair&.order_number %>
-        </td>
-        <td>
-          <%= inventory.created_at.to_formatted_s(:rfc822)  %>
-        </td>
-        <td>
-          <%= inventory.updated_at.to_formatted_s(:rfc822)  %>
-        </td>
-        <td>
-          <div class="table-actions">
-            <%= link_to "Edit", edit_inventory_path(inventory), class: "btn edit-color"  %>
-            <%= button_to "Delete", inventory, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn delete-color" %>
-          </div>
-        </td>
-      </tr>
-    <% end %>
-  </table>
-<% end %>
+<%= render 'inventories_table' %>
 <%= render 'layouts/pagination', page: @page, total_pages: @total_pages,
            per_page: @per_page, total_items: @total_items %>

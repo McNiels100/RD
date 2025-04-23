@@ -276,6 +276,14 @@ device = Device.create!(
   tat_very_unsatisfied: 10
 )
 
+device = Device.create!(
+  brand: 'Nvidia',
+  device_type: 'hardware',
+  tat_neutral: 10,
+  tat_unsatisfied: 15,
+  tat_very_unsatisfied: 30
+)
+
 # Repair orders
 Repair.delete_all
 
@@ -469,6 +477,51 @@ repair = Repair.create!(
   device_type: 'hardware'
 )
 repair.add_status(Status.find_by(name: "Received").id, User.last) # Using User.last as the acting user
+
+10.times do
+  repair = Repair.create!(
+    name: 'Johnny Bravo',
+    email: 'johnny.bravo@flexing.com',
+    phone_number: 564989616,
+    brand: 'Apple',
+    error_description: %(I broke 10 phones while flexing at ladies. Hello, 911? I just spotted a fox!),
+    imei: rand(1000000),
+    model: 'iPhone 15 Pro Max',
+    device_type: 'phone'
+  )
+  repair.add_status(Status.find_by(name: "Received").id, User.last) # Using User.last as the acting user
+end
+
+10.times do
+  repair = Repair.create!(
+    name: 'Johnny Bravo',
+    email: 'johnny.bravo@flexing.com',
+    phone_number: 564989616,
+    brand: 'Apple',
+    error_description: %(I broke 10 phones while flexing at ladies. Hello, 911? I just spotted a fox!),
+    imei: rand(1000000),
+    model: 'iPhone 15 Pro Max',
+    device_type: 'phone'
+  )
+  repair.add_status(Status.find_by(name: "Received").id, User.last) # Using User.last as the acting user
+end
+
+5.times do
+  repair = Repair.create!(
+    name: 'Annoying Scalper',
+    email: 'scalper@flexing.com',
+    phone_number: 78892144,
+    brand: 'Nvidia',
+    error_description: %(My 5090's are missing ROPs.),
+    serial: "NV#{rand(1000000)}",
+    model: 'RTX 5090 FE',
+    device_type: 'hardware',
+    created_at: 15.day.ago,
+    updated_at: 15.day.ago
+  )
+  repair.add_status(Status.find_by(name: "Received").id, User.last) # Using User.last as the acting user
+  repair.add_status(Status.find_by(name: "Waiting for Parts").id, User.last) # Using User.last as the acting user
+end
 
 # Inventory
 Inventory.delete_all

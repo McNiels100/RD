@@ -1,8 +1,13 @@
 class InventoriesController < ApplicationController
+  include Paginatable
+
   before_action :require_admin_or_leader
 
   def index
     @inventories = Inventory.all
+
+    # Paginate inventories
+    @inventories = paginate(@inventories)
   end
 
   def show

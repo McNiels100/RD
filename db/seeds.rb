@@ -553,7 +553,39 @@ end
 5.times do
   inventory = Inventory.create!(
     description: 'Mainboard - Xiaomi 14T Pro Blue',
-    serial: "#{rand(1000000)}",
+    imei: rand(1000000),
     location: "E2"
+  )
+end
+
+5.times do
+  inventory = Inventory.create!(
+    description: 'Display - OnePlus 13R',
+    serial: "OP#{rand(1000000)}",
+    location: "C4"
+  )
+end
+
+5.times do
+  inventory = Inventory.create!(
+    description: 'Mainboard - OnePlus 13R',
+    imei: rand(1000000),
+    location: "C2"
+  )
+end
+
+5.times do
+  inventory = Inventory.create!(
+    description: 'Mainboard - OnePlus 13R',
+    imei: rand(1000000),
+    location: "C2"
+  )
+end
+
+5.times do
+  inventory = Inventory.create!(
+    description: 'Mainboard - Samsung Galaxy S23 FE',
+    imei: rand(1000000),
+    location: "B6"
   )
 end

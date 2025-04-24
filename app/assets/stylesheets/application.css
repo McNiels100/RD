@@ -150,7 +150,7 @@ body {
     }
 }
 
-/* New repair inputs and login page */
+/* New forms and login page */
 .form-wrapper {
     width: 40%;
     border-radius: 5px;
@@ -187,6 +187,40 @@ body {
     input[type="submit"]:hover {
         background-color: #45a049;
     }
+}
+
+.form-tips {
+    width: 300px;
+    margin-left: 25px;
+    padding: 15px 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #4caf50;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-tips h2 {
+    color: #333;
+    font-size: 1.4rem;
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.form-tips ul {
+    padding-left: 20px;
+    margin-bottom: 5px;
+}
+
+.form-tips li {
+    margin-bottom: 12px;
+    line-height: 1.4;
+    color: #555;
+}
+
+.form-tips li strong {
+    color: #333;
+    font-weight: 600;
 }
 
 /* Show repair information  */

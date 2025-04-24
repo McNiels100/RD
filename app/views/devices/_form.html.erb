@@ -1,5 +1,5 @@
-<%= form_with model: @device do |form| %>
-  <div class="form-wrapper">
+<div class="form-wrapper">
+  <%= form_with model: @device do |form| %>
     <%= form.label :brand %>
     <%= form.text_field :brand, placeholder: "Input exactly how the brand is spelled." %>
     <%= form.label :device_type %>
@@ -11,5 +11,5 @@
     <%= form.label :tat_very_unsatisfied %>
     <%= form.text_field :tat_very_unsatisfied, placeholder: "Input how many working days it takes for a repair to become RED in TAT." %>
     <%= form.submit %>
-  </div>
-<% end %>
+  <% end %>
+</div>

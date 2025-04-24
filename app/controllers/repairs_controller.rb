@@ -49,7 +49,7 @@ class RepairsController < ApplicationController
         end
       end
       @repairs = Repair.where(id: filtered_repairs)
-    end
+    end # TODO can the filters be a concern and reused in inventories?
 
     # Paginate the filtered repairs
     @repairs = paginate(@repairs)

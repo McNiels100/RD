@@ -1,0 +1,8 @@
+<div class="form-tips">
+  <h2>Tips</h2>
+  <ul>
+    <% tips.each do |tip| %>
+      <li><strong><%= tip[:label] %>:</strong> <%= tip[:content] %></li>
+    <% end %>
+  </ul>
+</div>

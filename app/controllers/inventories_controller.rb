@@ -49,6 +49,6 @@ class InventoriesController < ApplicationController
   end
 
   def inventory_params
-    params.require(:inventory).permit(:imei, :serial, :location, :description)
+    params.require(:inventory).permit(:imei, :serial, :location, :description, :brand, :model_code)
   end
 end

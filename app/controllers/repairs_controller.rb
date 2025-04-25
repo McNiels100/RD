@@ -170,7 +170,7 @@ class RepairsController < ApplicationController
 
   def load_inventory
     @repair = Repair.find(params[:id])
-    @inventory = Inventory.where(repair_id: nil).order(:description)
+    @inventory = Inventory.where(repair_id: nil, model_code: @repair.model_code).order(:description)
   end
 
   private
@@ -185,7 +185,7 @@ class RepairsController < ApplicationController
   end
 
   def repair_params
-    params.require(:repair).permit(:name, :email, :phone_number, :brand, :device_type, :error_description, :imei, :serial, :model)
+    params.require(:repair).permit(:name, :email, :phone_number, :brand, :device_type, :error_description, :imei, :serial, :model, :model_code)
   end
 
   def ensure_repair_locked_by_current_user

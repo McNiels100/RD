@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_09_102538) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_25_082429) do
   create_table "Devices", force: :cascade do |t|
     t.string "brand"
     t.string "device_type"
@@ -30,6 +30,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_09_102538) do
     t.datetime "updated_at", null: false
     t.text "description"
     t.integer "status", default: 0
+    t.string "brand"
+    t.string "model_code"
     t.index ["repair_id"], name: "index_inventories_on_repair_id"
     t.index ["status"], name: "index_inventories_on_status"
   end
@@ -72,6 +74,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_09_102538) do
     t.string "device_type"
     t.string "locked_by"
     t.datetime "locked_at"
+    t.string "model_code"
     t.index ["order_number"], name: "index_repairs_on_order_number", unique: true
   end
 

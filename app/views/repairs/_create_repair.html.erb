@@ -16,8 +16,10 @@
     <%= form.text_field :imei %>
     <%= form.label :serial %>
     <%= form.text_field :serial %>
-    <%= form.label :model %>
+    <%= form.label :model, "Model name" %>
     <%= form.text_field :model %>
+    <%= form.label :model_code %>
+    <%= form.text_field :model_code %>
     <%= form.submit %>
   <% end %>
 </div>

@@ -2,6 +2,8 @@
   <table class="index-table">
     <tr>
       <th>ID</th>
+      <th>Brand</th>
+      <th>Model code</th>
       <th>Description</th>
       <th>IMEI</th>
       <th>Serial</th>
@@ -16,6 +18,12 @@
       <tr>
         <td>
           <%= inventory.id  %>
+        </td>
+        <td>
+          <%= inventory.brand %>
+        </td>
+        <td>
+          <%= inventory.model_code %>
         </td>
         <td>
           <%= inventory.description %>

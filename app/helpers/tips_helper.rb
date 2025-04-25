@@ -13,8 +13,7 @@ module TipsHelper
       ],
       inventories: [
         { label: "Description", content: "[part] - [brand] [model]" },
-        { label: "IMEI", content: "Can be left blank if serial is filled" },
-        { label: "Serial", content: "Can be left blank if IMEI is filled" },
+        { label: "IMEI & Serial", content: "Either one needs to be provided. Both cannot be empty. Customer must solve this before submitting a repair." },
         { label: "Location", content: "The shelf the part will be put on." }
       ],
       users: [

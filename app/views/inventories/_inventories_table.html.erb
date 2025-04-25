@@ -3,8 +3,9 @@
     <tr>
       <th>ID</th>
       <th>Brand</th>
+      <th>Model</th>
       <th>Model code</th>
-      <th>Description</th>
+      <th>Part</th>
       <th>IMEI</th>
       <th>Serial</th>
       <th>Location</th>
@@ -23,10 +24,13 @@
           <%= inventory.brand %>
         </td>
         <td>
+          <%= inventory.model %>
+        </td>
+        <td>
           <%= inventory.model_code %>
         </td>
         <td>
-          <%= inventory.description %>
+          <%= inventory.part_name %>
         </td>
         <td>
           <%= inventory.imei %>

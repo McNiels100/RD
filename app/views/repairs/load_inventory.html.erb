@@ -1,5 +1,19 @@
 <%= turbo_frame_tag "inventory_select" do %>
-  <%= select_tag :inventory,
-        options_from_collection_for_select(@inventory, :id, :description),
-        prompt: "Choose an item..." %>
+  <% if @all_part_names.any? %>
+    <div>
+      <% @all_part_names.each do |part_name| %>
+        <div style="<%= 'opacity: 0.6;' unless @available_parts[part_name] %>">
+          <%= check_box_tag "part_names[]",
+                           part_name,
+                           false,
+                           id: "part_name_#{part_name.parameterize}",
+                           disabled: !@available_parts[part_name] %>
+          <%= label_tag "part_name_#{part_name.parameterize}", part_name %>
+          (<%= @part_counts[part_name] %> available)
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p>No parts defined for this model.</p>
+  <% end %>
 <% end %>

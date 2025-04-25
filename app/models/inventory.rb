@@ -1,7 +1,7 @@
 class Inventory < ApplicationRecord
   include ImeiSerialValidation
   belongs_to :repair, optional: true
-  validates :brand, :model_code, :description, :location, :status, presence: true
+  validates :brand, :model_code, :location, :status, presence: true
 
   enum :status, {
     in_stock: 0,

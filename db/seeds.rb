@@ -552,7 +552,6 @@ def create_inventories
       model: 'Galaxy S23 FE',
       model_code: 'SM-S711B/DS',
       part_name: 'Display',
-      description: 'Display - Samsung Galaxy S23 FE',
       serial: "SM#{rand(1000000)}",
       location: "B7"
     )
@@ -564,7 +563,6 @@ def create_inventories
       model: 'iPhone 15 Pro',
       model_code: 'A2848',
       part_name: 'Battery',
-      description: 'Battery - Apple iPhone 15 Pro',
       serial: "AP#{rand(1000000)}",
       location: "A1"
     )
@@ -576,7 +574,6 @@ def create_inventories
       model: '13R',
       model_code: 'CPH2645',
       part_name: 'Speaker',
-      description: 'Speaker - OnePlus 13R',
       serial: "OP#{rand(1000000)}",
       location: "C3"
     )
@@ -588,7 +585,6 @@ def create_inventories
       model: '14T Pro',
       model_code: '2407FPN8EG',
       part_name: 'Mainboard',
-      description: 'Mainboard - Xiaomi 14T Pro',
       imei: rand(1000000),
       location: "E2"
     )
@@ -600,7 +596,6 @@ def create_inventories
       model: '13R',
       model_code: 'CPH2645',
       part_name: 'Display',
-      description: 'Display - OnePlus 13R',
       serial: "OP#{rand(1000000)}",
       location: "C4"
     )
@@ -612,7 +607,6 @@ def create_inventories
       model: '13R',
       model_code: 'CPH2645',
       part_name: 'Mainboard',
-      description: 'Mainboard - OnePlus 13R',
       imei: rand(1000000),
       location: "C2"
     )
@@ -624,7 +618,6 @@ def create_inventories
       model: '13R',
       model_code: 'CPH2645',
       part_name: 'Subboard',
-      description: 'Subboard - OnePlus 13R',
       serial: "OP#{rand(1000000)}",
       location: "C2"
     )
@@ -636,7 +629,6 @@ def create_inventories
       model: 'Galaxy S23 FE',
       model_code: 'SM-S711B/DS',
       part_name: 'Mainboard',
-      description: 'Mainboard - Samsung Galaxy S23 FE',
       imei: rand(1000000),
       location: "B6"
     )

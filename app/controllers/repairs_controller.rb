@@ -230,9 +230,6 @@ class RepairsController < ApplicationController
       @part_counts[part_name] = count
       @available_parts[part_name] = count > 0
     end
-
-    # Keep original inventory query for backwards compatibility
-    @inventory = Inventory.where(repair_id: nil, model_code: @repair.model_code).order(:description)
   end
 
   private

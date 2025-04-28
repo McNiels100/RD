@@ -3,8 +3,10 @@
     <tr>
       <th>Description</th>
       <th>Unit price</th>
+      <th>IMEI</th>
+      <th>Serial</th>
+      <th>Location</th>
       <th>Created at</th>
-      <th>Updated at</th>
       <th>Actions</th>
     </tr>
     <% repair_items.each do |item| %>
@@ -16,10 +18,16 @@
           <%= item.unit_price %>
         </td>
         <td>
-          <%= item.created_at %>
+          <%= item.imei %>
         </td>
         <td>
-          <%= item.updated_at %>
+          <%= item.serial %>
+        </td>
+        <td>
+          <%= item.inventory&.location %>
+        </td>
+        <td>
+          <%= item.created_at %>
         </td>
         <td>
           <%= button_to remove_repair_item_repair_path(repair, item_id: item.id),

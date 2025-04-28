@@ -552,7 +552,7 @@ def create_inventories
       model: 'Galaxy S23 FE',
       model_code: 'SM-S711B/DS',
       part_name: 'Display',
-      serial: "SM#{rand(1000000)}",
+      serial: "SM#{(10**14) + rand(10**15 - 10**14)}",
       location: "B7"
     )
   end
@@ -563,7 +563,7 @@ def create_inventories
       model: 'iPhone 15 Pro',
       model_code: 'A2848',
       part_name: 'Battery',
-      serial: "AP#{rand(1000000)}",
+      serial: "AP#{(10**14) + rand(10**15 - 10**14)}",
       location: "A1"
     )
   end
@@ -574,7 +574,7 @@ def create_inventories
       model: '13R',
       model_code: 'CPH2645',
       part_name: 'Speaker',
-      serial: "OP#{rand(1000000)}",
+      serial: "OP#{(10**14) + rand(10**15 - 10**14)}",
       location: "C3"
     )
   end
@@ -585,7 +585,7 @@ def create_inventories
       model: '14T Pro',
       model_code: '2407FPN8EG',
       part_name: 'Mainboard',
-      imei: rand(1000000),
+      imei: (10**14) + rand(10**15 - 10**14),
       location: "E2"
     )
   end
@@ -596,7 +596,7 @@ def create_inventories
       model: '13R',
       model_code: 'CPH2645',
       part_name: 'Display',
-      serial: "OP#{rand(1000000)}",
+      serial: "OP#{(10**14) + rand(10**15 - 10**14)}",
       location: "C4"
     )
   end
@@ -607,7 +607,7 @@ def create_inventories
       model: '13R',
       model_code: 'CPH2645',
       part_name: 'Mainboard',
-      imei: rand(1000000),
+      imei: (10**14) + rand(10**15 - 10**14),
       location: "C2"
     )
   end
@@ -618,7 +618,7 @@ def create_inventories
       model: '13R',
       model_code: 'CPH2645',
       part_name: 'Subboard',
-      serial: "OP#{rand(1000000)}",
+      serial: "OP#{(10**14) + rand(10**15 - 10**14)}",
       location: "C2"
     )
   end
@@ -629,7 +629,7 @@ def create_inventories
       model: 'Galaxy S23 FE',
       model_code: 'SM-S711B/DS',
       part_name: 'Mainboard',
-      imei: rand(1000000),
+      imei: (10**14) + rand(10**15 - 10**14),
       location: "B6"
     )
   end

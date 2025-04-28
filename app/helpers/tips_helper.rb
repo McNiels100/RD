@@ -25,7 +25,9 @@ module TipsHelper
       repairs: [
         { label: "Caution", content: "Always double-check email and phone before submitting." },
         { label: "Error description", content: "Make it short and concise. Add how to recreate the error. if not obvious." },
-        { label: "IMEI & Serial", content: "Either one needs to be provided. Both cannot be empty. Customer must solve this before submitting a repair." }
+        { label: "IMEI & Serial", content: "Either one needs to be provided. Both cannot be empty. Customer must solve this before submitting a repair." },
+        { label: "Model code", content: "It is not required. But it'll help make the service faster if available." }
+
       ]
     }
   end

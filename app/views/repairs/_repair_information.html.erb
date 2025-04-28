@@ -38,8 +38,10 @@
       <%= form.select :brand, @brands, {}, disable_if_not_locked_by_current_user(@repair) %>
       <%= form.label :device_type %>
       <%= form.select :device_type, @device_types, {}, disable_if_not_locked_by_current_user(@repair) %>
-      <%= form.label :model %>
+      <%= form.label :model, "Model name" %>
       <%= form.text_field :model, **disable_if_not_locked_by_current_user(@repair) %>
+      <%= form.label :model_code %>
+      <%= form.text_field :model_code, **disable_if_not_locked_by_current_user(@repair) %>
       <%= form.label :imei %>
       <%= form.text_field :imei, **disable_if_not_locked_by_current_user(@repair) %>
       <%= form.label :serial %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_09_102538) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_28_131134) do
   create_table "Devices", force: :cascade do |t|
     t.string "brand"
     t.string "device_type"
@@ -28,8 +28,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_09_102538) do
     t.integer "repair_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "description"
     t.integer "status", default: 0
+    t.string "brand"
+    t.string "model_code"
+    t.string "model"
+    t.string "part_name"
     t.index ["repair_id"], name: "index_inventories_on_repair_id"
     t.index ["status"], name: "index_inventories_on_status"
   end
@@ -41,6 +44,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_09_102538) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "imei"
+    t.string "serial"
     t.index ["inventory_id"], name: "index_repair_items_on_inventory_id"
     t.index ["repair_id"], name: "index_repair_items_on_repair_id"
   end
@@ -72,6 +77,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_09_102538) do
     t.string "device_type"
     t.string "locked_by"
     t.datetime "locked_at"
+    t.string "model_code"
     t.index ["order_number"], name: "index_repairs_on_order_number", unique: true
   end
 

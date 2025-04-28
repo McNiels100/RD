@@ -2,7 +2,10 @@
   <table class="index-table">
     <tr>
       <th>ID</th>
-      <th>Description</th>
+      <th>Brand</th>
+      <th>Model</th>
+      <th>Model code</th>
+      <th>Part</th>
       <th>IMEI</th>
       <th>Serial</th>
       <th>Location</th>
@@ -18,7 +21,16 @@
           <%= inventory.id  %>
         </td>
         <td>
-          <%= inventory.description %>
+          <%= inventory.brand %>
+        </td>
+        <td>
+          <%= inventory.model %>
+        </td>
+        <td>
+          <%= inventory.model_code %>
+        </td>
+        <td>
+          <%= inventory.part_name %>
         </td>
         <td>
           <%= inventory.imei %>

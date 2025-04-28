@@ -139,14 +139,55 @@ class RepairsController < ApplicationController
   end
 
   def add_repair_item
-    inventory_id = params[:inventory]
+    if params[:part_names].present?
+      selected_part_names = params[:part_names]
+      added_parts = []
+      no_longer_available_parts = []
 
-    if inventory_id.present?
-      @repair.add_repair_item(inventory_id)
-      flash.now[:success] = "Repair item added successfully."
+      selected_part_names.each do |part_name|
+        # Find first available inventory item with this part_name
+        inventory_item = Inventory.where(
+          repair_id: nil,
+          model_code: @repair.model_code,
+          part_name: part_name
+        ).first
+
+        if inventory_item
+          @repair.add_repair_item(inventory_item.id)
+          added_parts << part_name
+        else
+          # This part was available when the form was rendered but is now gone
+          no_longer_available_parts << part_name
+        end
+      end
+
+      # Create appropriate flash messages based on what happened
+      if added_parts.any?
+        flash.now[:success] = "Added parts: #{added_parts.join(', ')}"
+      end
+
+      if no_longer_available_parts.any?
+        flash.now[:error] = "Could not add these parts (no longer available): #{no_longer_available_parts.join(', ')}"
+      end
+
+      if added_parts.empty? && no_longer_available_parts.empty?
+        flash.now[:error] = "No parts were selected or available"
+      end
+    elsif params[:inventory].present?
+      # Original logic for select dropdown but with added check
+      inventory_id = params[:inventory]
+      inventory_item = Inventory.find_by(id: inventory_id, repair_id: nil)
+
+      if inventory_item
+        @repair.add_repair_item(inventory_id)
+        flash.now[:success] = "Repair item added successfully."
+      else
+        flash.now[:error] = "The selected part is no longer available."
+      end
     else
-      flash.now[:error] = "Please select an inventory item to use."
+      flash.now[:error] = "Please select parts to add."
     end
+
     respond_to do |format|
       format.html { redirect_to repair_path(@repair) }
       format.turbo_stream { render_repair_items_stream }
@@ -170,7 +211,25 @@ class RepairsController < ApplicationController
 
   def load_inventory
     @repair = Repair.find(params[:id])
-    @inventory = Inventory.where(repair_id: nil).order(:description)
+
+    # Get ALL unique part names for this model, regardless of availability
+    @all_part_names = Inventory.where(model_code: @repair.model_code)
+                              .select(:part_name).distinct.pluck(:part_name).sort
+
+    # Check availability for each part name
+    @part_counts = {}
+    @available_parts = {}
+
+    @all_part_names.each do |part_name|
+      count = Inventory.where(
+        repair_id: nil,
+        model_code: @repair.model_code,
+        part_name: part_name
+      ).count
+
+      @part_counts[part_name] = count
+      @available_parts[part_name] = count > 0
+    end
   end
 
   private
@@ -185,7 +244,7 @@ class RepairsController < ApplicationController
   end
 
   def repair_params
-    params.require(:repair).permit(:name, :email, :phone_number, :brand, :device_type, :error_description, :imei, :serial, :model)
+    params.require(:repair).permit(:name, :email, :phone_number, :brand, :device_type, :error_description, :imei, :serial, :model, :model_code)
   end
 
   def ensure_repair_locked_by_current_user

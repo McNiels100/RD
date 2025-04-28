@@ -301,6 +301,7 @@ def create_repairs
     imei: 4545616199875432,
     serial: 'R5KNFES127ZE9H',
     model: 'S23 FE',
+    model_code: 'SM-S711B/DS',
     device_type: 'phone'
   )
   repair.add_status(Status.find_by(name: "Received").id, User.last) # Using User.last as the acting user
@@ -315,6 +316,7 @@ def create_repairs
     imei: 138768580228309,
     serial: 'SA8028SA3463',
     model: 'iPhone 15 Pro 128GB Black',
+    model_code: 'A2848',
     device_type: 'phone',
     created_at: 3.day.ago,
     updated_at: 3.day.ago
@@ -329,7 +331,8 @@ def create_repairs
     error_description: %(The screen is broken and the customer want it fixed.),
     imei: 405512728981185,
     serial: 'SA1234SA5678',
-    model: 'S25',
+    model: 'Galaxy S25',
+    model_code: 'SM-S931B/DS',
     device_type: 'phone'
   )
   repair.add_status(Status.find_by(name: "Received").id, User.last) # Using User.last as the acting user
@@ -343,6 +346,7 @@ def create_repairs
     imei: 180324452041849,
     serial: 'SA2345SA6789',
     model: 'iPhone 13 Pro White',
+    model_code: 'A2638',
     device_type: 'phone'
   )
   repair.add_status(Status.find_by(name: "Received").id, User.last) # Using User.last as the acting user
@@ -356,6 +360,7 @@ def create_repairs
     imei: 404691323879560,
     serial: 'SA3456SA7890',
     model: '13R',
+    model_code: 'CPH2645',
     device_type: 'phone',
     created_at: 3.day.ago,
     updated_at: 3.day.ago
@@ -371,6 +376,7 @@ def create_repairs
     imei: 404691323879560,
     serial: 'SA3456SA7890',
     model: '13R',
+    model_code: 'CPH2645',
     device_type: 'phone'
   )
   repair.add_status(Status.find_by(name: "Received").id, User.last) # Using User.last as the acting user
@@ -383,6 +389,7 @@ def create_repairs
     error_description: %(DOA. The S-pen cannot track. Sometimes you can poke with it. But is impossible to draw one line without it breaking. It was like it when I opened the sales box.),
     imei: 425230367890870,
     model: 'S25 Ultra',
+    model_code: 'SM-S938B/DS',
     device_type: 'phone',
     created_at: 31.day.ago,
     updated_at: 2.day.ago
@@ -397,7 +404,8 @@ def create_repairs
     error_description: %(My iPhone was dropped in a little bit of water which it is supposed to be able to survive. Now it cannot boot. I want it fixed on warranty!),
     imei: 630576122387474,
     serial: 'SA5678SA9012',
-    model: 'iPhone 14',
+    model: 'iPhone 14 Red',
+    model_code: 'A2783',
     device_type: 'phone',
     created_at: 2.day.ago,
     updated_at: 2.day.ago
@@ -412,7 +420,8 @@ def create_repairs
     error_description: %(My phone was returned without repair last time because I did not respond to a repair offer. This is unacceptable!!! I want a new phone as it was clearly defect from the factory. I will press charges if you return the phone again!!!!),
     imei: 630576122387474,
     serial: 'SA5678SA9012',
-    model: 'iPhone 14',
+    model: 'iPhone 14 Black',
+    model_code: 'A2882',
     device_type: 'phone',
     created_at: 15.day.ago,
     updated_at: 10.day.ago
@@ -428,6 +437,7 @@ def create_repairs
     imei: 630576122387474,
     serial: 'SA5678SA9012',
     model: 'iPhone 14',
+    model_code: 'A2882',
     device_type: 'phone'
   )
   repair.add_status(Status.find_by(name: "Received").id, User.last) # Using User.last as the acting user
@@ -440,6 +450,7 @@ def create_repairs
     error_description: %(My Dead Space Remake CD is stuck inside the PlayStation.),
     serial: 'SA6789SA0123',
     model: 'PS5 slim disc',
+    model_code: 'CFI-2016',
     device_type: 'console',
     created_at: 26.day.ago,
     updated_at: 10.day.ago
@@ -455,6 +466,7 @@ def create_repairs
     imei: 659189344230575,
     serial: 'SA7890SA1234',
     model: '14T Pro Blue',
+    model_code: '2407FPN8EG',
     device_type: 'phone'
   )
   repair.add_status(Status.find_by(name: "Received").id, User.last) # Using User.last as the acting user
@@ -492,6 +504,7 @@ def create_repairs
       error_description: %(I broke 10 phones while flexing at ladies. Hello, 911? I just spotted a fox!),
       imei: rand(1000000),
       model: 'iPhone 15 Pro Max',
+      model_code: 'A3106',
       device_type: 'phone'
     )
     repair.add_status(Status.find_by(name: "Received").id, User.last) # Using User.last as the acting user
@@ -499,13 +512,14 @@ def create_repairs
 
   10.times do
     repair = Repair.create!(
-      name: 'Johnny Bravo',
-      email: 'johnny.bravo@flexing.com',
-      phone_number: 564989616,
+      name: 'Sly Cooper',
+      email: 'sly.cooper@theif.com',
+      phone_number: 988976685,
       brand: 'Apple',
-      error_description: %(I broke 10 phones while flexing at ladies. Hello, 911? I just spotted a fox!),
+      error_description: %(I somehow ended up buying 10 phones. And none of them work. They loose connection all the time.),
       imei: rand(1000000),
-      model: 'iPhone 15 Pro Max',
+      model: 'iPhone 15 Pro',
+      model_code: 'A3102',
       device_type: 'phone'
     )
     repair.add_status(Status.find_by(name: "Received").id, User.last) # Using User.last as the acting user
@@ -534,64 +548,88 @@ def create_inventories
 
   5.times do
     inventory = Inventory.create!(
-      description: 'Display - Samsung Galaxy S23 FE',
-      serial: "SM#{rand(1000000)}",
+      brand: 'Samsung',
+      model: 'Galaxy S23 FE',
+      model_code: 'SM-S711B/DS',
+      part_name: 'Display',
+      serial: "SM#{(10**14) + rand(10**15 - 10**14)}",
       location: "B7"
     )
   end
 
   5.times do
     inventory = Inventory.create!(
-      description: 'Battery - Apple iPhone 15 Pro',
-      serial: "AP#{rand(1000000)}",
+      brand: 'Apple',
+      model: 'iPhone 15 Pro',
+      model_code: 'A2848',
+      part_name: 'Battery',
+      serial: "AP#{(10**14) + rand(10**15 - 10**14)}",
       location: "A1"
     )
   end
 
   5.times do
     inventory = Inventory.create!(
-      description: 'Speaker - OnePlus 13R',
-      serial: "OP#{rand(1000000)}",
+      brand: 'OnePlus',
+      model: '13R',
+      model_code: 'CPH2645',
+      part_name: 'Speaker',
+      serial: "OP#{(10**14) + rand(10**15 - 10**14)}",
       location: "C3"
     )
   end
 
   5.times do
     inventory = Inventory.create!(
-      description: 'Mainboard - Xiaomi 14T Pro Blue',
-      imei: rand(1000000),
+      brand: 'Xiaomi',
+      model: '14T Pro',
+      model_code: '2407FPN8EG',
+      part_name: 'Mainboard',
+      imei: (10**14) + rand(10**15 - 10**14),
       location: "E2"
     )
   end
 
   5.times do
     inventory = Inventory.create!(
-      description: 'Display - OnePlus 13R',
-      serial: "OP#{rand(1000000)}",
+      brand: 'OnePlus',
+      model: '13R',
+      model_code: 'CPH2645',
+      part_name: 'Display',
+      serial: "OP#{(10**14) + rand(10**15 - 10**14)}",
       location: "C4"
     )
   end
 
   5.times do
     inventory = Inventory.create!(
-      description: 'Mainboard - OnePlus 13R',
-      imei: rand(1000000),
+      brand: 'OnePlus',
+      model: '13R',
+      model_code: 'CPH2645',
+      part_name: 'Mainboard',
+      imei: (10**14) + rand(10**15 - 10**14),
       location: "C2"
     )
   end
 
   5.times do
     inventory = Inventory.create!(
-      description: 'Mainboard - OnePlus 13R',
-      imei: rand(1000000),
+      brand: 'OnePlus',
+      model: '13R',
+      model_code: 'CPH2645',
+      part_name: 'Subboard',
+      serial: "OP#{(10**14) + rand(10**15 - 10**14)}",
       location: "C2"
     )
   end
 
   5.times do
     inventory = Inventory.create!(
-      description: 'Mainboard - Samsung Galaxy S23 FE',
-      imei: rand(1000000),
+      brand: 'Samsung',
+      model: 'Galaxy S23 FE',
+      model_code: 'SM-S711B/DS',
+      part_name: 'Mainboard',
+      imei: (10**14) + rand(10**15 - 10**14),
       location: "B6"
     )
   end

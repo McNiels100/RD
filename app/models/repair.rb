@@ -29,8 +29,8 @@ class Repair < ApplicationRecord
 
       # Ensure the inventory item is actually available before trying to allocate it.
       unless inventory.in_stock? || inventory.returned_to_stock?
-             errors.add(:base, "Inventory item '#{inventory.description}' is not in stock (Current status: #{inventory.status}). Cannot allocate.")
-             return false
+        errors.add(:base, "Inventory item is not in stock (Current status: #{inventory.status}). Cannot allocate.")
+        return false
       end
 
       # Use a transaction to ensure both the inventory update and the repair item creation succeed or fail together.
@@ -40,11 +40,17 @@ class Repair < ApplicationRecord
           repair_id: self.id # self.id refers to the ID of the current Repair instance
         )
 
-        repair_items.create!(
-          inventory: inventory,
-          description: inventory.description,
-          unit_price: 0
-        )
+        description = "#{inventory.part_name} - #{inventory.brand} #{inventory.model}"
+        imei = inventory.imei
+        serial = inventory.serial
+
+         repair_items.create!(
+           inventory: inventory,
+           description: description,
+           unit_price: 0,
+           imei: imei,
+           serial: serial
+         )
       end
   end
 

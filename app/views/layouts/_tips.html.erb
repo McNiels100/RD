@@ -2,7 +2,7 @@
   <h2>Tips</h2>
   <ul>
     <% tips.each do |tip| %>
-      <li><strong><%= tip[:label] %>:</strong> <%= tip[:content] %></li>
+      <li><strong><%= tip[:label] %>:</strong> <%= tip[:content].html_safe %></li>
     <% end %>
   </ul>
 </div>

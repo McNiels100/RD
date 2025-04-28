@@ -1,6 +1,12 @@
 module TipsHelper
   def model_tips
     {
+      login: [
+        { label: "Notice", content: "This site's for demo purposes only. Data will be deleted after a few days." },
+        { label: "Emails", content: "admin@company.com, leader@company.com, technician@company.com" },
+        { label: "Passwords", content: "admin123, leader123, technician123" },
+        { label: "Source code", content: "<a href='https://github.com/McNiels100/RD' target='_blank'>GitHub</a>" }
+      ],
       devices: [
         { label: "Brand", content: "Doesn't capitalize automatically." },
         { label: "Device type", content: "Buds are wearables and cables accessories." },

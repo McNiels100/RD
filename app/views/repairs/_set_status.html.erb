@@ -4,12 +4,12 @@
       <div class="field">
         <%= form.collection_select :status_id, Status.active, :id, :name,
                                 { include_blank: "Select Status" },
-                                disable_if_not_editable(@repair) %>
+                                **disable_if_not_editable(@repair) %>
       </div>
       <div class="field">
         <%= form.text_area :status_notes,
                         placeholder: "Input note (optional).",
-                        disabled: disable_if_not_editable(@repair) %>
+                        **disable_if_not_editable(@repair) %>
       </div>
       <%= form.submit "Update Status", class: "btn status-color", data: { disable_with: "Updating..." } %>
     </div>

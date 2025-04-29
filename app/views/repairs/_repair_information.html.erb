@@ -35,46 +35,46 @@
     <div class="info-module">
       <h2>Device</h2>
       <%= form.label :brand %>
-      <%= form.select :brand, @brands, {}, disable_if_not_locked_by_current_user(@repair) %>
+      <%= form.select :brand, @brands, {}, disable_if_not_editable(@repair) %>
       <%= form.label :device_type %>
-      <%= form.select :device_type, @device_types, {}, disable_if_not_locked_by_current_user(@repair) %>
+      <%= form.select :device_type, @device_types, {}, disable_if_not_editable(@repair) %>
       <%= form.label :model, "Model name" %>
-      <%= form.text_field :model, **disable_if_not_locked_by_current_user(@repair) %>
+      <%= form.text_field :model, **disable_if_not_editable(@repair) %>
       <%= form.label :model_code %>
-      <%= form.text_field :model_code, **disable_if_not_locked_by_current_user(@repair) %>
+      <%= form.text_field :model_code, **disable_if_not_editable(@repair) %>
       <%= form.label :imei %>
-      <%= form.text_field :imei, **disable_if_not_locked_by_current_user(@repair) %>
+      <%= form.text_field :imei, **disable_if_not_editable(@repair) %>
       <%= form.label :serial %>
-      <%= form.text_field :serial, **disable_if_not_locked_by_current_user(@repair) %>
+      <%= form.text_field :serial, **disable_if_not_editable(@repair) %>
       <%= form.label :error_description %>
-      <%= form.text_area :error_description, **disable_if_not_locked_by_current_user(@repair) %>
+      <%= form.text_area :error_description, **disable_if_not_editable(@repair) %>
     </div>
     <div class="info-module">
       <h2>Customer</h2>
       <%= form.label :name %>
-      <%= form.text_field :name, **disable_if_not_locked_by_current_user(@repair) %>
+      <%= form.text_field :name, **disable_if_not_editable(@repair) %>
       <%= form.label :email %>
-      <%= form.email_field :email, **disable_if_not_locked_by_current_user(@repair) %>
+      <%= form.email_field :email, **disable_if_not_editable(@repair) %>
       <%= form.label :phone_number, "Phone" %>
-      <%= form.telephone_field :phone_number, class: "new-input", **disable_if_not_locked_by_current_user(@repair) %>
+      <%= form.telephone_field :phone_number, class: "new-input", **disable_if_not_editable(@repair) %>
     </div>
     <div class="info-module">
       <h2>Insurance</h2>
       <%= form.label :insurrance_company %>
-      <%= form.select :insurrance_company, ["Gjensidige", "Tryg Forsikring", "Alm. Brand"], {}, disable_if_not_locked_by_current_user(@repair) %>
+      <%= form.select :insurrance_company, ["Gjensidige", "Tryg Forsikring", "Alm. Brand"], {}, disable_if_not_editable(@repair) %>
       <%= form.label :insurance_number %>
-      <%= form.text_field :insurance_number, value: "9836563214", **disable_if_not_locked_by_current_user(@repair) %>
+      <%= form.text_field :insurance_number, value: "9836563214", **disable_if_not_editable(@repair) %>
       <%= form.label :insurance_claim %>
-      <%= form.text_field :insurance_claim, value: "2025-01-08", **disable_if_not_locked_by_current_user(@repair) %>
+      <%= form.text_field :insurance_claim, value: "2025-01-08", **disable_if_not_editable(@repair) %>
     </div>
     <div class="info-module">
       <h2>Shop</h2>
       <%= form.label :company %>
-      <%= form.select :company, ["Telia", "Telia", "Hi3g"], {}, disable_if_not_locked_by_current_user(@repair) %>
+      <%= form.select :company, ["Telia", "Telia", "Hi3g"], {}, disable_if_not_editable(@repair) %>
       <%= form.label :company_adress %>
-      <%= form.text_field :company_adress, value: "Ørbækvej 75, Shop 82, 5220 Odense, Denmark", **disable_if_not_locked_by_current_user(@repair) %>
+      <%= form.text_field :company_adress, value: "Ørbækvej 75, Shop 82, 5220 Odense, Denmark", **disable_if_not_editable(@repair) %>
       <%= form.label :shop_order_number %>
-      <%= form.text_field :shop_order_number, value: "1155889966", **disable_if_not_locked_by_current_user(@repair) %>
+      <%= form.text_field :shop_order_number, value: "1155889966", **disable_if_not_editable(@repair) %>
     </div>
   </div>
   <div class="action_module">

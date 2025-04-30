@@ -10,4 +10,10 @@ module UsersHelper
     links << link_to("Excel export", "") if user.admin? || user.leader?
     links.join.html_safe
   end
+
+  def repair_actions(user)
+    buttons = []
+    buttons << button_to("Re-open", reopen_repair_path(@repair), method: :patch, data: { turbo_confirm: "Are you sure you want to re-open this repair?" }) if (user.admin? || user.leader?) && @repair.completed?
+    buttons.join.html_safe
+  end
 end

@@ -49,9 +49,7 @@
     <div class="button-row flex-container content-center">
       <%= form.submit :Save %>
     <% end %>
-    <% if @repair.completed? %>
-      <%= button_to "Re-open", reopen_repair_path(@repair), method: :patch, data: { turbo_confirm: "Are you sure you want to re-open this repair?" } %>
-    <% end %>
+    <%= repair_actions(current_user) %>
     <button>Cancel</button>
     <button>Print</button>
   </div>

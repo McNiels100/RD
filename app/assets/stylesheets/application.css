@@ -47,6 +47,10 @@ body {
     align-items: flex-end;
 }
 
+.align-items-center {
+    align-items: center;
+}
+
 /* Index table */
 .index-table {
     font-family: arial, sans-serif;

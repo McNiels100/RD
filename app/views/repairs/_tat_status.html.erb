@@ -1,0 +1,29 @@
+<div class="tat-module">
+  <div class="tat-wrapper">
+    <div class="tat-box tat-green tooltip">
+      <span class="tooltiptext">
+        Less than <%= @device.tat_neutral %> working days
+      </span>
+    </div>
+    <div class="tat-box tat-yellow tooltip">
+      <span class="tooltiptext">
+        <%= @device.tat_neutral %> working days
+      </span>
+    </div>
+    <div class="tat-box tat-orange tooltip">
+      <span class="tooltiptext">
+        <%= @device.tat_unsatisfied %> working days
+      </span>
+    </div>
+    <div class="tat-box tat-red tooltip">
+      <span class="tooltiptext">
+        <%= @device.tat_very_unsatisfied %> working days
+      </span>
+    </div>
+    <div class="tat-pointer <%= set_tat_css(@device, @repair.created_at, "pointer") %>">
+      <div class="tooltip-pointer tooltip">
+        <span class="tooltiptext">Days to next TAT: <%= days_to_next_tat_stage(@device, @repair.created_at) %></span>
+      </div>
+    </div>
+  </div>
+</div>

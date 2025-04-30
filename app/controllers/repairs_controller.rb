@@ -2,7 +2,7 @@ class RepairsController < ApplicationController
   include Paginatable
 
   before_action :set_repair, only: [ :show, :edit, :update, :lock, :unlock, :add_status, :add_repair_item, :remove_repair_item ]
-  before_action :set_device_data, only: [ :index, :new, :create, :show ]
+  before_action :set_device_data, only: [ :index, :new, :create, :show, :update ]
   before_action :ensure_repair_not_completed, only: [ :edit, :update, :add_status, :add_repair_item, :remove_repair_item ]
   before_action :ensure_repair_locked_by_current_user, only: [ :edit, :update, :add_status, :add_repair_item, :remove_repair_item ]
 
@@ -86,11 +86,34 @@ class RepairsController < ApplicationController
       if params[:repair][:status_id].present?
         @repair.add_status(params[:repair][:status_id], current_user, params[:repair][:status_notes])
       end
-      flash[:success] = "Repair was successfully updated."
-      redirect_to @repair
+
+      respond_to do |format|
+        format.html do
+          flash[:success] = "Repair was successfully updated."
+          redirect_to @repair
+        end
+        format.turbo_stream do
+          flash.now[:success] = "Repair was successfully updated."
+          render turbo_stream: [
+            turbo_stream.replace("repair_information_#{@repair.id}", partial: "repair_information"),
+            render_turbo_flash
+          ]
+        end
+      end
     else
-      flash.now[:error] = @repair.errors.full_messages.to_sentence + "!"
-      render :show, status: :unprocessable_entity
+      respond_to do |format|
+        format.html do
+          flash.now[:error] = @repair.errors.full_messages.to_sentence + "!"
+          render :show, status: :unprocessable_entity
+        end
+        format.turbo_stream do
+          flash.now[:error] = @repair.errors.full_messages.to_sentence + "!"
+          render turbo_stream: [
+            turbo_stream.replace("repair_information_#{@repair.id}", partial: "repair_information"),
+            render_turbo_flash
+          ]
+        end
+      end
     end
   end
 

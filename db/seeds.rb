@@ -21,7 +21,8 @@ def create_statuses
     { name: "Testing", active: true },
     { name: "Ready for Pickup", active: true },
     { name: "Completed", active: true },
-    { name: "Cancelled", active: false }
+    { name: "Cancelled", active: false },
+    { name: "Re-opened", active: true }
   ])
 end
 

@@ -3,7 +3,7 @@ class RepairsController < ApplicationController
   include TurboStreamRenderable
 
   before_action :set_repair, only: [ :show, :edit, :update, :lock, :unlock, :add_status, :add_repair_item, :remove_repair_item ]
-  before_action :set_device_data, only: [ :index, :new, :create, :show, :update ]
+  before_action :set_device_data, only: [ :index, :new, :create, :show, :update, :reopen ]
   before_action :ensure_repair_not_completed, only: [ :edit, :update, :add_status, :add_repair_item, :remove_repair_item ]
   before_action :ensure_repair_locked_by_current_user, only: [ :edit, :update, :add_status, :add_repair_item, :remove_repair_item ]
 
@@ -116,11 +116,11 @@ class RepairsController < ApplicationController
 
   def unlock
     if @repair.unlock!
-      admin_email = current_user.email_address # Assuming current_user contains the admin's email
+      admin_email = current_user.email_address
       ActionCable.server.broadcast("repair_#{@repair.id}", { action: "unlock", html: render_to_string(partial: "repair_lock", locals: { repair: @repair, unlocked_by_admin: true, admin_email: admin_email }) })
     end
     respond_to do |format|
-      render_repair_lock_stream(@repair.id, { repair: @repair, unlocked_by_admin: true, admin_email: admin_email })
+      format.turbo_stream { render_repair_lock_stream(@repair.id, { repair: @repair, unlocked_by_admin: true, admin_email: admin_email }) }
     end
   end
 
@@ -146,6 +146,18 @@ class RepairsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to repair_path(@repair) }
       format.turbo_stream { render_status_history_stream }
+    end
+  end
+
+  def reopen
+    @repair = Repair.find(params[:id])
+
+    if @repair.completed?
+      @repair.mark_as_reopened(current_user)
+      flash[:success] = "Repair has been re-opened successfully."
+      redirect_to @repair
+    else
+      flash.now[:error] = "Only completed repairs can be re-opened."
     end
   end
 

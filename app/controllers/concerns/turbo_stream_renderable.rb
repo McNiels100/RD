@@ -25,7 +25,7 @@ module TurboStreamRenderable
     ]
   end
 
-  def render_repair_lock_stream(repair_id, locals)
+  def render_repair_lock_stream(repair_id, locals = {})
     render turbo_stream: [
       turbo_stream.replace("repair_#{@repair.id}",
                            partial: "repair_lock",

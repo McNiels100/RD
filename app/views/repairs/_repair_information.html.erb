@@ -46,9 +46,13 @@
         <%= form.text_field :shop_order_number, value: "1155889966", **disable_if_not_editable(@repair) %>
       </div>
     </div>
-    <div class="action_module">
-      <h2>Actions</h2>
+    <div class="button-row flex-container content-center">
       <%= form.submit :Save %>
-    </div>
-  <% end %>
+    <% end %>
+    <% if @repair.completed? %>
+      <%= button_to "Re-open", reopen_repair_path(@repair), method: :patch, data: { turbo_confirm: "Are you sure you want to re-open this repair?" } %>
+    <% end %>
+    <button>Cancel</button>
+    <button>Print</button>
+  </div>
 </div>

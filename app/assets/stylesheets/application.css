@@ -279,6 +279,17 @@ body {
     background-color: #dddddd;
 }
 
+.button-row {
+    margin: 10px;
+
+    input[type="submit"],
+    button {
+        width: auto;
+        padding: 12px 30px;
+        margin: 5px;
+    }
+}
+
 /* TAT module */
 .tat-module {
     margin: 0.67em;

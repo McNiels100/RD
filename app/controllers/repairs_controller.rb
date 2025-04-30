@@ -1,5 +1,6 @@
 class RepairsController < ApplicationController
   include Paginatable
+  include TurboStreamRenderable
 
   before_action :set_repair, only: [ :show, :edit, :update, :lock, :unlock, :add_status, :add_repair_item, :remove_repair_item ]
   before_action :set_device_data, only: [ :index, :new, :create, :show, :update ]
@@ -83,36 +84,23 @@ class RepairsController < ApplicationController
 
   def update
     if @repair.update(repair_params)
+      flash.now[:success] = "Repair was successfully updated."
+
       if params[:repair][:status_id].present?
         @repair.add_status(params[:repair][:status_id], current_user, params[:repair][:status_notes])
       end
 
       respond_to do |format|
-        format.html do
-          flash[:success] = "Repair was successfully updated."
-          redirect_to @repair
-        end
-        format.turbo_stream do
-          flash.now[:success] = "Repair was successfully updated."
-          render turbo_stream: [
-            turbo_stream.replace("repair_information_#{@repair.id}", partial: "repair_information"),
-            render_turbo_flash
-          ]
-        end
+        format.html { redirect_to repair_path(@repair) }
+        format.turbo_stream { render_repair_information_stream }
       end
+
     else
+    flash.now[:error] = @repair.errors.full_messages.to_sentence + "!"
+
       respond_to do |format|
-        format.html do
-          flash.now[:error] = @repair.errors.full_messages.to_sentence + "!"
-          render :show, status: :unprocessable_entity
-        end
-        format.turbo_stream do
-          flash.now[:error] = @repair.errors.full_messages.to_sentence + "!"
-          render turbo_stream: [
-            turbo_stream.replace("repair_information_#{@repair.id}", partial: "repair_information"),
-            render_turbo_flash
-          ]
-        end
+        format.html { render :show, status: :unprocessable_entity }
+        format.turbo_stream { render_repair_information_stream }
       end
     end
   end
@@ -122,9 +110,7 @@ class RepairsController < ApplicationController
       ActionCable.server.broadcast("repair_#{@repair.id}", { action: "lock", html: render_to_string(partial: "repair_lock", locals: { repair: @repair }) })
     end
     respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.replace("repair_#{@repair.id}", partial: "repair_lock", locals: { repair: @repair })
-      end
+      render_repair_lock_stream(@repair.id, { repair: @repair })
     end
   end
 
@@ -134,9 +120,7 @@ class RepairsController < ApplicationController
       ActionCable.server.broadcast("repair_#{@repair.id}", { action: "unlock", html: render_to_string(partial: "repair_lock", locals: { repair: @repair, unlocked_by_admin: true, admin_email: admin_email }) })
     end
     respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.replace("repair_#{@repair.id}", partial: "repair_lock", locals: { repair: @repair, unlocked_by_admin: true, admin_email: admin_email })
-      end
+      render_repair_lock_stream(@repair.id, { repair: @repair, unlocked_by_admin: true, admin_email: admin_email })
     end
   end
 
@@ -161,11 +145,7 @@ class RepairsController < ApplicationController
     end
     respond_to do |format|
       format.html { redirect_to repair_path(@repair) }
-      format.turbo_stream {
-        render turbo_stream: [
-          turbo_stream.replace("status_history_#{@repair.id}", partial: "status_history"),
-          render_turbo_flash        ]
-      }
+      format.turbo_stream { render_status_history_stream }
     end
   end
 
@@ -290,19 +270,5 @@ class RepairsController < ApplicationController
       flash[:error] = "You cannot edit this repair because it is not locked by you."
       redirect_to @repair
     end
-  end
-
-  def render_turbo_flash
-    turbo_stream.replace("flash", partial: "layouts/flash")
-  end
-
-  def render_repair_items_stream
-    render turbo_stream: [
-      turbo_stream.replace("repair_parts_#{@repair.id}",
-                           partial: "parts",
-                           locals: { repair: @repair,
-                                     repair_items: @repair.repair_items.order(created_at: :desc) }),
-      render_turbo_flash
-    ]
   end
 end

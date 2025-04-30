@@ -3,6 +3,7 @@ class RepairsController < ApplicationController
 
   before_action :set_repair, only: [ :show, :edit, :update, :lock, :unlock, :add_status, :add_repair_item, :remove_repair_item ]
   before_action :set_device_data, only: [ :index, :new, :create, :show ]
+  before_action :ensure_repair_not_completed, only: [ :edit, :update, :add_status, :add_repair_item, :remove_repair_item ]
   before_action :ensure_repair_locked_by_current_user, only: [ :edit, :update, :add_status, :add_repair_item, :remove_repair_item ]
 
   def index
@@ -123,8 +124,15 @@ class RepairsController < ApplicationController
     user = current_user
 
     if status_id.present?
-      @repair.add_status(status_id, user, notes)
-      flash.now[:success] = "Status updated successfully."
+      status = Status.find(status_id)
+
+      if status.name == "Completed"
+        @repair.mark_as_completed(user, notes)
+        flash.now[:success] = "Repair marked as completed. All parts have been marked as used."
+      else
+        @repair.add_status(status_id, user, notes)
+        flash.now[:success] = "Status updated successfully."
+      end
     else
       flash.now[:error] = "Please select a status."
     end
@@ -241,6 +249,13 @@ class RepairsController < ApplicationController
     @devices = Device.all
     @brands = @devices.pluck(:brand).uniq
     @device_types = @devices.pluck(:device_type).uniq
+  end
+
+  def ensure_repair_not_completed
+    if @repair.completed?
+      flash[:error] = "This repair is completed and cannot be edited."
+      redirect_to @repair
+    end
   end
 
   def repair_params

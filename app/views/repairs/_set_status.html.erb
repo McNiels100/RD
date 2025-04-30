@@ -1,13 +1,17 @@
 <div class="status-module">
-  <%= form_with(model: @repair, url: add_status_repair_path(@repair), method: :post) do |f| %>
+  <%= form_with(model: @repair, url: add_status_repair_path(@repair), method: :post) do |form| %>
     <div class="form-row">
       <div class="field">
-        <%= f.collection_select :status_id, Status.active, :id, :name, include_blank: "Select Status" %>
+        <%= form.collection_select :status_id, Status.active, :id, :name,
+                                { include_blank: "Select Status" },
+                                **disable_if_not_editable(@repair) %>
       </div>
       <div class="field">
-        <%= f.text_area :status_notes, placeholder: "Input note (optional)." %>
+        <%= form.text_area :status_notes,
+                        placeholder: "Input note (optional).",
+                        **disable_if_not_editable(@repair) %>
       </div>
-      <%= f.submit "Update Status", class: "btn status-color", data: { disable_with: "Updating..." } %>
+      <%= form.submit "Update Status", class: "btn status-color", data: { disable_with: "Updating..." } %>
     </div>
   <% end %>
 </div>

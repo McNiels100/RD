@@ -53,11 +53,16 @@ module RepairsHelper
     device
   end
 
-  def disable_if_not_locked_by_current_user(repair)
-    if repair.locked_by.nil? || repair.locked_by?(current_user.email_address)
-      {} # No disabled attribute
+  def disable_if_not_editable(repair)
+    if repair.completed?
+      # Always disable inputs if repair is completed
+      { disabled: true }
+    elsif repair.locked_by.nil? || repair.locked_by?(current_user.email_address)
+      # No disabled attribute if not locked or locked by current user
+      {}
     else
-      { disabled: true } # Add disabled attribute
+      # Disable inputs if locked by another user
+      { disabled: true }
     end
   end
 

@@ -23,6 +23,30 @@ class Repair < ApplicationRecord
     repair_statuses.create!(status: status, user: user, notes: notes)
   end
 
+  # Checks if the repair is completed
+  def completed?
+    current_status&.name == "Completed"
+  end
+
+  # Closes the repair
+  def mark_as_completed(user, notes = nil)
+    ActiveRecord::Base.transaction do
+      # Find the "Completed" status
+      completed_status = Status.find_by(name: "Completed")
+
+      # Add the completed status
+      add_status(completed_status.id, user, notes)
+
+      # Update all associated inventory items to "used"
+      repair_items.each do |repair_item|
+        repair_item.inventory.update!(status: :used)
+      end
+
+      # Unlock the repair if it was locked
+      unlock! if locked?
+    end
+  end
+
   # Add a new RepairItem to the repair
   def add_repair_item(inventory_id)
       inventory = Inventory.find(inventory_id)

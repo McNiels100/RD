@@ -135,7 +135,7 @@ class RepairsController < ApplicationController
 
       if status.name == "Completed"
         @repair.mark_as_completed(user, notes)
-        flash.now[:success] = "Repair marked as completed. All parts have been marked as used."
+        # flash.now[:success] = "Repair marked as completed. All parts have been marked as used."
       else
         @repair.add_status(status_id, user, notes)
         flash.now[:success] = "Status updated successfully."
@@ -145,7 +145,7 @@ class RepairsController < ApplicationController
     end
     respond_to do |format|
       format.html { redirect_to repair_path(@repair) }
-      format.turbo_stream { render_status_history_stream }
+      # format.turbo_stream { render_status_history_stream }
     end
   end
 

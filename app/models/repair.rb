@@ -47,6 +47,22 @@ class Repair < ApplicationRecord
     end
   end
 
+  # Re-open repair
+  def mark_as_reopened(user, notes = nil)
+    ActiveRecord::Base.transaction do
+      # Find the "Open" status
+      open_status = Status.find_by(name: "Re-opened")
+
+      # Add the open status
+      add_status(open_status.id, user, notes)
+
+      # Update all associated inventory items to "reopened"
+      repair_items.each do |repair_item|
+        repair_item.inventory.update!(status: :reopened)
+      end
+    end
+  end
+
   # Add a new RepairItem to the repair
   def add_repair_item(inventory_id)
       inventory = Inventory.find(inventory_id)

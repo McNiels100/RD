@@ -47,6 +47,10 @@ body {
     align-items: flex-end;
 }
 
+.align-items-center {
+    align-items: center;
+}
+
 /* Index table */
 .index-table {
     font-family: arial, sans-serif;
@@ -273,6 +277,17 @@ body {
 
 .info-module:nth-child(even) {
     background-color: #dddddd;
+}
+
+.button-row {
+    margin: 10px;
+
+    input[type="submit"],
+    button {
+        width: auto;
+        padding: 12px 30px;
+        margin: 5px;
+    }
 }
 
 /* TAT module */

@@ -1,5 +1,9 @@
 <% content_for :title, @repair.order_number %>
 <%= render partial: "repair_lock", locals: { repair: @repair, unlocked_by_admin: false, locked_by_current_user: @repair_locked_by_current_user } %>
+<div class="flex-container content-space-between align-items-center">
+  <h1>Repair: <%= @repair.order_number %></h1>
+  <%= render "tat_status" %>
+</div>
 <%= render "repair_information" %>
 <%= render "set_status" %>
 <%= render "add_repair_items" %>

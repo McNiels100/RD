@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       post :add_repair_item
       delete :remove_repair_item
       get :load_inventory
+      patch :reopen
     end
   end
 

@@ -7,6 +7,7 @@ class Inventory < ApplicationRecord
     in_stock: 0,
     allocated_repair: 1,
     returned_to_stock: 2,
-    used: 3
+    used: 3,
+    reopened: 4
   }
 end

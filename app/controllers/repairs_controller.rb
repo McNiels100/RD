@@ -1,10 +1,12 @@
 class RepairsController < ApplicationController
   include Paginatable
+  include TurboStreamRenderable
 
   before_action :set_repair, only: [ :show, :edit, :update, :lock, :unlock, :add_status, :add_repair_item, :remove_repair_item ]
-  before_action :set_device_data, only: [ :index, :new, :create, :show ]
+  before_action :set_device_data, only: [ :index, :new, :create, :show, :update, :reopen ]
   before_action :ensure_repair_not_completed, only: [ :edit, :update, :add_status, :add_repair_item, :remove_repair_item ]
   before_action :ensure_repair_locked_by_current_user, only: [ :edit, :update, :add_status, :add_repair_item, :remove_repair_item ]
+  before_action :require_admin_or_leader, only: [ :reopen ]
 
   def index
     @repairs = Repair.all
@@ -83,14 +85,24 @@ class RepairsController < ApplicationController
 
   def update
     if @repair.update(repair_params)
+      flash.now[:success] = "Repair was successfully updated."
+
       if params[:repair][:status_id].present?
         @repair.add_status(params[:repair][:status_id], current_user, params[:repair][:status_notes])
       end
-      flash[:success] = "Repair was successfully updated."
-      redirect_to @repair
+
+      respond_to do |format|
+        format.html { redirect_to repair_path(@repair) }
+        format.turbo_stream { render_repair_information_stream }
+      end
+
     else
-      flash.now[:error] = @repair.errors.full_messages.to_sentence + "!"
-      render :show, status: :unprocessable_entity
+    flash.now[:error] = @repair.errors.full_messages.to_sentence + "!"
+
+      respond_to do |format|
+        format.html { render :show, status: :unprocessable_entity }
+        format.turbo_stream { render_repair_information_stream }
+      end
     end
   end
 
@@ -99,21 +111,17 @@ class RepairsController < ApplicationController
       ActionCable.server.broadcast("repair_#{@repair.id}", { action: "lock", html: render_to_string(partial: "repair_lock", locals: { repair: @repair }) })
     end
     respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.replace("repair_#{@repair.id}", partial: "repair_lock", locals: { repair: @repair })
-      end
+      render_repair_lock_stream(@repair.id, { repair: @repair })
     end
   end
 
   def unlock
     if @repair.unlock!
-      admin_email = current_user.email_address # Assuming current_user contains the admin's email
+      admin_email = current_user.email_address
       ActionCable.server.broadcast("repair_#{@repair.id}", { action: "unlock", html: render_to_string(partial: "repair_lock", locals: { repair: @repair, unlocked_by_admin: true, admin_email: admin_email }) })
     end
     respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.replace("repair_#{@repair.id}", partial: "repair_lock", locals: { repair: @repair, unlocked_by_admin: true, admin_email: admin_email })
-      end
+      format.turbo_stream { render_repair_lock_stream(@repair.id, { repair: @repair, unlocked_by_admin: true, admin_email: admin_email }) }
     end
   end
 
@@ -128,7 +136,7 @@ class RepairsController < ApplicationController
 
       if status.name == "Completed"
         @repair.mark_as_completed(user, notes)
-        flash.now[:success] = "Repair marked as completed. All parts have been marked as used."
+        flash[:success] = "Repair marked as completed. All parts have been marked as used."
       else
         @repair.add_status(status_id, user, notes)
         flash.now[:success] = "Status updated successfully."
@@ -138,11 +146,19 @@ class RepairsController < ApplicationController
     end
     respond_to do |format|
       format.html { redirect_to repair_path(@repair) }
-      format.turbo_stream {
-        render turbo_stream: [
-          turbo_stream.replace("status_history_#{@repair.id}", partial: "status_history"),
-          render_turbo_flash        ]
-      }
+      # format.turbo_stream { render_status_history_stream }
+    end
+  end
+
+  def reopen
+    @repair = Repair.find(params[:id])
+
+    if @repair.completed?
+      @repair.mark_as_reopened(current_user)
+      flash[:success] = "Repair has been re-opened successfully."
+      redirect_to @repair
+    else
+      flash.now[:error] = "Only completed repairs can be re-opened."
     end
   end
 
@@ -267,19 +283,5 @@ class RepairsController < ApplicationController
       flash[:error] = "You cannot edit this repair because it is not locked by you."
       redirect_to @repair
     end
-  end
-
-  def render_turbo_flash
-    turbo_stream.replace("flash", partial: "layouts/flash")
-  end
-
-  def render_repair_items_stream
-    render turbo_stream: [
-      turbo_stream.replace("repair_parts_#{@repair.id}",
-                           partial: "parts",
-                           locals: { repair: @repair,
-                                     repair_items: @repair.repair_items.order(created_at: :desc) }),
-      render_turbo_flash
-    ]
   end
 end

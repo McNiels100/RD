@@ -12,25 +12,9 @@ class RepairsController < ApplicationController
   def index
     @repairs = Repair.all
     @devices = Device.all
-    @brands = @devices.pluck(:brand).uniq
-    @device_types = @devices.pluck(:device_type).uniq
 
-    # Filter search by id
-    @repairs = @repairs.where(order_number: "RD-" + params[:query]) if params[:search_in]=="order_number"
-
-    # Filter search by phone
-    @repairs = @repairs.where(phone_number: params[:query]) if params[:search_in]=="phone_number"
-
-    # Filter search by email
-    @repairs = @repairs.where(email: params[:query]) if params[:search_in]=="email"
-
-    # Filter search by IMEI
-    @repairs = @repairs.where(imei: params[:query]) if params[:search_in]=="imei"
-
-    # Filter search by serial
-    @repairs = @repairs.where(serial: params[:query]) if params[:search_in]=="serial"
-
-    # Apply filters using methods from the concern
+    # Filters from filterable.rb concern
+    @repairs = filter_by_search(@repairs)
     @repairs = filter_by_brands(@repairs)
     @repairs = filter_by_device_types(@repairs)
     @repairs = filter_by_repair_statuses(@repairs)

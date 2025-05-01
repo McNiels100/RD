@@ -1,6 +1,28 @@
 module Filterable
   extend ActiveSupport::Concern
 
+  def filter_by_search(collection)
+    return collection unless params[:query].present? && params[:search_in].present?
+
+    search_term = params[:query]
+    search_field = params[:search_in]
+
+    case search_field
+    when "order_number"
+      collection.where(order_number: "RD-" + search_term)
+    when "phone_number"
+      collection.where(phone_number: search_term)
+    when "email"
+      collection.where(email: search_term)
+    when "imei"
+      collection.where(imei: search_term)
+    when "serial"
+      collection.where(serial: search_term)
+    else
+      collection
+    end
+  end
+
   def filter_by_brands(collection)
     return collection unless params[:brands].present?
     collection.where(brand: params[:brands])

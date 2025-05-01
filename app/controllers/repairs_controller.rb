@@ -6,6 +6,7 @@ class RepairsController < ApplicationController
   before_action :set_device_data, only: [ :index, :new, :create, :show, :update, :reopen ]
   before_action :ensure_repair_not_completed, only: [ :edit, :update, :add_status, :add_repair_item, :remove_repair_item ]
   before_action :ensure_repair_locked_by_current_user, only: [ :edit, :update, :add_status, :add_repair_item, :remove_repair_item ]
+  before_action :require_admin_or_leader, only: [ :reopen ]
 
   def index
     @repairs = Repair.all
@@ -135,7 +136,7 @@ class RepairsController < ApplicationController
 
       if status.name == "Completed"
         @repair.mark_as_completed(user, notes)
-        # flash.now[:success] = "Repair marked as completed. All parts have been marked as used."
+        flash[:success] = "Repair marked as completed. All parts have been marked as used."
       else
         @repair.add_status(status_id, user, notes)
         flash.now[:success] = "Status updated successfully."

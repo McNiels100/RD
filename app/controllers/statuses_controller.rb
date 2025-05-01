@@ -1,7 +1,12 @@
 class StatusesController < ApplicationController
+  include Filterable
   before_action :require_admin
+
   def index
     @statuses = Status.all
+
+    @statuses = filter_by_status_name(@statuses)
+    @statuses = filter_by_status_active(@statuses)
   end
 
   def new

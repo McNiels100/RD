@@ -1,3 +1,9 @@
 <h1>Statuses</h1>
-<%= link_to "New status", new_status_path, class: "btn new-color" %>
+<div class="flex-container content-space-between align-items-end">
+  <%= link_to "New status", new_status_path, class: "btn new-color" %>
+  <%= render 'layouts/filter',
+             path: statuses_path,
+             status_name_filter: true,
+             status_active_filter: true %>
+</div>
 <%= render "statuses_table" %>

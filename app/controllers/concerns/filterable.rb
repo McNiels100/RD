@@ -1,0 +1,42 @@
+module Filterable
+  extend ActiveSupport::Concern
+
+  def filter_by_brands(collection)
+    return collection unless params[:brands].present?
+    collection.where(brand: params[:brands])
+  end
+
+  def filter_by_device_types(collection)
+    return collection unless params[:device_types].present?
+    collection.where(device_type: params[:device_types])
+  end
+
+  def filter_by_repair_statuses(collection)
+    return collection unless params[:repair_statuses].present?
+    status_ids = Status.active.where(name: params[:repair_statuses]).pluck(:id)
+    collection.joins(:latest_status).where(statuses: { id: status_ids })
+  end
+
+  def filter_by_tat_statuses(collection)
+    return collection unless params[:tat_statuses].present?
+    filtered_items = []
+    collection.find_each do |item|
+      device = Device.find_by(brand: item.brand, device_type: item.device_type)
+      if device
+        status = helpers.determine_tat_status(device, item.created_at)
+        filtered_items << item.id if params[:tat_statuses].include?(status)
+      end
+    end
+    collection.where(id: filtered_items)
+  end
+
+  def filter_by_status_name(collection)
+    return collection unless params[:status_name].present?
+    collection.where("LOWER(name) LIKE LOWER(?)", "%#{params[:status_name]}%")
+  end
+
+  def filter_by_status_active(collection)
+    return collection unless params[:status_active].present? && [ "true", "false" ].include?(params[:status_active])
+    collection.where(active: params[:status_active] == "true")
+  end
+end

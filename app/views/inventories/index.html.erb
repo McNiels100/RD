@@ -1,5 +1,12 @@
 <h1>Inventories</h1>
-<%= link_to "New inventory", new_inventory_path, class: "btn new-color" %>
+<div class="flex-container content-space-between align-items-end">
+  <%= link_to "New inventory", new_inventory_path, class: "btn new-color" %>
+  <%= render 'layouts/filter',
+             path: inventories_path,
+             brands: @brands,
+             device_types: @device_types,
+             inventory_statuses: Inventory.distinct.pluck(:status) %>
+</div>
 <%= render 'inventories_table' %>
 <%= render 'layouts/pagination', page: @page, total_pages: @total_pages,
            per_page: @per_page, total_items: @total_items %>

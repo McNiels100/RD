@@ -1,6 +1,11 @@
-<div class="flex-container content-space-between align-items-end">
+<div class="flex-container content-space-between align-items-center">
   <h1>All open repairs</h1>
-  <%= render 'filter' %>
+  <%= render 'layouts/filter',
+             path: repairs_path,
+             brands: @brands,
+             device_types: @device_types,
+             tat_statuses: RepairsHelper::TAT_STATUSES,
+             repair_statuses: Status.active %>
 </div>
 <%= render 'backlog' %>
 <%= render 'layouts/pagination', page: @page, total_pages: @total_pages,

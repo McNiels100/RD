@@ -1,10 +1,24 @@
 class InventoriesController < ApplicationController
   include Paginatable
+  include Filterable
+
 
   before_action :require_admin_or_leader
 
   def index
     @inventories = Inventory.all
+    @devices = Device.all
+    @brands = @devices.pluck(:brand).uniq
+    @device_types = @devices.pluck(:device_type).uniq
+
+    # Apply the shared filters
+    @inventories = filter_by_brands(@inventories)
+    @inventories = filter_by_device_types(@inventories)
+
+    # Apply inventory-specific filters
+    if params[:inventory_statuses].present?
+      @inventories = @inventories.where(status: params[:inventory_statuses])
+    end
 
     # Paginate inventories
     @inventories = paginate(@inventories)

@@ -61,4 +61,9 @@ module Filterable
     return collection unless params[:status_active].present? && [ "true", "false" ].include?(params[:status_active])
     collection.where(active: params[:status_active] == "true")
   end
+
+  def filter_by_user_role(collection)
+    return collection unless params[:user_role].present?
+    collection.where(role: params[:user_role])
+  end
 end

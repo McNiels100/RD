@@ -77,6 +77,27 @@
             </div>
           </div>
         <% end %>
+        <% if local_assigns[:user_role_filter] %>
+          <div class="field-item">
+            <h2>User Role</h2>
+            <div>
+              <%= form.radio_button :user_role, "", checked: params[:user_role].nil? || params[:user_role].empty? %>
+              <%= form.label :user_role_, "All" %>
+            </div>
+            <div>
+              <%= form.radio_button :user_role, "admin", checked: params[:user_role] == "admin" %>
+              <%= form.label :user_role_admin, "Admin" %>
+            </div>
+            <div>
+              <%= form.radio_button :user_role, "leader", checked: params[:user_role] == "leader" %>
+              <%= form.label :user_role_leader, "Leader" %>
+            </div>
+            <div>
+              <%= form.radio_button :user_role, "technician", checked: params[:user_role] == "technician" %>
+              <%= form.label :user_role_technician, "Technician" %>
+            </div>
+          </div>
+        <% end %>
         <!-- Allow for additional custom fields -->
         <%= yield if block_given? %>
         <div class="actions">

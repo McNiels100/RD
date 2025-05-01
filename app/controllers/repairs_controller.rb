@@ -1,4 +1,5 @@
 class RepairsController < ApplicationController
+  include SetDeviceData
   include Paginatable
   include TurboStreamRenderable
   include Filterable
@@ -225,12 +226,6 @@ class RepairsController < ApplicationController
   private
   def set_repair
     @repair = Repair.find(params[:id])
-  end
-
-  def set_device_data
-    @devices = Device.all
-    @brands = @devices.pluck(:brand).uniq
-    @device_types = @devices.pluck(:device_type).uniq
   end
 
   def ensure_repair_not_completed

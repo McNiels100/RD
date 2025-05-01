@@ -1,14 +1,13 @@
 class InventoriesController < ApplicationController
+  include SetDeviceData
   include Paginatable
   include Filterable
 
   before_action :require_admin_or_leader
+  before_action :set_device_data, only: [ :index ]
 
   def index
     @inventories = Inventory.all
-    @devices = Device.all
-    @brands = @devices.pluck(:brand).uniq # Can be removed with before_action :set_device_data
-    @device_types = @devices.pluck(:device_type).uniq # Can be removed with before_action :set_device_data
 
     # Apply the shared filters
     @inventories = filter_by_brands(@inventories)

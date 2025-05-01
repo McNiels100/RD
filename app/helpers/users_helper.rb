@@ -13,7 +13,8 @@ module UsersHelper
 
   def repair_actions(user)
     buttons = []
-    buttons << button_to("Re-open", reopen_repair_path(@repair), method: :patch, data: { turbo_confirm: "Are you sure you want to re-open this repair?" }) if (user.admin? || user.leader?) && @repair.completed?
+    # Turbo_confirm does not work for some reason. Thus onclick used instead.
+    buttons << button_to("Re-open", reopen_repair_path(@repair), method: :patch, onclick: "return confirm('Are you sure you want to re-open this repair?');") if (user.admin? || user.leader?) && @repair.completed?
     buttons.join.html_safe
   end
 end

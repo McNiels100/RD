@@ -8,10 +8,12 @@ class InventoriesController < ApplicationController
 
   def index
     @inventories = Inventory.all
+    @locations = @inventories.distinct.pluck(:location).sort
 
     # Apply the shared filters
     @inventories = filter_by_brands(@inventories)
     @inventories = filter_by_device_types(@inventories)
+    @inventories = filter_by_locations(@inventories)
 
     # Apply inventory-specific filters
     if params[:inventory_statuses].present?

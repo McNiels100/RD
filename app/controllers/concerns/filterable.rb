@@ -66,4 +66,9 @@ module Filterable
     return collection unless params[:user_role].present?
     collection.where(role: params[:user_role])
   end
+
+  def filter_by_locations(collection)
+    return collection unless params[:locations].present?
+    collection.where(location: params[:locations])
+  end
 end

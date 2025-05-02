@@ -3,9 +3,10 @@
   <%= link_to "New inventory", new_inventory_path, class: "btn new-color" %>
   <%= render 'layouts/filter',
              path: inventories_path,
+             location_filter: true,
              brands: @brands,
-             device_types: @device_types,
-             inventory_statuses: Inventory.distinct.pluck(:status) %>
+             inventory_statuses: Inventory.distinct.pluck(:status),
+             locations: @locations %>
 </div>
 <%= render 'inventories_table' %>
 <%= render 'layouts/pagination', page: @page, total_pages: @total_pages,

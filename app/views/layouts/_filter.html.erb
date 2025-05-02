@@ -98,6 +98,16 @@
             </div>
           </div>
         <% end %>
+        <% if local_assigns[:location_filter] %>
+          <div class="field-item">
+            <h2>Location</h2>
+            <% Array(locations).each do |location| %>
+              <% location_id = "locations_#{location.parameterize}" %>
+              <%= form.checkbox :locations, { multiple: true, checked: checkbox_checked?(:locations, location), id: location_id }, location, nil %>
+              <%= form.label location_id, location %>
+            <% end %>
+          </div>
+        <% end %>
         <!-- Allow for additional custom fields -->
         <%= yield if block_given? %>
         <div class="actions">

@@ -1,7 +1,48 @@
 require "test_helper"
 
-# Create
 class RepairsControllerTest < ActionDispatch::IntegrationTest
+  # View
+  test "should load pages if user is logged in" do
+    # Get fixtures
+    user = users(:one)
+    repair = repairs(:one)
+
+    # Pre-check if fixtures exist
+    assert_not_nil user, "User fixture :one could not be found. Check test/fixtures/users.yml"
+    assert_not_nil repair, "Repair fixture :one could not be found. Check test/fixtures/repairs.yml"
+
+    # Log the user in using the helper (this sets the session cookies)
+    log_in_as(user)
+
+    # Make page requests
+    get repairs_url
+    assert_response :success, "Index page did not load successfully after login"
+
+    get new_repair_url
+    assert_response :success, "New page did not load successfully after login"
+
+    get repair_url(repairs(:one))
+    assert_response :success, "Show page did not load successfully after login"
+  end
+
+  test "should redirect away from pages if user is not logged in" do
+      repair = repairs(:one) # Need a repair object for the show URL
+      assert_not_nil repair, "Repair fixture :one could not be found."
+
+      get repairs_url
+      assert_response :redirect
+      assert_redirected_to new_session_url, "Index page did not redirect to login page. Page is viewed without authentication"
+
+      get new_repair_url
+      assert_response :redirect
+      assert_redirected_to new_session_url, "New page did not redirect to login page. Page is viewed without authentication"
+
+      get repair_url(repair)
+      assert_response :redirect
+      assert_redirected_to new_session_url, "Show page did not redirect to login page. Page is viewed without authentication"
+    end
+
+  # Create
   test "should not save repair without info" do
     repair = Repair.new
     assert_not repair.save, "Saved repair without info"

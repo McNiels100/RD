@@ -18,37 +18,37 @@
             <% end %>
           </div>
         <% end %>
-        <% if local_assigns[:device_types].present? %>
+        <% if local_assigns[:device_types_filter] %>
           <div class="field-item">
             <h2>Device types</h2>
-            <% device_types.each do |type| %>
+            <% Array(device_types).each do |type| %>
               <%= form.checkbox :device_types, { multiple: true, checked: checkbox_checked?(:device_types, type) }, type, nil %>
               <%= form.label "device_types_#{type.parameterize}", type %>
             <% end %>
           </div>
         <% end %>
-        <% if local_assigns[:tat_statuses].present? %>
+        <% if local_assigns[:tat_statuses_filter] %>
           <div class="field-item">
             <h2>TAT</h2>
-            <% tat_statuses.each do |status| %>
+            <% Array(tat_statuses).each do |status| %>
               <%= form.checkbox :tat_statuses, { multiple: true, checked: checkbox_checked?(:tat_statuses, status[:name]), id: status[:id] }, status[:name], nil %>
               <%= form.label status[:id], status[:name] %>
             <% end %>
           </div>
         <% end %>
-        <% if local_assigns[:repair_statuses].present? %>
+        <% if local_assigns[:repair_statuses_filter] %>
           <div class="field-item">
             <h2>Repair statuses</h2>
-            <% repair_statuses.each do |repair_status| %>
+            <% Array(repair_statuses).each do |repair_status| %>
               <%= form.checkbox :repair_statuses, { multiple: true, checked: checkbox_checked?(:repair_statuses, repair_status.name), id: repair_status.id }, repair_status.name, nil %>
               <%= form.label repair_status.id, repair_status.name %>
             <% end %>
           </div>
         <% end %>
-        <% if local_assigns[:inventory_statuses].present? %>
+        <% if local_assigns[:inventory_statuses_filter] %>
           <div class="field-item">
             <h2>Inventory Status</h2>
-            <% inventory_statuses.each do |status| %>
+            <% Array(inventory_statuses).each do |status| %>
               <%= form.checkbox :inventory_statuses, { multiple: true, checked: checkbox_checked?(:inventory_statuses, status) }, status, nil %>
               <%= form.label "inventory_statuses_#{status.parameterize}", status %>
             <% end %>

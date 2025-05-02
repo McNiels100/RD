@@ -3,6 +3,7 @@
   <%= link_to "New inventory", new_inventory_path, class: "btn new-color" %>
   <%= render 'layouts/filter',
              path: inventories_path,
+             inventory_statuses_filter: true,
              location_filter: true,
              brands: @brands,
              inventory_statuses: Inventory.distinct.pluck(:status),

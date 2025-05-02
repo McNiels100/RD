@@ -2,6 +2,9 @@
   <h1>All open repairs</h1>
   <%= render 'layouts/filter',
              path: repairs_path,
+             device_types_filter: true,
+             tat_statuses_filter: true,
+             repair_statuses_filter: true,
              brands: @brands,
              device_types: @device_types,
              tat_statuses: RepairsHelper::TAT_STATUSES,

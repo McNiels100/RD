@@ -1,0 +1,119 @@
+<div data-controller="toggle" data-toggle-hidden-class="hidden">
+  <button type="button"
+          class="btn new-color"
+          data-action="click->toggle#toggle">
+    Filter
+  </button>
+  <div class="modal hidden"
+       data-toggle-target="toggleable">
+    <%= form_with url: path, method: :get, data: { action: "submit->toggle#toggle" } do |form| %>
+      <div class="field">
+        <span class="close-btn" data-action="click->toggle#toggle"><i class="fa fa-close"></i></span>
+        <% if local_assigns[:brands].present? %>
+          <div class="field-item">
+            <h2>Brands</h2>
+            <% brands.each do |brand| %>
+              <%= form.checkbox :brands, { multiple: true, checked: checkbox_checked?(:brands, brand) }, brand, nil %>
+              <%= form.label "brands_#{brand.parameterize}", brand %>
+            <% end %>
+          </div>
+        <% end %>
+        <% if local_assigns[:device_types_filter] %>
+          <div class="field-item">
+            <h2>Device types</h2>
+            <% Array(device_types).each do |type| %>
+              <%= form.checkbox :device_types, { multiple: true, checked: checkbox_checked?(:device_types, type) }, type, nil %>
+              <%= form.label "device_types_#{type.parameterize}", type %>
+            <% end %>
+          </div>
+        <% end %>
+        <% if local_assigns[:tat_statuses_filter] %>
+          <div class="field-item">
+            <h2>TAT</h2>
+            <% Array(tat_statuses).each do |status| %>
+              <%= form.checkbox :tat_statuses, { multiple: true, checked: checkbox_checked?(:tat_statuses, status[:name]), id: status[:id] }, status[:name], nil %>
+              <%= form.label status[:id], status[:name] %>
+            <% end %>
+          </div>
+        <% end %>
+        <% if local_assigns[:repair_statuses_filter] %>
+          <div class="field-item">
+            <h2>Repair statuses</h2>
+            <% Array(repair_statuses).each do |repair_status| %>
+              <%= form.checkbox :repair_statuses, { multiple: true, checked: checkbox_checked?(:repair_statuses, repair_status.name), id: repair_status.id }, repair_status.name, nil %>
+              <%= form.label repair_status.id, repair_status.name %>
+            <% end %>
+          </div>
+        <% end %>
+        <% if local_assigns[:inventory_statuses_filter] %>
+          <div class="field-item">
+            <h2>Inventory Status</h2>
+            <% Array(inventory_statuses).each do |status| %>
+              <%= form.checkbox :inventory_statuses, { multiple: true, checked: checkbox_checked?(:inventory_statuses, status) }, status, nil %>
+              <%= form.label "inventory_statuses_#{status.parameterize}", status %>
+            <% end %>
+          </div>
+        <% end %>
+        <% if local_assigns[:status_name_filter] %>
+          <div class="field-item">
+            <h2>Status Name</h2>
+            <%= form.text_field :status_name, value: params[:status_name], placeholder: "Filter by name", class: "form-control" %>
+          </div>
+        <% end %>
+        <% if local_assigns[:status_active_filter] %>
+          <div class="field-item">
+            <h2>Status</h2>
+            <div>
+              <%= form.radio_button :status_active, "", checked: params[:status_active].nil? || params[:status_active].empty? %>
+              <%= form.label :status_active_, "All" %>
+            </div>
+            <div>
+              <%= form.radio_button :status_active, "true", checked: params[:status_active] == "true" %>
+              <%= form.label :status_active_true, "Active" %>
+            </div>
+            <div>
+              <%= form.radio_button :status_active, "false", checked: params[:status_active] == "false" %>
+              <%= form.label :status_active_false, "Inactive" %>
+            </div>
+          </div>
+        <% end %>
+        <% if local_assigns[:user_role_filter] %>
+          <div class="field-item">
+            <h2>User Role</h2>
+            <div>
+              <%= form.radio_button :user_role, "", checked: params[:user_role].nil? || params[:user_role].empty? %>
+              <%= form.label :user_role_, "All" %>
+            </div>
+            <div>
+              <%= form.radio_button :user_role, "admin", checked: params[:user_role] == "admin" %>
+              <%= form.label :user_role_admin, "Admin" %>
+            </div>
+            <div>
+              <%= form.radio_button :user_role, "leader", checked: params[:user_role] == "leader" %>
+              <%= form.label :user_role_leader, "Leader" %>
+            </div>
+            <div>
+              <%= form.radio_button :user_role, "technician", checked: params[:user_role] == "technician" %>
+              <%= form.label :user_role_technician, "Technician" %>
+            </div>
+          </div>
+        <% end %>
+        <% if local_assigns[:location_filter] %>
+          <div class="field-item">
+            <h2>Location</h2>
+            <% Array(locations).each do |location| %>
+              <% location_id = "locations_#{location.parameterize}" %>
+              <%= form.checkbox :locations, { multiple: true, checked: checkbox_checked?(:locations, location), id: location_id }, location, nil %>
+              <%= form.label location_id, location %>
+            <% end %>
+          </div>
+        <% end %>
+        <!-- Allow for additional custom fields -->
+        <%= yield if block_given? %>
+        <div class="actions">
+          <%= form.submit "Apply", class: "btn new-color" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

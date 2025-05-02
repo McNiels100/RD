@@ -1,6 +1,8 @@
 class RepairsController < ApplicationController
+  include SetDeviceData
   include Paginatable
   include TurboStreamRenderable
+  include Filterable
 
   before_action :set_repair, only: [ :show, :edit, :update, :lock, :unlock, :add_status, :add_repair_item, :remove_repair_item ]
   before_action :set_device_data, only: [ :index, :new, :create, :show, :update, :reopen ]
@@ -12,47 +14,12 @@ class RepairsController < ApplicationController
     @repairs = Repair.all
     @devices = Device.all
 
-    # Filter search by id
-    @repairs = @repairs.where(order_number: "RD-" + params[:query]) if params[:search_in]=="order_number"
-
-    # Filter search by phone
-    @repairs = @repairs.where(phone_number: params[:query]) if params[:search_in]=="phone_number"
-
-    # Filter search by email
-    @repairs = @repairs.where(email: params[:query]) if params[:search_in]=="email"
-
-    # Filter search by IMEI
-    @repairs = @repairs.where(imei: params[:query]) if params[:search_in]=="imei"
-
-    # Filter search by serial
-    @repairs = @repairs.where(serial: params[:query]) if params[:search_in]=="serial"
-
-    # Filter by selected brands
-    @repairs = @repairs.where(brand: params[:brands]) if params[:brands].present?
-
-    # Filter by device type
-    if params[:device_types].present?
-      @repairs = @repairs.where(device_type: params[:device_types])
-    end
-
-    # Filter by repair statuses
-    if params[:repair_statuses].present?
-      status_ids = Status.active.where(name: params[:repair_statuses]).pluck(:id)
-      @repairs = @repairs.joins(:latest_status).where(statuses: { id: status_ids })
-    end
-
-    # Filter by TAT status
-    if params[:tat_statuses].present?
-      filtered_repairs = []
-      @repairs.find_each do |repair|
-        device = Device.find_by(brand: repair.brand, device_type: repair.device_type)
-        if device
-          status = helpers.determine_tat_status(device, repair.created_at)
-          filtered_repairs << repair.id if params[:tat_statuses].include?(status)
-        end
-      end
-      @repairs = Repair.where(id: filtered_repairs)
-    end # TODO can the filters be a concern and reused in inventories?
+    # Filters from filterable.rb concern
+    @repairs = filter_by_search(@repairs)
+    @repairs = filter_by_brands(@repairs)
+    @repairs = filter_by_device_types(@repairs)
+    @repairs = filter_by_repair_statuses(@repairs)
+    @repairs = filter_by_tat_statuses(@repairs)
 
     # Paginate the filtered repairs
     @repairs = paginate(@repairs)
@@ -259,12 +226,6 @@ class RepairsController < ApplicationController
   private
   def set_repair
     @repair = Repair.find(params[:id])
-  end
-
-  def set_device_data
-    @devices = Device.all
-    @brands = @devices.pluck(:brand).uniq
-    @device_types = @devices.pluck(:device_type).uniq
   end
 
   def ensure_repair_not_completed

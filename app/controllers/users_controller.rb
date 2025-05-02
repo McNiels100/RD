@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
+  include Filterable
   before_action :require_admin_or_leader
 
   def index
     @users = User.all
+    @roles = @users.distinct.pluck(:role)
+
+    @users = filter_by_user_role(@users)
   end
 
   def show

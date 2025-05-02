@@ -1,3 +1,10 @@
 <h1>All users of [Company]</h1>
-<%= link_to "New user", new_user_path, class: "btn new-color" %>
+<div class="flex-container content-space-between align-items-end">
+  <%= link_to "New user", new_user_path, class: "btn new-color" %>
+  <%= render 'layouts/filter',
+               path: users_path,
+               user_role_filter: true,
+               users: @users,
+               roles: @roles %>
+</div>
 <%= render 'users_table' %>

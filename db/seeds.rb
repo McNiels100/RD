@@ -9,6 +9,7 @@
 #   end
 #
 # Load seeds in production using bin/kamal console with command 'kamal app exec 'rails db:reset DISABLE_DATABASE_ENVIRONMENT_CHECK=1''
+# Reboot app container with bin/kamal app reboot
 
 def create_statuses
   Status.delete_all

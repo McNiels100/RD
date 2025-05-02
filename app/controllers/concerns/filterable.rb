@@ -35,8 +35,16 @@ module Filterable
 
   def filter_by_repair_statuses(collection)
     return collection unless params[:repair_statuses].present?
-    status_ids = Status.active.where(name: params[:repair_statuses]).pluck(:id)
-    collection.joins(:latest_status).where(statuses: { id: status_ids })
+
+    matching_repair_ids = []
+
+    collection.find_each do |repair|
+      if repair.current_status && params[:repair_statuses].include?(repair.current_status.name)
+        matching_repair_ids << repair.id
+      end
+    end
+
+    collection.where(id: matching_repair_ids)
   end
 
   def filter_by_tat_statuses(collection)

@@ -9,6 +9,8 @@ one:
   imei: 1987654321098765
   serial: AP8948973450
   model: S23 FE
+  model_code: SM-S711B/DS
+  locked_by: one@example.com
 
 two:
   name: John Doe
@@ -19,3 +21,25 @@ two:
   imei: 987654321098765
   serial:
   model: 16e
+  model_code: A3287
+
+completed:
+  name: Marco Phoenix
+  email: marco.phoenix@example.com
+  brand: Samsung
+  device_type: phone
+  error_description: Fails update.
+  imei: 3090238953489
+  model: iPhone 15 Pro 128GB Black
+  model_code: A2848
+
+locked_by_other:
+  name: Marco Phoenix
+  email: marco.phoenix@example.com
+  brand: Samsung
+  device_type: phone
+  error_description: Fails update.
+  imei: 3090238953489
+  model: iPhone 15 Pro 128GB Black
+  model_code: A2848
+  locked_by: another@example.com

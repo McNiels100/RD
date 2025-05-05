@@ -1,6 +1,13 @@
 require "test_helper"
 
 class RepairsControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    @user = users(:one) # Assuming :one is a regular user
+    @admin = users(:admin) # Assuming you have an admin fixture
+    @repair = repairs(:one)
+    @completed_repair = repairs(:completed) # Assuming a completed fixture
+    @locked_repair = repairs(:locked_by_other) # Assuming locked by another user
+  end
   # View
   test "should load pages if user is logged in" do
     # Get fixtures
@@ -12,7 +19,7 @@ class RepairsControllerTest < ActionDispatch::IntegrationTest
     assert_not_nil repair, "Repair fixture :one could not be found. Check test/fixtures/repairs.yml"
 
     # Log the user in using the helper (this sets the session cookies)
-    log_in_as(user)
+    log_in_as(@user)
 
     # Make page requests
     get repairs_url
@@ -68,7 +75,7 @@ class RepairsControllerTest < ActionDispatch::IntegrationTest
     assert_not repair.save, "Saved repair without device type"
   end
 
-  test "should save repair with all info filled" do
+  test "should save repair with all required info filled" do
     repair = Repair.new(name: "John Doe", email: "john.doe@example.com", phone_number: "88888888", brand: "Apple", error_description: "Broken screen", imei: "987654321098765", serial: "AP8948973450", model: "iPhone 16e", device_type: "phone",)
     assert repair.save, "Could not save repair with info"
   end
@@ -136,5 +143,15 @@ class RepairsControllerTest < ActionDispatch::IntegrationTest
     repair = repairs(:one)
     device = Device.find_by(brand: repair.brand, device_type: repair.device_type)
     assert device
+  end
+
+  # Update
+  test "should lock repair" do
+  end
+
+  test "should not lock repair if already locked by other" do
+  end
+
+  test "should not lock repair if completed" do
   end
 end

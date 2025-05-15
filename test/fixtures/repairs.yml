@@ -3,19 +3,46 @@
 one:
   name: Nicklas Jensen
   email: nick@example.com
+  phone_number: 12345678 # Added missing required field
   brand: Samsung
   device_type: phone
   error_description: Battery drains too quickly.
   imei: 1987654321098765
   serial: AP8948973450
   model: S23 FE
+  model_code: SM-S711B/DS
 
 two:
   name: John Doe
   email: john.doe@example.com
+  phone_number: 87654321
   brand: Apple
   device_type: phone
   error_description: Screen is cracked.
   imei: 987654321098765
   serial:
   model: 16e
+  model_code: A3287
+
+completed:
+  name: Marco Phoenix
+  email: marco.phoenix@example.com
+  phone_number: 34567890 # Added missing required field
+  brand: Samsung
+  device_type: phone
+  error_description: Fails update.
+  imei: 3090238953489
+  model: iPhone 15 Pro 128GB Black
+  model_code: A2848
+
+locked:
+  name: Marco Phoenix
+  email: marco.phoenix@example.com
+  phone_number: 45678901 # Added missing required field
+  brand: Samsung
+  device_type: phone
+  error_description: Fails update.
+  imei: 3090238953489
+  model: iPhone 15 Pro 128GB Black
+  model_code: A2848
+  locked_by: another@example.com # This is fine as a string, but the email doesn't exist in user fixtures

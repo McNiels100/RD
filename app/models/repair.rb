@@ -83,11 +83,13 @@ class Repair < ApplicationRecord
         description = "#{inventory.part_name} - #{inventory.brand} #{inventory.model}"
         imei = inventory.imei
         serial = inventory.serial
+        current_pricing = inventory.current_price
+        unit_price = current_pricing ? current_pricing.price : 0
 
          repair_items.create!(
            inventory: inventory,
            description: description,
-           unit_price: 0,
+           unit_price: unit_price,
            imei: imei,
            serial: serial
          )

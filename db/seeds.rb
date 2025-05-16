@@ -554,6 +554,7 @@ def create_inventories
       model: 'Galaxy S23 FE',
       model_code: 'SM-S711B/DS',
       part_name: 'Display',
+      part_number: 'SVC-LCD-ASSY-OCTA',
       serial: "SM#{(10**14) + rand(10**15 - 10**14)}",
       location: "B7"
     )
@@ -565,6 +566,7 @@ def create_inventories
       model: 'iPhone 15 Pro',
       model_code: 'A2848',
       part_name: 'Battery',
+      part_number: '661-35694',
       serial: "AP#{(10**14) + rand(10**15 - 10**14)}",
       location: "A1"
     )
@@ -576,6 +578,7 @@ def create_inventories
       model: '13R',
       model_code: 'CPH2645',
       part_name: 'Speaker',
+      part_number: 'O-SPEAKER-BOTTOM-R',
       serial: "OP#{(10**14) + rand(10**15 - 10**14)}",
       location: "C3"
     )
@@ -587,6 +590,7 @@ def create_inventories
       model: '14T Pro',
       model_code: '2407FPN8EG',
       part_name: 'Mainboard',
+      part_number: 'XM-MAINBOARD-128',
       imei: (10**14) + rand(10**15 - 10**14),
       location: "E2"
     )
@@ -598,6 +602,7 @@ def create_inventories
       model: '13R',
       model_code: 'CPH2645',
       part_name: 'Display',
+      part_number: 'O-AMOLED-DIS',
       serial: "OP#{(10**14) + rand(10**15 - 10**14)}",
       location: "C4"
     )
@@ -609,6 +614,7 @@ def create_inventories
       model: '13R',
       model_code: 'CPH2645',
       part_name: 'Mainboard',
+      part_number: 'O-MAINBOARD-128',
       imei: (10**14) + rand(10**15 - 10**14),
       location: "C2"
     )
@@ -620,6 +626,7 @@ def create_inventories
       model: '13R',
       model_code: 'CPH2645',
       part_name: 'Subboard',
+      part_number: 'O-SUBBOARD-USB',
       serial: "OP#{(10**14) + rand(10**15 - 10**14)}",
       location: "C2"
     )
@@ -631,10 +638,61 @@ def create_inventories
       model: 'Galaxy S23 FE',
       model_code: 'SM-S711B/DS',
       part_name: 'Mainboard',
+      part_number: 'SVC-MAINBOARD-128-INTER',
       imei: (10**14) + rand(10**15 - 10**14),
       location: "B6"
     )
   end
+end
+
+def create_pricings
+  Pricing.create!(
+    part_number: "SVC-LCD-ASSY-OCTA",
+    price: 234.99,
+    effective_date: Date.today
+  )
+
+  Pricing.create!(
+    part_number: "661-35694",
+    price: 59.99,
+    effective_date: Date.today
+  )
+
+  Pricing.create!(
+    part_number: "O-SPEAKER-BOTTOM-R",
+    price: 19.99,
+    effective_date: Date.today
+  )
+
+  Pricing.create!(
+    part_number: "XM-MAINBOARD-128",
+    price: 349.99,
+    effective_date: Date.today
+  )
+
+  Pricing.create!(
+    part_number: "O-AMOLED-DIS",
+    price: 229.99,
+    effective_date: Date.today
+  )
+
+  Pricing.create!(
+    part_number: "O-MAINBOARD-128",
+    price: 320,
+    effective_date: Date.today
+  )
+
+  Pricing.create!(
+    part_number: "O-SUBBOARD-USB",
+    price: 99.99,
+    effective_date: Date.today
+  )
+
+  Pricing.create!(
+    part_number: "SVC-MAINBOARD-128-INTER",
+    price: 329.99,
+    effective_date: Date.today
+  )
 end
 
 create_statuses
@@ -642,3 +700,4 @@ create_users
 create_devices
 create_repairs
 create_inventories
+create_pricings

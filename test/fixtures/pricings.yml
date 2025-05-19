@@ -4,8 +4,12 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+one:
+  part_number: SVC-LCD-ASSY-OCTA
+  price: 199.99
+  effective_date: <%= Date.today %>
+
+two:
+  part_number: AP-DIS-16E
+  price: 299.99
+  effective_date: <%= Date.today %>

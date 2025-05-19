@@ -1,14 +1,22 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  imei: 356728109476543
-  serial:
+  brand: Samsung
+  model: Galaxy S23 FE
+  model_code: SM-S711B/DS'
+  part_name: Display
+  part_number: SVC-LCD-ASSY-OCTA'
+  serial: SM901284619801
   location: A7
   status: in_stock
-  repair: one
+  repair:
 
 two:
-  imei:
+  brand: Apple
+  model: iPhone 16e
+  model_code: A3287
+  part_name: Display
+  part_number: AP-DIS-16E'
   serial: F17LTWY2JCL7
   location: B2
   status: allocated_repair

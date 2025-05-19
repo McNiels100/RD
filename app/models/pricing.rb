@@ -4,10 +4,11 @@ class Pricing < ApplicationRecord
   validate :no_whitespace_in_part_number
 
   def self.current_price_for(part_number)
-    where(part_number: part_number)
-      .order(effective_date: :desc)
-      .first
-  end
+      where(part_number: part_number)
+        .where("effective_date <= ?", Date.today)
+        .order(effective_date: :desc)
+        .first
+    end
 
   private
   def no_whitespace_in_part_number

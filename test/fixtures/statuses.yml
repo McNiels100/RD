@@ -1,9 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+received:
   name: Received
   active: true
 
-two:
+cancelled:
   name: Cancelled
   active: false
+
+completed:
+  name: Completed
+  active: true

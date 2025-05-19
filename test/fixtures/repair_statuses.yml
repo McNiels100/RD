@@ -1,2 +1,19 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+one:
+  repair: one
+  status: received
+  user: one
+  notes: Initial assessment
+
+two:
+  repair: two
+  status: received
+  user: two
+  notes: Customer reported screen damage
+
+completed:
+  repair: completed
+  status: completed
+  user: one
+  notes: Repair completed successfully

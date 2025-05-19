@@ -21,3 +21,11 @@ two:
   location: B2
   status: allocated_repair
   repair: two
+
+used:
+  brand: Samsung
+  model: Galaxy S23 FE
+  model_code: SM-S711B/DS
+  part_name: Display
+  serial: SM02894920472
+  location: "B7"

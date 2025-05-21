@@ -5,9 +5,18 @@ one:
   inventory: one
   unit_price: 9.99
   description: MyText
+  serial: one.serial
 
 two:
   repair: two
   inventory: two
   unit_price: 9.99
   description: MyText
+  serial: two.serial
+
+used:
+  repair: completed
+  inventory: used
+  unit_price: 9.99
+  description: MyText
+  serial: completed.serial

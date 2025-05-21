@@ -1,20 +1,26 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  brand: Apple
-  model: iPhone 15 Pro
-  model_code: A2848
-  part_name: Battery
-  serial: AP123456789123
-  location: "A1"
+  brand: Samsung
+  model: Galaxy S23 FE
+  model_code: SM-S711B/DS'
+  part_name: Display
+  part_number: SVC-LCD-ASSY-OCTA'
+  serial: SM901284619801
+  location: A7
+  status: in_stock
+  repair:
 
 two:
-  brand: Xiaomi
-  model: 14T Pro
-  model_code: 2407FPN8EG
-  part_name: Mainboard
-  imei: 151515151515515
-  location: "E2"
+  brand: Apple
+  model: iPhone 16e
+  model_code: A3287
+  part_name: Display
+  part_number: AP-DIS-16E'
+  serial: F17LTWY2JCL7
+  location: B2
+  status: allocated_repair
+  repair: two
 
 used:
   brand: Samsung

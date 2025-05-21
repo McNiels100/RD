@@ -220,6 +220,7 @@ body {
     input[type="email"],
     input[type="tel"],
     input[type="password"],
+    input[type="number"],
     textarea,
     select {
         width: 100%;

@@ -38,5 +38,4 @@ Rails.application.routes.draw do
   end
 
   resources :inventories
-  resources :pricings
 end

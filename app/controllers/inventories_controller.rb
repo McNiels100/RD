@@ -5,7 +5,6 @@ class InventoriesController < ApplicationController
 
   before_action :require_admin_or_leader
   before_action :set_device_data, only: [ :index ]
-  before_action :set_inventory, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @inventories = Inventory.all
@@ -26,6 +25,7 @@ class InventoriesController < ApplicationController
   end
 
   def show
+    @inventory = Inventory.find(params[:id])
   end
 
   def new
@@ -44,9 +44,11 @@ class InventoriesController < ApplicationController
   end
 
   def edit
+    @inventory = Inventory.find(params[:id])
   end
 
   def update
+    @inventory = Inventory.find(params[:id])
     if @inventory.update(inventory_params)
       redirect_to inventories_path
     else
@@ -55,16 +57,12 @@ class InventoriesController < ApplicationController
   end
 
   def destroy
+    @inventory = Inventory.find(params[:id])
     @inventory.destroy
     redirect_to inventories_path
   end
 
-  private
   def inventory_params
     params.require(:inventory).permit(:imei, :serial, :location, :brand, :model, :model_code, :part_name)
-  end
-
-  def set_inventory
-    @inventory = Inventory.find(params[:id])
   end
 end

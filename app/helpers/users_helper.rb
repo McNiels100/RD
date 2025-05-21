@@ -7,7 +7,6 @@ module UsersHelper
     links << link_to("Manage devices", devices_path) if user.admin?
     links << link_to("Manage statuses", statuses_path) if user.admin?
     links << link_to("Manage inventories", inventories_path) if user.admin?
-    links << link_to("Manage pricings", pricings_path) if user.admin?
     links << link_to("Excel export", "") if user.admin? || user.leader?
     links.join.html_safe
   end

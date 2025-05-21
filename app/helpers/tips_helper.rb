@@ -34,6 +34,11 @@ module TipsHelper
         { label: "IMEI & Serial", content: "Either one needs to be provided. Both cannot be empty. Customer must solve this before submitting a repair." },
         { label: "Model code", content: "It is not required. But it'll help make the service faster if available." }
 
+      ],
+      pricings: [
+        { label: "Caution", content: "A price entry cannot be deleted or edited. If you make a mistake, you will have to correct it by making another entry to overwrite it." },
+        { label: "Part number", content: "Please make sure it is written precisely as the related inventories, or the price will not be associated." },
+        { label: "Whitespace", content: "Any spacing is not allowed in part number," }
       ]
     }
   end

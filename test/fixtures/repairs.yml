@@ -3,7 +3,7 @@
 one:
   name: Nicklas Jensen
   email: nick@example.com
-  phone_number: 12345678 # Added missing required field
+  phone_number: 1234567890
   brand: Samsung
   device_type: phone
   error_description: Battery drains too quickly.
@@ -15,7 +15,7 @@ one:
 two:
   name: John Doe
   email: john.doe@example.com
-  phone_number: 87654321
+  phone_number: 0987654321
   brand: Apple
   device_type: phone
   error_description: Screen is cracked.

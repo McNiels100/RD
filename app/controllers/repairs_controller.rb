@@ -26,6 +26,10 @@ class RepairsController < ApplicationController
   end
 
   def show
+    if @repair.locked_by == nil
+      @repair.lock!(current_user.email_address) if @repair && current_user
+    end
+
     @device = Device.find_by(brand: @repair.brand, device_type: @repair.device_type)
     @repair_locked_by_current_user = @repair.locked_by?(current_user.email_address)
     @repair_items = @repair.repair_items.order(created_at: :desc)

@@ -1,0 +1,48 @@
+<div id="repair_images_<%= @repair.id %>" class="info-module">
+  <h2>Device Images</h2>
+  <% if @repair.images.attached? %>
+    <div class="images-container">
+      <% @repair.images.each do |image| %>
+        <div class="image-item">
+          <%= image_tag url_for(image), style: "max-width: 300px; max-height: 300px;" %>
+          <%= button_to "Remove",
+                       remove_image_repair_path(@repair, image_id: image.id),
+                       method: :delete,
+                       class: "remove-image-btn",
+                       form: { data: { turbo_confirm: "Are you sure you want to remove this image?" } },
+                       **disable_if_not_editable(@repair) %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p>No images uploaded yet.</p>
+  <% end %>
+  <%= form_with model: @repair,
+                url: add_images_repair_path(@repair),
+                method: :post,
+                multipart: true,
+                html: { multipart: true } do |form| %>
+    <div class="field">
+      <%= form.label :images, "Add device images" %>
+      <%= form.file_field :images,
+                         multiple: true,
+                         accept: 'image/*',
+                         **disable_if_not_editable(@repair) %>
+    </div>
+    <div class="actions">
+      <%= form.submit "Upload Images",
+                     class: "upload-button",
+                     **disable_if_not_editable(@repair) %>
+    </div>
+  <% end %>
+  <div class="upload-instructions">
+    <p>Please upload clear images of the device showing:</p>
+    <ul>
+      <li>Front view</li>
+      <li>Back view</li>
+      <li>Any visible damage</li>
+      <li>Serial number/IMEI (if visible)</li>
+    </ul>
+    <p>Max 5MB per image. Acceptable formats: JPG, PNG, GIF.</p>
+  </div>
+</div>

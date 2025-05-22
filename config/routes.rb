@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   resources :repairs do
     member do
+      post :add_images
+      delete :remove_image
       post :lock
       post :unlock
       post :add_status

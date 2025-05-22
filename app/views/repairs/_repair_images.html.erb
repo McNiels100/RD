@@ -5,12 +5,13 @@
       <% @repair.images.each do |image| %>
         <div class="image-item">
           <%= image_tag url_for(image), style: "max-width: 300px; max-height: 300px;" %>
-          <%= button_to "Remove",
-                       remove_image_repair_path(@repair, image_id: image.id),
+          <%= button_to remove_image_repair_path(@repair, image_id: image.id),
                        method: :delete,
-                       class: "remove-image-btn",
+                       class: "close-btn",
                        form: { data: { turbo_confirm: "Are you sure you want to remove this image?" } },
-                       **disable_if_not_editable(@repair) %>
+                       **disable_if_not_editable(@repair) do %>
+            <i class="fa fa-close"></i>
+          <% end %>
         </div>
       <% end %>
     </div>

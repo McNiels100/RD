@@ -994,6 +994,21 @@ input:disabled {
     border-radius: 4px;
 }
 
+.image-item .close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    color: #aaa;
+    border: none;
+}
+
+.image-item .close-btn:hover,
+.close-btn:focus {
+    color: black;
+    cursor: pointer;
+}
+
 .image-item img {
     display: block;
     max-width: 100%;

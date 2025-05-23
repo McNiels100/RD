@@ -33,7 +33,8 @@
           <%= button_to remove_repair_item_repair_path(repair, item_id: item.id),
                           method: :delete,
                           form: { data: { turbo_confirm: 'Are you sure?', turbo_stream: true } },
-                          params: { action: 'remove_repair_item' } do %>
+                          params: { action: 'remove_repair_item' },
+                          **disable_if_not_editable(@repair) do %>
             <i class="fa fa-trash"></i>
           <% end %>
         </td>

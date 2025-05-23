@@ -41,4 +41,12 @@ module TurboStreamRenderable
       render_turbo_flash
     ]
   end
+
+  def render_repair_images_stream
+    render turbo_stream: [
+      turbo_stream.replace("repair_images_#{@repair.id}",
+                           partial: "repair_images"),
+      render_turbo_flash
+    ]
+  end
 end

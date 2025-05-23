@@ -26,6 +26,10 @@ class RepairsController < ApplicationController
   end
 
   def show
+    if @repair.locked_by == nil
+      @repair.lock!(current_user.email_address) if @repair && current_user
+    end
+
     @device = Device.find_by(brand: @repair.brand, device_type: @repair.device_type)
     @repair_locked_by_current_user = @repair.locked_by?(current_user.email_address)
     @repair_items = @repair.repair_items.order(created_at: :desc)
@@ -113,7 +117,7 @@ class RepairsController < ApplicationController
     end
     respond_to do |format|
       format.html { redirect_to repair_path(@repair) }
-      # format.turbo_stream { render_status_history_stream }
+      format.turbo_stream { render_status_history_stream }
     end
   end
 
@@ -223,6 +227,48 @@ class RepairsController < ApplicationController
     end
   end
 
+  def add_images
+    @repair = Repair.find(params[:id])
+
+    if params[:repair] && params[:repair][:images].present?
+      # Debug logging
+      Rails.logger.debug "Received #{params[:repair][:images].count} images"
+
+      # Attach images
+      images = params[:repair][:images]
+      images.each do |image|
+        @repair.images.attach(image)
+      end
+
+      flash.now[:success] = "Images uploaded successfully."
+    else
+      flash.now[:error] = "No images were selected."
+    end
+
+    respond_to do |format|
+      format.html { redirect_to repair_path(@repair) }
+      format.turbo_stream { render_repair_images_stream }
+    end
+  end
+
+
+  def remove_image
+    @repair = Repair.find(params[:id])
+    image = @repair.images.find(params[:image_id])
+
+    if image.purge
+      flash.now[:success] = "Image removed successfully."
+    else
+      flash.now[:error] = "Failed to remove image."
+    end
+
+    respond_to do |format|
+      format.html { redirect_to repair_path(@repair) }
+      format.turbo_stream { render_repair_images_stream }
+    end
+  end
+
+
   private
   def set_repair
     @repair = Repair.find(params[:id])
@@ -236,7 +282,7 @@ class RepairsController < ApplicationController
   end
 
   def repair_params
-    params.require(:repair).permit(:name, :email, :phone_number, :brand, :device_type, :error_description, :imei, :serial, :model, :model_code)
+    params.require(:repair).permit(:name, :email, :phone_number, :brand, :device_type, :error_description, :imei, :serial, :model, :model_code, images: [])
   end
 
   def ensure_repair_locked_by_current_user

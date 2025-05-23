@@ -4,7 +4,10 @@
   <h1>Repair: <%= @repair.order_number %></h1>
   <%= render "tat_status" %>
 </div>
-<%= render "repair_information" %>
+<div data-controller="toggle" data-toggle-hidden-class="hidden">
+  <%= render 'repair_information', repair: @repair %>
+  <%= render 'repair_images', repair: @repair %>
+</div>
 <%= render "set_status" %>
 <%= render "add_repair_items" %>
 <div class="flex-container content-center">

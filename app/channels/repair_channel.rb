@@ -1,11 +1,5 @@
 class RepairChannel < ApplicationCable::Channel
   def subscribed
-    # Find the repair and lock it for the current user
-    repair = Repair.find(params[:id])
-    if repair.locked_by == nil
-      repair.lock!(current_user.email_address) if repair && current_user
-    end
-
     # Stream updates for this repair
     stream_from "repair_#{params[:id]}"
   end

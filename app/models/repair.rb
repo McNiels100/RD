@@ -12,6 +12,8 @@ class Repair < ApplicationRecord
 
   has_many :repair_items, dependent: :destroy
 
+  has_many_attached :images
+
   # Returns the current status
   def current_status
     latest_status

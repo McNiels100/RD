@@ -2,7 +2,10 @@
   <%= form_with model: @repair do |form| %>
     <div class="info-wrapper">
       <div class="info-module">
-        <h2>Device</h2>
+        <div class="flex-container content-space-between align-items-baseline">
+          <h2>Device</h2>
+          <span data-action="click->toggle#toggle"><i class="fa fa-camera"></i></span>
+        </div>
         <%= form.label :brand %>
         <%= form.select :brand, @brands, {}, disable_if_not_editable(@repair) %>
         <%= form.label :device_type %>

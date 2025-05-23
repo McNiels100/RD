@@ -51,6 +51,10 @@ body {
     align-items: center;
 }
 
+.align-items-baseline {
+    align-items: baseline;
+}
+
 /* Index table */
 .index-table {
     font-family: arial, sans-serif;

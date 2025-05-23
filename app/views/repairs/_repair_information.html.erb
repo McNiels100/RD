@@ -4,7 +4,14 @@
       <div class="info-module">
         <div class="flex-container content-space-between align-items-baseline">
           <h2>Device</h2>
-          <span class="image-btn" data-action="click->toggle#toggle"><i class="fa fa-camera"></i></span>
+          <span class="image-btn" data-action="click->toggle#toggle">
+            <i class="fa fa-camera"></i>
+            <% if @repair.images.attached? %>
+              <span class="image-count-badge">
+                <%= @repair.images.count %>
+              </span>
+            <% end %>
+          </span>
         </div>
         <%= form.label :brand %>
         <%= form.select :brand, @brands, {}, disable_if_not_editable(@repair) %>

@@ -984,6 +984,11 @@ input:disabled {
 }
 
 /* Repair images */
+.image-btn {
+    cursor: pointer;
+    padding: 5px;
+}
+
 .images-container {
     display: flex;
     flex-wrap: wrap;

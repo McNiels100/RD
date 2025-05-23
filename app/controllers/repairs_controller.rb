@@ -117,7 +117,7 @@ class RepairsController < ApplicationController
     end
     respond_to do |format|
       format.html { redirect_to repair_path(@repair) }
-      # format.turbo_stream { render_status_history_stream }
+      format.turbo_stream { render_status_history_stream }
     end
   end
 
@@ -257,9 +257,9 @@ class RepairsController < ApplicationController
     image = @repair.images.find(params[:image_id])
 
     if image.purge
-      flash[:success] = "Image removed successfully."
+      flash.now[:success] = "Image removed successfully."
     else
-      flash[:error] = "Failed to remove image."
+      flash.now[:error] = "Failed to remove image."
     end
 
     respond_to do |format|

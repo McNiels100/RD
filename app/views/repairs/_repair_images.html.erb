@@ -11,7 +11,9 @@
         <div class="images-container">
           <% @repair.images.each do |image| %>
             <div class="image-item">
-              <%= image_tag url_for(image), style: "max-width: 300px; max-height: 300px;", loading: "lazy" %>
+              <%= link_to url_for(image), target: "_blank" do %>
+                <%= image_tag url_for(image), style: "max-width: 300px; max-height: 300px;", loading: "lazy" %>
+              <% end %>
               <%= button_to remove_image_repair_path(@repair, image_id: image.id),
                           method: :delete,
                           class: "close-btn",

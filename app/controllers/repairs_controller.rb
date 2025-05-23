@@ -107,7 +107,7 @@ class RepairsController < ApplicationController
 
       if status.name == "Completed"
         @repair.mark_as_completed(user, notes)
-        flash[:success] = "Repair marked as completed. All parts have been marked as used."
+        flash.now[:success] = "Repair marked as completed. All parts have been marked as used."
       else
         @repair.add_status(status_id, user, notes)
         flash.now[:success] = "Status updated successfully."
